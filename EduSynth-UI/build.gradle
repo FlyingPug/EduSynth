@@ -1,0 +1,19 @@
+plugins {
+  id 'java'
+  id("com.github.node-gradle.node") version "7.0.1"
+}
+
+// 2
+node {
+  version = "20.11.0"
+  npmVersion = "10.2.4"
+  download = false
+}
+
+// 3
+jar.dependsOn 'npm_run_build'
+
+// 4
+jar {
+  from 'dist/edu-synth-ui/browser' into 'static'
+}
