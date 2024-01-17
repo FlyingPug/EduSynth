@@ -4,37 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/EduSynthServerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/StaticResourceConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/controller/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/3rdpartylicenses.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/3rdpartylicenses.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-SVW7YARF.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/polyfills-RX4V3J3S.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/styles-5INURTSO.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/test/java/com/dron/edusynthserver/EduSynthServerApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="c">
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/db/migration/V1__init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,11 +87,11 @@
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\resources\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer" />
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\browser" />
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\resources\public\someDir" />
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\resources\templates" />
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\resources\static" />
-      <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynth-UI" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.EduSynthServerApplication">
@@ -204,7 +179,17 @@
       <workItem from="1705285153199" duration="1773000" />
       <workItem from="1705291779107" duration="14152000" />
       <workItem from="1705350830147" duration="30512000" />
+      <workItem from="1705409536753" duration="304000" />
+      <workItem from="1705469144379" duration="2031000" />
     </task>
+    <task id="LOCAL-00001" summary="c">
+      <created>1705409792974</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705409792974</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +208,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="c" />
+    <option name="LAST_COMMIT_MESSAGE" value="c" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
