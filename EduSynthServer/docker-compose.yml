@@ -1,0 +1,31 @@
+version: '1.0'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_DB: edusynthDb
+      POSTGRES_USER: edusynthDb
+      POSTGRES_PASSWORD: edusynthDb
+    ports:
+      - "5432:5432"
+    networks:
+      - default_net
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: orlikov.andrei@yandex.ru
+      PGADMIN_DEFAULT_PASSWORD: orlikov.andrei@yandex.ru
+    ports:
+      - "5050:80"
+    networks:
+      - default_net
+    depends_on:
+      - postgres
+
+networks:
+  default_net:
+    driver: bridge

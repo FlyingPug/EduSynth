@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.1'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+dependencies {
+    implementation(project(':EduSynth-UI'))
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation "org.flywaydb:flyway-core"
+    implementation "org.hibernate:hibernate-core"
+
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/edusynthDb'
+    user = 'edusynthDb'
+    password = 'edusynthDb'
+}
+
+
+bootJar {
+    dependsOn ':EduSynth-UI:build'
+    doLast {
+        copy {
+            from project(':EduSynth-UI').file('build/dist') // Подставьте правильный путь до директории dist
+            into 'src/main/resources/static'
+        }
+    }
+}
+
+task prepareKotlinBuildScriptModel {
+
+}
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="что-то странно в гитхабе не отображается модуль сервар" />
+    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="что-то странно в гитхабе не отображается модуль сервар">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -174,7 +176,8 @@
       <workItem from="1705291779107" duration="14152000" />
       <workItem from="1705350830147" duration="30512000" />
       <workItem from="1705409536753" duration="304000" />
-      <workItem from="1705469144379" duration="2370000" />
+      <workItem from="1705469144379" duration="2557000" />
+      <workItem from="1705474114776" duration="1652000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>
@@ -197,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705473830467</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="что-то странно в гитхабе не отображается модуль сервар">
+      <created>1705473924339</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705473924339</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
