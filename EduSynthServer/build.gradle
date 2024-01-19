@@ -2,15 +2,19 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.1'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.flywaydb.flyway' version "10.6.0"
 }
 
 dependencies {
     implementation(project(':EduSynth-UI'))
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    implementation "org.flywaydb:flyway-core"
-    implementation "org.hibernate:hibernate-core"
+    implementation 'org.flywaydb:flyway-core:10.6.0'
+    implementation("org.flywaydb:flyway-database-postgresql:10.6.0")
+
+    implementation 'org.hibernate:hibernate-core:6.4.1.Final'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
@@ -25,16 +29,6 @@ flyway {
     password = 'edusynthDb'
 }
 
-
-bootJar {
-    dependsOn ':EduSynth-UI:build'
-    doLast {
-        copy {
-            from project(':EduSynth-UI').file('build/dist') // Подставьте правильный путь до директории dist
-            into 'src/main/resources/static'
-        }
-    }
-}
 
 task prepareKotlinBuildScriptModel {
 
@@ -52,6 +46,9 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://download.red-gate.com/maven/release"
+    }
 }
 
 tasks.named('test') {
