@@ -3,6 +3,7 @@ package com.dron.edusynthserver.quiz.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "sessions")
@@ -20,4 +21,10 @@ public class Session {
 
     @Column(name = "end_time")
     private Date endTime;
+
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
+    private List<Participant> participants;
+
+    @Column(name = "session_code", nullable = false, unique = true)
+    private String sessionCode;
 }

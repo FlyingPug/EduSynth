@@ -19,6 +19,8 @@ dependencies {
     implementation 'org.hibernate:hibernate-core:6.4.1.Final'
     implementation 'org.testng:testng:7.1.0'
 
+    implementation 'io.jsonwebtoken:jjwt:0.12.4'
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'

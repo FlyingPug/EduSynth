@@ -6,10 +6,13 @@ import com.dron.edusynthserver.quiz.dto.QuestionDto;
 import com.dron.edusynthserver.quiz.dto.QuizDto;
 import com.dron.edusynthserver.quiz.model.Quiz;
 import com.dron.edusynthserver.quiz.service.QuizService;
+import com.dron.edusynthserver.quiz.service.SessionService;
+import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +24,15 @@ public class QuizController
 {
     private final QuizService quizService;
     private final QuizMapper quizMapper;
+    private final UserService userService;
+    private final SessionService sessionService;
 
     @Autowired
-    public QuizController(QuizService quizService, QuizMapper quizMapper) {
+    public QuizController(QuizService quizService, QuizMapper quizMapper, UserService userService, SessionService sessionService) {
         this.quizService = quizService;
         this.quizMapper = quizMapper;
+        this.userService = userService;
+        this.sessionService = sessionService;
     }
 
     // Получить список всех квизов (доступно всем)
@@ -53,6 +60,20 @@ public class QuizController
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+    }
+
+    // Ветка для незарегистрированных пользователей
+    @PostMapping("/join-session")
+    public ResponseEntity<String> joinSession(@RequestParam String sessionCode) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (!auth.isAuthenticated())
+
+            sessionService.joinSession(sessionCode, userService.getUserByName(auth.getName()));
+        // Ваш код для создания временной аутентификации
+        String token = gameSessionService.joinSessionAsGuest(sessionCode);
+        return ResponseEntity.ok(token);
     }
 
     // Получить следующий вопрос в сессии (требуется авторизация)
