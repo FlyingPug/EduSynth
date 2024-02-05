@@ -1,5 +1,6 @@
 package com.dron.edusynthserver.quiz.service;
 
+import com.dron.edusynthserver.exceptions.BadNameException;
 import com.dron.edusynthserver.quiz.dto.ParticipantDto;
 import com.dron.edusynthserver.quiz.model.Participant;
 import com.dron.edusynthserver.user.model.User;
@@ -11,11 +12,11 @@ public interface SessionService
 {
     ParticipantDto joinSession(String sessionCode, User user);
 
-    ParticipantDto createSession(User user);
+    ParticipantDto createSession(int QuizId, User user);
 
-    ParticipantDto joinSessionAsGuest(String sessionCode, String name);
+    ParticipantDto joinSessionAsGuest(String sessionCode, String name) throws BadNameException;
 
-    ParticipantDto getParticipant(String name);
+    ParticipantDto getParticipant(String sessionCode, String name);
 
     void answerQuestion(ParticipantDto participant, List<Long> answers);
 

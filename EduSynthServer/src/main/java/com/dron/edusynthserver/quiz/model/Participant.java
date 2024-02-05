@@ -2,11 +2,15 @@ package com.dron.edusynthserver.quiz.model;
 
 import com.dron.edusynthserver.user.model.User;
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
 @Table(name = "participants")
+@Builder
+@Data
 public class Participant
 {
     @Id
