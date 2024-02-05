@@ -8,10 +8,10 @@ public class Answer
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "question_id", nullable = false)
-    private Long questionId;
+    private int questionId;
 
     @Column(name = "text", nullable = false)
     private String text;

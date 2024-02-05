@@ -18,7 +18,7 @@ public class Quiz
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -30,8 +30,10 @@ public class Quiz
     private boolean isPublic;
 
     @Column(name = "creator_id", nullable = false)
-    private Long creatorId;
+    private int creatorId;
 
+    @Column(name = "title_media_url")
+    private String titleMediaUrl;
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions;
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class AnswerDto
 {
-    private Long id;
+    private int id;
     private String text;
     private String mediaUrl;
 }

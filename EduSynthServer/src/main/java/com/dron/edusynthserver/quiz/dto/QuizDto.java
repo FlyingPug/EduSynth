@@ -7,10 +7,11 @@ import java.util.List;
 @Data
 public class QuizDto
 {
-    private Long id;
+    private int id;
     private String title;
     private String description;
+    private String title_media_url;
     private boolean isPublic;
-    private Long creatorId;
+    private int creatorId;
     private List<QuestionDto> questionDtos;
 }

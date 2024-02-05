@@ -7,7 +7,7 @@ import java.util.List;
 @Data
 public class QuestionDto
 {
-    private Long id;
+    private int id;
     private String text;
     private String mediaUrl;
     private String type;

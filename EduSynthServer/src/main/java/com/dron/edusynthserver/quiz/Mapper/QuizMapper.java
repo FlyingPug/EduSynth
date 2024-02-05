@@ -2,6 +2,7 @@ package com.dron.edusynthserver.quiz.Mapper;
 
 import com.dron.edusynthserver.quiz.dto.QuestionDto;
 import com.dron.edusynthserver.quiz.dto.QuizDto;
+import com.dron.edusynthserver.quiz.dto.QuizTitleDto;
 import com.dron.edusynthserver.quiz.model.Quiz;
 import org.mapstruct.Mapper;
 
@@ -14,4 +15,5 @@ public interface QuizMapper {
     List<QuizDto> toDTOList(List<Quiz> quizzes);
 
     Quiz toModel(QuizDto quizDTO);
+    QuizTitleDto toShortDto(Quiz quiz);
 }
