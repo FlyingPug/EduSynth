@@ -4,6 +4,8 @@ import com.dron.edusynthserver.exceptions.BadNameException;
 import com.dron.edusynthserver.exceptions.NotFoundException;
 import com.dron.edusynthserver.quiz.Mapper.ParticipantMapper;
 import com.dron.edusynthserver.quiz.dto.ParticipantDto;
+import com.dron.edusynthserver.quiz.dto.SessionResultDto;
+import com.dron.edusynthserver.quiz.dto.SessionStateDto;
 import com.dron.edusynthserver.quiz.model.Participant;
 import com.dron.edusynthserver.quiz.model.Quiz;
 import com.dron.edusynthserver.quiz.model.Session;
@@ -13,7 +15,6 @@ import com.dron.edusynthserver.quiz.service.QuizService;
 import com.dron.edusynthserver.quiz.service.SessionService;
 import com.dron.edusynthserver.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -36,6 +37,11 @@ public class SessionServiceImpl implements SessionService {
         this.sessionRepository = sessionRepository;
         this.participantRepository = participantRepository;
         this.participantMapper = participantMapper;
+    }
+
+    @Override
+    public SessionStateDto getSessionState(String sessionCode) {
+        return null;
     }
 
     @Override
@@ -104,12 +110,14 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public void answerQuestion(ParticipantDto participant, List<Long> answers) {
-
+    public void answerQuestion(ParticipantDto participant, List<Long> answers)
+    {
+        /* TODO: определяется текущий вопрос, для этого мы определяем квиз участника,
+        после этого происходит */
     }
 
     @Override
-    public List<Pair<ParticipantDto, Long>> getSessionResult(ParticipantDto participant) {
+    public SessionResultDto getSessionResult(ParticipantDto participant) {
         return null;
     }
 

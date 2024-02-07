@@ -10,8 +10,9 @@ public class Answer
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "question_id", nullable = false)
-    private int questionId;
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = false)
+    private Question question;
 
     @Column(name = "text", nullable = false)
     private String text;

@@ -1,8 +1,6 @@
 package com.dron.edusynthserver.quiz.controller;
 
-import com.dron.edusynthserver.quiz.dto.AnswerDto;
-import com.dron.edusynthserver.quiz.dto.ParticipantDto;
-import com.dron.edusynthserver.quiz.dto.QuizDto;
+import com.dron.edusynthserver.quiz.dto.*;
 import com.dron.edusynthserver.quiz.model.Quiz;
 import com.dron.edusynthserver.quiz.service.SessionService;
 import com.dron.edusynthserver.user.service.UserService;
@@ -61,12 +59,23 @@ public class SessionController
     }
 
     @GetMapping("/participant-results")
-    public ResponseEntity<List<Pair<ParticipantDto, Long>>> getResults(@RequestParam String sessionCode)
+    public ResponseEntity<SessionResultDto> getResults(@RequestParam String sessionCode)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        ParticipantDto participant = sessionService.getParticipant(sessionCode, auth.getName());
-        List<Pair<ParticipantDto, Long>> result = sessionService.getSessionResult(participant);
+        if(auth.isAuthenticated())
+        {
+            ParticipantDto participant = sessionService.getParticipant(sessionCode, auth.getName());
+            SessionResultDto result = sessionService.getSessionResult(participant);
+            return ResponseEntity.ok(result);
+        }
 
-        return ResponseEntity.ok(result);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+    }
+
+    // Получить текущее состояние сессии
+    @GetMapping("/{quizId}/")
+    public ResponseEntity<SessionStateDto> getSessionState(@PathVariable String sessionCode) {
+        SessionStateDto questionDto = sessionService.getSessionState(sessionCode);
+        return ResponseEntity.ok(questionDto);
     }
 }

@@ -41,20 +41,20 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Quiz createQuiz(QuizDto quizDto, String creatorUsername) {
         Quiz quiz = quizMapper.toModel(quizDto);
-        quiz.setCreatorId(userService.getUserByName(creatorUsername).getId());
+        quiz.setCreator(userService.getUserByName(creatorUsername));
 
         return quizRepository.save(quiz);
     }
 
     @Override
-    public QuestionDto getQuestion(int questionNumb, int quizId) {
-        return questionMapper.toDTO(quizRepository.getReferenceById(quizId).getQuestions().get(questionNumb));
-    }
-
-    @Override
-    public Page<QuizTitleDto> getQuizTitles(int page, int size) {
+    public Page<QuizTitleDto> getQuizTitles(int page, int size, String sortBy) {
         PageRequest pageRequest = PageRequest.of(page, size);
 
         return quizRepository.findAll(pageRequest).map(quizMapper::toShortDto);
+    }
+
+    @Override
+    public void deleteQuizById(int toIntExact) {
+        quizRepository.deleteById(toIntExact);
     }
 }

@@ -22,7 +22,7 @@ public interface QuizService
      */
     Quiz createQuiz(QuizDto quizModel, String creatorUsername);
 
-    QuestionDto getQuestion(int questionNumb, int quizId);
+    Page<QuizTitleDto> getQuizTitles(int page, int size, String sortBy);
 
-    Page<QuizTitleDto> getQuizTitles(int page, int size);
+    void deleteQuizById(int toIntExact);
 }

@@ -1,5 +1,6 @@
 package com.dron.edusynthserver.quiz.model;
 
+import com.dron.edusynthserver.user.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +31,7 @@ public class Quiz
     private boolean isPublic;
 
     @Column(name = "creator_id", nullable = false)
-    private int creatorId;
+    private User creator;
 
     @Column(name = "title_media_url")
     private String titleMediaUrl;
