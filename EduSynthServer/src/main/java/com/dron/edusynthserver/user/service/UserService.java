@@ -9,9 +9,9 @@ public interface UserService
 {
     User getUserByName(String name);
 
-    UserDto getUserByEmail(String email);
+    User getUserByEmail(String email);
 
-    UserDto login(CredentialsDto credentialsDto);
+    User login(CredentialsDto credentialsDto);
 
-    UserDto register(SignUpDto user);
+    User register(SignUpDto user);
 }

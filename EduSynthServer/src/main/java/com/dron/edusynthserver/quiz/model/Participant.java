@@ -2,8 +2,10 @@ package com.dron.edusynthserver.quiz.model;
 
 import com.dron.edusynthserver.user.model.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import java.util.List;
 @Table(name = "participants")
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Participant
 {
     @Id
@@ -28,7 +32,7 @@ public class Participant
     @Column(name = "is_leader", nullable = false)
     private boolean isLeader;
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "participant_answers",
             joinColumns = @JoinColumn(name = "participant_id"),

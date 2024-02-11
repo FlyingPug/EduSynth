@@ -20,7 +20,7 @@ public interface SessionService
 
     ParticipantDto getParticipant(String sessionCode, String name);
 
-    void answerQuestion(ParticipantDto participant, List<Long> answers);
+    void answerQuestion(ParticipantDto participant, List<Integer> answers);
 
-    SessionResultDto getSessionResult(ParticipantDto participant);
+    SessionResultDto getSessionResult(String sessionCode);
 }

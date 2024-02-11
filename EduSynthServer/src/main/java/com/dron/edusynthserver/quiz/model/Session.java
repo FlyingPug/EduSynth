@@ -1,8 +1,10 @@
 package com.dron.edusynthserver.quiz.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.List;
 @Table(name = "sessions")
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +26,6 @@ public class Session {
 
     @Column(name = "start_time", nullable = false)
     private Date startTime;
-
-    @Column(name = "end_time")
-    private Date endTime;
 
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
     private List<Participant> participants;

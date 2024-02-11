@@ -4,6 +4,8 @@ import com.dron.edusynthserver.security.JwtTokenProvider;
 import com.dron.edusynthserver.user.dto.CredentialsDto;
 import com.dron.edusynthserver.user.dto.SignUpDto;
 import com.dron.edusynthserver.user.dto.UserDto;
+import com.dron.edusynthserver.user.mapper.UserMapper;
+import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +22,21 @@ public class AuthController
     private final UserService userService;
     private final JwtTokenProvider userAuthenticationProvider;
 
+    private final UserMapper userMapper;
+
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto credentialsDto) {
-        UserDto userDto = userService.login(credentialsDto);
-        userDto.setToken(userAuthenticationProvider.createToken(userDto));
+        User user = userService.login(credentialsDto);
+        UserDto userDto = userMapper.toDTO(user);
+        userDto.setToken(userAuthenticationProvider.createToken(user));
         return ResponseEntity.ok(userDto);
     }
 
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody SignUpDto user) {
-        UserDto createdUser = userService.register(user);
-        createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
-        return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
+        User createdUser = userService.register(user);
+        UserDto userDto = userMapper.toDTO(createdUser);
+        userDto.setToken(userAuthenticationProvider.createToken(createdUser));
+        return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(userDto);
     }
 }

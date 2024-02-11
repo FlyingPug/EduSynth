@@ -1,9 +1,17 @@
 package com.dron.edusynthserver.quiz.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "answers")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Answer
 {
     @Id
@@ -22,4 +30,7 @@ public class Answer
 
     @Column(name = "media_url")
     private String mediaUrl;
+
+    @ManyToMany(mappedBy = "participantAnswers")
+    private List<Participant> participants;
 }

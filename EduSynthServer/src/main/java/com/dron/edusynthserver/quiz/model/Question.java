@@ -26,7 +26,7 @@ public class Question {
     private String mediaUrl;
 
     @Column(name = "type", nullable = false)
-    private String type;
+    private QuestionType type;
 
     @Column(name = "time_limit_seconds")
     private Integer timeLimitSeconds;

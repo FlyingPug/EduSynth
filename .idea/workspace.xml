@@ -5,18 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="работа над backend частью">
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/SessionResultDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/SessionStateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/BadAnswerFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/IncorrectCredisentials.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/SessionNotFound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/UserAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/CurrentQuestionState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/QuestionType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/repository/AnswersRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/dto/ParticipantResultDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/ParticipantMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/ParticipantMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/QuizMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/QuizMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/SessionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/AnswerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/AnswerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuestionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuestionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/SessionResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/SessionResultDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/SessionStateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/SessionStateDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Answer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Quiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/QuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/QuizService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Participant.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Participant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/repository/ParticipantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/repository/ParticipantRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/SessionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/impl/QuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/impl/QuizServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/impl/SessionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/impl/SessionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +55,9 @@
     <system id="GRADLE">
       <state>
         <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/EduSynthServer">
           <activation />
         </task>
         <projects_view />
@@ -85,15 +108,16 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;71fc505eaec327bfad2ac752fa93dd75&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Dron\\IdeaProjects\\EduSynth\\EduSynth-UI\\node_modules\\typescript\\lib&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.dron.edusynthserver.exceptions" />
       <recent name="com.dron.edusynthserver.user.dto" />
+      <recent name="com.dron.edusynthserver.quiz.model" />
+      <recent name="com.dron.edusynthserver.exceptions" />
       <recent name="com.dron.edusynthserver.security" />
       <recent name="com.dron.edusynthserver.admin" />
     </key>
@@ -112,7 +136,7 @@
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\resources\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.EduSynth [bootRun]">
+  <component name="RunManager" selected="Gradle.EduSynth [EduSynth-UI:build]">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dron.edusynthserver.EduSynthServerApplication" />
       <module name="EduSynth.EduSynthServer.main" />
@@ -120,12 +144,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EduSynth [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+    <configuration name="EduSynth [EduSynth-UI:build]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="EduSynth-UI:build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="EduSynth [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--stacktrace" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -182,8 +227,11 @@
     </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Gradle.EduSynth [EduSynth-UI:build]" />
       <item itemvalue="Gradle.EduSynth [bootRun]" />
       <item itemvalue="Gradle.EduSynthServer [dependencies]" />
+      <item itemvalue="npm.ng" />
+      <item itemvalue="Spring Boot.EduSynthServerApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -205,6 +253,10 @@
       <workItem from="1705409536753" duration="304000" />
       <workItem from="1705469144379" duration="2557000" />
       <workItem from="1705474114776" duration="1652000" />
+      <workItem from="1707475210206" duration="4441000" />
+      <workItem from="1707482094472" duration="3434000" />
+      <workItem from="1707559277574" duration="15029000" />
+      <workItem from="1707621589782" duration="6339000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>

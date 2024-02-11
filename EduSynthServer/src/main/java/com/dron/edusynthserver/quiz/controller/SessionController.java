@@ -49,7 +49,7 @@ public class SessionController
     }
 
     @PostMapping("/answer-question")
-    public ResponseEntity.BodyBuilder answerQuestion(@RequestBody String sessionCode, @RequestBody List<Long> answers)
+    public ResponseEntity.BodyBuilder answerQuestion(@RequestBody String sessionCode, @RequestBody List<Integer> answers)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         ParticipantDto participant = sessionService.getParticipant(sessionCode, auth.getName());
@@ -65,7 +65,7 @@ public class SessionController
         if(auth.isAuthenticated())
         {
             ParticipantDto participant = sessionService.getParticipant(sessionCode, auth.getName());
-            SessionResultDto result = sessionService.getSessionResult(participant);
+            SessionResultDto result = sessionService.getSessionResult(sessionCode);
             return ResponseEntity.ok(result);
         }
 

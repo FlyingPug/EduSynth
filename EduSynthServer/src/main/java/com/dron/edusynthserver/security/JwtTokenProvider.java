@@ -3,7 +3,9 @@ package com.dron.edusynthserver.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.dron.edusynthserver.user.mapper.UserMapper;
 import com.dron.edusynthserver.user.model.Role;
+import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -11,6 +13,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -38,6 +41,7 @@ public class JwtTokenProvider {
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
+    @Autowired
     private final UserService userService;
 
     @PostConstruct
@@ -46,7 +50,7 @@ public class JwtTokenProvider {
         jwtSecret = Base64.getEncoder().encodeToString(jwtSecret.getBytes());
     }
 
-    public String createToken(UserDto user) {
+    public String createToken(User user) {
         Date now = new Date();
         Date validity = new Date(now.getTime() + jwtExpirationInMs); // 1 hour 3600000
 
@@ -68,7 +72,7 @@ public class JwtTokenProvider {
 
         DecodedJWT decoded = verifier.verify(token);
 
-        UserDto user = UserDto.builder()
+        User user = User.builder()
                 .email(decoded.getSubject())
                 .username(decoded.getClaim("name").asString())
                 .role(Role.valueOf(decoded.getClaim("role").toString()))
@@ -85,7 +89,7 @@ public class JwtTokenProvider {
 
         DecodedJWT decoded = verifier.verify(token);
 
-        UserDto user = userService.getUserByEmail(decoded.getSubject());
+        User user = userService.getUserByEmail(decoded.getSubject());
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
