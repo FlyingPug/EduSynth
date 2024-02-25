@@ -30,7 +30,8 @@ public class Quiz
     @Column(name = "is_public", nullable = false)
     private boolean isPublic;
 
-    @Column(name = "creator_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "creator_id", nullable = false)
     private User creator;
 
     @Column(name = "title_media_url")

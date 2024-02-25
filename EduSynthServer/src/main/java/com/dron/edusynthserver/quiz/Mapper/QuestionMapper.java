@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(uses = {AnswersMapper.class})
+@Mapper(componentModel = "spring", uses = {AnswersMapper.class})
 public interface QuestionMapper
 {
     QuestionDto toDTO(Question question);

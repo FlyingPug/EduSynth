@@ -145,7 +145,7 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public void answerQuestion(ParticipantDto participantDto, List<Integer> answersIds) {
-        Optional<Participant> participantOpt = participantRepository.findParticipantByName(participantDto.name);
+        Optional<Participant> participantOpt = participantRepository.findParticipantByUser_Username(participantDto.name);
 
         if(participantOpt.isEmpty()) throw new BadNameException();
 

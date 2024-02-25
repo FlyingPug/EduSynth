@@ -6,6 +6,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.dron.edusynthserver.user.mapper.UserMapper;
 import com.dron.edusynthserver.user.model.Role;
 import com.dron.edusynthserver.user.model.User;
+import com.dron.edusynthserver.user.repository.UserRepository;
 import com.dron.edusynthserver.user.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -32,7 +33,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.UUID;
 
-@RequiredArgsConstructor
 @Component
 public class JwtTokenProvider {
     @Value("${app.jwtSecret}")
@@ -41,8 +41,13 @@ public class JwtTokenProvider {
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
+    private final UserRepository userRepository;
+
     @Autowired
-    private final UserService userService;
+    public JwtTokenProvider(UserRepository _userRepository)
+    {
+        userRepository = _userRepository;
+    }
 
     @PostConstruct
     protected void init() {
@@ -89,7 +94,7 @@ public class JwtTokenProvider {
 
         DecodedJWT decoded = verifier.verify(token);
 
-        User user = userService.getUserByEmail(decoded.getSubject());
+        User user = userRepository.findByEmail(decoded.getSubject());
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
