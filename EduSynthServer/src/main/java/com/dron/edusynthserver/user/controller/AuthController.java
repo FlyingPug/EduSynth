@@ -1,5 +1,6 @@
 package com.dron.edusynthserver.user.controller;
 
+import com.dron.edusynthserver.config.EduSynthUrl;
 import com.dron.edusynthserver.security.JwtTokenProvider;
 import com.dron.edusynthserver.user.dto.CredentialsDto;
 import com.dron.edusynthserver.user.dto.SignUpDto;
@@ -24,7 +25,7 @@ public class AuthController
 
     private final UserMapper userMapper;
 
-    @PostMapping("/login")
+    @PostMapping(EduSynthUrl.AUTH_SIGN)
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto credentialsDto) {
         User user = userService.login(credentialsDto);
         UserDto userDto = userMapper.toDTO(user);
@@ -32,7 +33,7 @@ public class AuthController
         return ResponseEntity.ok(userDto);
     }
 
-    @PostMapping("/register")
+    @PostMapping(EduSynthUrl.AUTH_REGISTER)
     public ResponseEntity<UserDto> register(@RequestBody SignUpDto user) {
         User createdUser = userService.register(user);
         UserDto userDto = userMapper.toDTO(createdUser);

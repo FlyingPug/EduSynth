@@ -1,6 +1,10 @@
 package com.dron.edusynthserver.security;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class ErrorDto {
-    public ErrorDto(String unauthorizedPath) {
-    }
+    private String codeError;
 }

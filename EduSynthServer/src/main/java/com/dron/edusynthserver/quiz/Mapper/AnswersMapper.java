@@ -12,6 +12,4 @@ public interface AnswersMapper
     AnswerDto toDTO(Answer answer);
 
     List<AnswerDto> toDTOList(List<Answer> answers);
-
-    Answer toModel(AnswerDto answerDTO);
 }
