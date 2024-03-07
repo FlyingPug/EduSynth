@@ -6,12 +6,10 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class QuestionDto
-{
-    private int id;
+public class QuestionForm {
     private String text;
     private String mediaUrl;
     private QuestionType type;
     private Integer timeLimitSeconds;
-    private List<AnswerDto> answers;
+    private List<AnswerForm> answerDtoList;
 }

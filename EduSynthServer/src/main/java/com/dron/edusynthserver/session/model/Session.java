@@ -1,5 +1,6 @@
-package com.dron.edusynthserver.quiz.model;
+package com.dron.edusynthserver.session.model;
 
+import com.dron.edusynthserver.quiz.model.Quiz;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

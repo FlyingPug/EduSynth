@@ -1,7 +1,6 @@
 package com.dron.edusynthserver.user.model;
 
-import com.dron.edusynthserver.quiz.model.Participant;
-import com.dron.edusynthserver.quiz.model.Question;
+import com.dron.edusynthserver.session.model.Participant;
 import com.dron.edusynthserver.quiz.model.Quiz;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,8 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Data
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -36,4 +35,11 @@ public class User {
 
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Quiz> createdQuizes;
+
+    @Override
+    public String toString()
+    {
+        return username;
+    }
+
 }

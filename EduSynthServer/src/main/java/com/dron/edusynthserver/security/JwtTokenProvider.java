@@ -69,6 +69,11 @@ public class JwtTokenProvider {
                 .sign(algorithm);
     }
 
+    public String refreshToken(String RefreshToken) {
+        Authentication authentication = validateToken(RefreshToken);
+        return createToken((User)authentication.getPrincipal());
+    }
+
     public Authentication validateToken(String token) {
         Algorithm algorithm = Algorithm.HMAC256(jwtSecret);
 
@@ -80,7 +85,7 @@ public class JwtTokenProvider {
         User user = User.builder()
                 .email(decoded.getSubject())
                 .username(decoded.getClaim("name").asString())
-                .role(Role.valueOf(decoded.getClaim("role").toString()))
+                .role(Role.valueOf(decoded.getClaim("role").asString()))
                 .build();
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());

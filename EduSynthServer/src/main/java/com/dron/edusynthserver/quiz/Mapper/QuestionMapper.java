@@ -10,9 +10,8 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {AnswersMapper.class})
 public interface QuestionMapper
 {
-    @Mapping(target = "answerDtoList", source = "question.answers")
     QuestionDto toDTO(Question question);
 
-    // TODO
+    @Mapping(target = "quiz", ignore = true)
     Question toModel(QuestionDto questionDTO);
 }

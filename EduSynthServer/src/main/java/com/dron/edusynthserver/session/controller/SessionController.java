@@ -1,11 +1,12 @@
-package com.dron.edusynthserver.quiz.controller;
+package com.dron.edusynthserver.session.controller;
 
-import com.dron.edusynthserver.quiz.dto.*;
-import com.dron.edusynthserver.quiz.model.Quiz;
+import com.dron.edusynthserver.config.EduSynthUrl;
 import com.dron.edusynthserver.quiz.service.SessionService;
+import com.dron.edusynthserver.session.dto.ParticipantDto;
+import com.dron.edusynthserver.session.dto.SessionResultDto;
+import com.dron.edusynthserver.session.dto.SessionStateDto;
 import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/api/session")
+@RestController
+@RequestMapping(EduSynthUrl.SESSION)
 public class SessionController
 {
     private final UserService userService;

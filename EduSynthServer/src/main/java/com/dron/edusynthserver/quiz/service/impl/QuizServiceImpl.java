@@ -5,6 +5,8 @@ import com.dron.edusynthserver.quiz.Mapper.QuizMapper;
 import com.dron.edusynthserver.quiz.dto.QuestionDto;
 import com.dron.edusynthserver.quiz.dto.QuizDto;
 import com.dron.edusynthserver.quiz.dto.QuizTitleDto;
+import com.dron.edusynthserver.quiz.model.Answer;
+import com.dron.edusynthserver.quiz.model.Question;
 import com.dron.edusynthserver.quiz.model.Quiz;
 import com.dron.edusynthserver.quiz.repository.QuizRepository;
 import com.dron.edusynthserver.quiz.service.QuizService;
@@ -42,6 +44,11 @@ public class QuizServiceImpl implements QuizService {
     public Quiz createQuiz(QuizDto quizDto, String creatorUsername) {
         Quiz quiz = quizMapper.toModel(quizDto);
         quiz.setCreator(userService.getUserByName(creatorUsername));
+
+        quiz.getQuestions().forEach(question -> {
+            question.setQuiz(quiz);
+            question.getAnswers().forEach(answer -> answer.setQuestion(question));
+        });
 
         return quizRepository.save(quiz);
     }

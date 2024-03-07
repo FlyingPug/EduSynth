@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.quiz.model;
+package com.dron.edusynthserver.session.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

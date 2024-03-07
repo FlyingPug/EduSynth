@@ -1,9 +1,9 @@
 package com.dron.edusynthserver.quiz.service;
 
 import com.dron.edusynthserver.exceptions.BadNameException;
-import com.dron.edusynthserver.quiz.dto.ParticipantDto;
-import com.dron.edusynthserver.quiz.dto.SessionResultDto;
-import com.dron.edusynthserver.quiz.dto.SessionStateDto;
+import com.dron.edusynthserver.session.dto.ParticipantDto;
+import com.dron.edusynthserver.session.dto.SessionResultDto;
+import com.dron.edusynthserver.session.dto.SessionStateDto;
 import com.dron.edusynthserver.user.model.User;
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.dron.edusynthserver.quiz.repository;
+package com.dron.edusynthserver.session.repository;
 
-import com.dron.edusynthserver.quiz.model.Session;
+import com.dron.edusynthserver.session.model.Session;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

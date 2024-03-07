@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {QuestionMapper.class, QuizMapperResolver.class})
+@Mapper(componentModel = "spring", uses = {QuestionMapper.class})//, QuizMapperResolver.class})
 public interface QuizMapper {
     @Mapping(target = "creatorId", source = "quiz.creator.id")
     QuizDto toDTO(Quiz quiz);
@@ -20,5 +20,6 @@ public interface QuizMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "creator", ignore = true)
     Quiz toModel(QuizDto quizDTO);
+
     QuizTitleDto toShortDto(Quiz quiz);
 }

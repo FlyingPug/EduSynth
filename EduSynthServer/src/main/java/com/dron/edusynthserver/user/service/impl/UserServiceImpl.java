@@ -1,10 +1,9 @@
 package com.dron.edusynthserver.user.service.impl;
 
-import com.dron.edusynthserver.exceptions.IncorrectCredisentials;
+import com.dron.edusynthserver.exceptions.IncorrectCredentials;
 import com.dron.edusynthserver.exceptions.UserAlreadyExistsException;
 import com.dron.edusynthserver.user.dto.CredentialsDto;
 import com.dron.edusynthserver.user.dto.SignUpDto;
-import com.dron.edusynthserver.user.dto.UserDto;
 import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.repository.UserRepository;
 import com.dron.edusynthserver.user.service.UserService;
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
         if (user == null || !Objects.equals(user.getPassword(), credentialsDto.password()))
         {
-            throw new IncorrectCredisentials();
+            throw new IncorrectCredentials();
         }
 
         return user;
@@ -54,8 +53,8 @@ public class UserServiceImpl implements UserService {
         {
             user = User.builder()
                     .email(userDto.email())
-                    .password(user.getPassword())
-                    .username(user.getUsername())
+                    .password(userDto.password())
+                    .username(userDto.name())
                     .role(userDto.role())
                     .build();
 

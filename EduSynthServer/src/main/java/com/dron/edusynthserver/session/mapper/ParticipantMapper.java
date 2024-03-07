@@ -1,7 +1,7 @@
-package com.dron.edusynthserver.quiz.Mapper;
+package com.dron.edusynthserver.session.mapper;
 
-import com.dron.edusynthserver.quiz.dto.ParticipantDto;
-import com.dron.edusynthserver.quiz.model.Participant;
+import com.dron.edusynthserver.session.dto.ParticipantDto;
+import com.dron.edusynthserver.session.model.Participant;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

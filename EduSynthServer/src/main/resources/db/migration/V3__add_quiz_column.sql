@@ -1,0 +1,2 @@
+ALTER TABLE questions
+ADD COLUMN quiz_id INTEGER NOT NULL REFERENCES quizzes(id) ON DELETE CASCADE default 0

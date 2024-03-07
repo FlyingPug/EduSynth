@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.quiz.dto;
+package com.dron.edusynthserver.session.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
