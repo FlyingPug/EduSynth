@@ -18,17 +18,12 @@ public class BaseExceptionHandler {
     }
 
     @ExceptionHandler(IncorrectCredentials.class)
-    public ResponseEntity<ErrorModel> WrongCredentials(BadNameException ex) {
+    public ResponseEntity<ErrorModel> WrongCredentials(IncorrectCredentials ex) {
         return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.UNAUTHORIZED.value()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(BadAnswerFormat.class)
-    public ResponseEntity<ErrorModel> BadAnswer(BadNameException ex) {
-        return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(BadNameException.class)
-    public ResponseEntity<ErrorModel> BadName(BadNameException ex) {
+    public ResponseEntity<ErrorModel> BadAnswer(BadAnswerFormat ex) {
         return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.NOT_FOUND);
     }
 

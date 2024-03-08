@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.user.controller;
+package com.dron.edusynthserver.user.mapper.controller;
 
 import com.dron.edusynthserver.config.EduSynthUrl;
 import com.dron.edusynthserver.security.JwtTokenProvider;

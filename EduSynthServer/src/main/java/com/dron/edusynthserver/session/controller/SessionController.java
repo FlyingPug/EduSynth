@@ -1,7 +1,10 @@
 package com.dron.edusynthserver.session.controller;
 
 import com.dron.edusynthserver.config.EduSynthUrl;
-import com.dron.edusynthserver.quiz.service.SessionService;
+import com.dron.edusynthserver.exceptions.Unauthorized;
+import com.dron.edusynthserver.session.dto.SessionDto;
+import com.dron.edusynthserver.session.model.Session;
+import com.dron.edusynthserver.session.service.SessionService;
 import com.dron.edusynthserver.session.dto.ParticipantDto;
 import com.dron.edusynthserver.session.dto.SessionResultDto;
 import com.dron.edusynthserver.session.dto.SessionStateDto;
@@ -11,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,24 +31,41 @@ public class SessionController
         this.sessionService = sessionService;
     }
 
-    // Ветка для незарегистрированных пользователей
-    @PostMapping("/join-session")
-    public ResponseEntity<ParticipantDto> joinSession(@RequestParam String sessionCode, @RequestParam String name) {
+    @PostMapping("/create-session")
+    public ResponseEntity<SessionDto> joinSession(@RequestParam int QuizId) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        ParticipantDto participant;
+        SessionDto sessionDto;
 
         if (auth.isAuthenticated())
         {
-            participant = sessionService.joinSession(sessionCode, userService.getUserByName(auth.getName()));
-
+            sessionDto = sessionService.createSession(QuizId, userService.getUserByName(auth.getName()));
         }
         else
         {
-            participant = sessionService.joinSessionAsGuest(sessionCode, name);
+            throw new Unauthorized();
         }
-        return ResponseEntity.ok(participant);
+        return ResponseEntity.ok(sessionDto);
+    }
+
+    // Ветка для незарегистрированных пользователей
+    @PostMapping("/join-session")
+    public ResponseEntity<SessionDto> joinSession(@RequestParam String sessionCode, @RequestParam String name) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        SessionDto sessionDto;
+
+        if (auth.isAuthenticated())
+        {
+            sessionDto = sessionService.joinSession(sessionCode, userService.getUserByName(auth.getName()));
+        }
+        else
+        {
+            sessionDto = sessionService.joinSessionAsGuest(sessionCode, name);
+        }
+        return ResponseEntity.ok(sessionDto);
     }
 
     @PostMapping("/answer-question")
@@ -59,8 +78,8 @@ public class SessionController
         return ResponseEntity.accepted();
     }
 
-    @GetMapping("/participant-results")
-    public ResponseEntity<SessionResultDto> getResults(@RequestParam String sessionCode)
+    @GetMapping("/participant-results/{sessionCode}")
+    public ResponseEntity<SessionResultDto> getResults(@PathVariable String sessionCode)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(auth.isAuthenticated())
@@ -74,7 +93,7 @@ public class SessionController
     }
 
     // Получить текущее состояние сессии
-    @GetMapping("/{quizId}/")
+    @GetMapping("/{sessionCode}")
     public ResponseEntity<SessionStateDto> getSessionState(@PathVariable String sessionCode) {
         SessionStateDto questionDto = sessionService.getSessionState(sessionCode);
         return ResponseEntity.ok(questionDto);

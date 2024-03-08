@@ -1,5 +1,8 @@
 package com.dron.edusynthserver.quiz.controller;
 
+import com.dron.edusynthserver.exceptions.Forbidden;
+import com.dron.edusynthserver.exceptions.NotFoundException;
+import com.dron.edusynthserver.exceptions.Unauthorized;
 import com.dron.edusynthserver.quiz.Mapper.QuizMapper;
 import com.dron.edusynthserver.quiz.dto.QuizDto;
 import com.dron.edusynthserver.quiz.dto.QuizTitleDto;
@@ -72,17 +75,22 @@ public class QuizController
 
     // Вроде ок, просто удаляет квиз
     @DeleteMapping("/{quizId}")
-    public ResponseEntity.BodyBuilder deleteQuizById(@PathVariable Long quizId) {
+    public void deleteQuizById(@PathVariable Long quizId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null) {
+            throw new Unauthorized();
+        }
         String authUsername = auth.getName();
 
-        String authorName = quizService.getQuizById(Math.toIntExact(quizId)).getCreator().getUsername();
-
-        if(Objects.equals(authorName, authUsername))
-        {
-            quizService.deleteQuizById(Math.toIntExact(quizId));
-            return ResponseEntity.status(HttpStatus.OK);
+        Quiz quiz = quizService.getQuizById(Math.toIntExact(quizId));
+        if (quiz == null) {
+            throw new NotFoundException();
         }
-        return ResponseEntity.status(HttpStatus.FORBIDDEN);
+        String authorName = quiz.getCreator().getUsername();
+
+        if (Objects.equals(authorName, authUsername)) {
+            quizService.deleteQuizById(Math.toIntExact(quizId));
+        }
+        throw new Forbidden();
     }
 }

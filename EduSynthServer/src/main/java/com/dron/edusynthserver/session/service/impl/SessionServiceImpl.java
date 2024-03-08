@@ -1,19 +1,21 @@
-package com.dron.edusynthserver.quiz.service.impl;
+package com.dron.edusynthserver.session.service.impl;
 
 import com.dron.edusynthserver.exceptions.BadAnswerFormat;
 import com.dron.edusynthserver.exceptions.BadNameException;
 import com.dron.edusynthserver.exceptions.NotFoundException;
 import com.dron.edusynthserver.exceptions.SessionNotFound;
+import com.dron.edusynthserver.session.dto.SessionDto;
 import com.dron.edusynthserver.session.mapper.ParticipantMapper;
 import com.dron.edusynthserver.session.dto.ParticipantDto;
 import com.dron.edusynthserver.session.dto.SessionResultDto;
 import com.dron.edusynthserver.session.dto.SessionStateDto;
 import com.dron.edusynthserver.quiz.model.*;
 import com.dron.edusynthserver.quiz.repository.AnswersRepository;
+import com.dron.edusynthserver.session.mapper.SessionMapper;
 import com.dron.edusynthserver.session.repository.ParticipantRepository;
 import com.dron.edusynthserver.session.repository.SessionRepository;
 import com.dron.edusynthserver.quiz.service.QuizService;
-import com.dron.edusynthserver.quiz.service.SessionService;
+import com.dron.edusynthserver.session.service.SessionService;
 import com.dron.edusynthserver.security.JwtTokenProvider;
 import com.dron.edusynthserver.session.model.CurrentQuestionState;
 import com.dron.edusynthserver.session.model.Participant;
@@ -33,6 +35,7 @@ public class SessionServiceImpl implements SessionService {
     ParticipantRepository participantRepository;
     AnswersRepository answersRepository;
     ParticipantMapper participantMapper;
+    SessionMapper sessionMapper;
     JwtTokenProvider jwtTokenProvider;
     QuizService quizService;
     private static final int CODE_LENGTH = 4;
@@ -40,13 +43,20 @@ public class SessionServiceImpl implements SessionService {
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     @Autowired
-    public SessionServiceImpl(SessionRepository sessionRepository, ParticipantRepository participantRepository, AnswersRepository answersRepository, ParticipantMapper participantMapper, JwtTokenProvider jwtTokenProvider, QuizService quizService) {
+    public SessionServiceImpl(SessionRepository sessionRepository,
+                              ParticipantRepository participantRepository,
+                              AnswersRepository answersRepository,
+                              ParticipantMapper participantMapper,
+                              JwtTokenProvider jwtTokenProvider,
+                              QuizService quizService,
+                              SessionMapper sessionMapper) {
         this.sessionRepository = sessionRepository;
         this.participantRepository = participantRepository;
         this.answersRepository = answersRepository;
         this.participantMapper = participantMapper;
         this.jwtTokenProvider = jwtTokenProvider;
         this.quizService = quizService;
+        this.sessionMapper = sessionMapper;
     }
 
     @Override
@@ -71,7 +81,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public ParticipantDto joinSession(String sessionCode, User user) {
+    public SessionDto joinSession(String sessionCode, User user) {
         Session currentSession = sessionRepository.findBySessionCode(sessionCode);
 
         Participant participant = Participant.builder()
@@ -80,15 +90,15 @@ public class SessionServiceImpl implements SessionService {
                 .user(user).build();
         participantRepository.save(participant);
 
-        ParticipantDto participantDto = participantMapper.toDto(participant);
-        participantDto.setToken(jwtTokenProvider.createToken(user));
+        SessionDto sessionDto = sessionMapper.toDto(currentSession);
+        sessionDto.setParticipantToken(jwtTokenProvider.createToken(user));
 
-        return participantDto;
+        return sessionDto;
     }
 
 
     @Override
-    public ParticipantDto createSession(int QuizId, User user) {
+    public SessionDto createSession(int QuizId, User user) {
         Quiz quiz = quizService.getQuizById(QuizId);
         Session newSession = Session.builder()
                 .sessionCode(generateSessionCode((int) sessionRepository.count()))
@@ -101,17 +111,14 @@ public class SessionServiceImpl implements SessionService {
                 .isLeader(true)
                 .user(user).build();
 
-        participantRepository.save(participant);
-        sessionRepository.save(newSession);
+        SessionDto sessionDto = sessionMapper.toDto(newSession);
+        sessionDto.setParticipantToken(jwtTokenProvider.createToken(user));
 
-        ParticipantDto participantDto = participantMapper.toDto(participant);
-        participantDto.setToken(jwtTokenProvider.createToken(user));
-
-        return participantDto;
+        return sessionDto;
     }
 
     @Override
-    public ParticipantDto joinSessionAsGuest(String sessionCode, String name) throws BadNameException {
+    public SessionDto joinSessionAsGuest(String sessionCode, String name) throws BadNameException {
         Session currentSession = sessionRepository.findBySessionCode(sessionCode);
 
         if(currentSession.getParticipants().stream().anyMatch(user -> user.getUser().getUsername().equals(name)))
@@ -128,12 +135,11 @@ public class SessionServiceImpl implements SessionService {
                 .session(currentSession)
                 .isLeader(false)
                 .user(mockUser).build();
-
         participantRepository.save(participant);
-        ParticipantDto participantDto = participantMapper.toDto(participant);
-        participantDto.setToken(jwtTokenProvider.createToken(mockUser));
+        SessionDto sessionDto = sessionMapper.toDto(currentSession);
+        sessionDto.setParticipantToken(jwtTokenProvider.createToken(mockUser));
 
-        return participantDto;
+        return sessionDto;
     }
 
     @Override
