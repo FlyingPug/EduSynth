@@ -13,8 +13,6 @@ public interface ParticipantMapper {
     @Mapping(target = "name", source = "participant.user.username")
     @Mapping(target = "gameCode", source = "participant.session.sessionCode")
     @Mapping(target = "token", ignore = true)
-    @Mapping(target = "GameCode", source = "participant.session.sessionCode")
-    @Mapping(target = "Token", ignore = true)
     ParticipantDto toDto(Participant participant);
 
 

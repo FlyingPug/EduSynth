@@ -23,6 +23,7 @@ import com.dron.edusynthserver.session.model.Session;
 import com.dron.edusynthserver.user.dto.ParticipantResultDto;
 import com.dron.edusynthserver.user.model.Role;
 import com.dron.edusynthserver.user.model.User;
+import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,10 +39,12 @@ public class SessionServiceImpl implements SessionService {
     SessionMapper sessionMapper;
     JwtTokenProvider jwtTokenProvider;
     QuizService quizService;
+    UserService userService;
     private static final int CODE_LENGTH = 4;
     private static final int RADIX = 26;
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+    // TODO: инъекции зависимостей go brrrrrr, исправь это, не оставляй так много зависимостей, это громадный красный флаг
     @Autowired
     public SessionServiceImpl(SessionRepository sessionRepository,
                               ParticipantRepository participantRepository,
@@ -49,7 +52,8 @@ public class SessionServiceImpl implements SessionService {
                               ParticipantMapper participantMapper,
                               JwtTokenProvider jwtTokenProvider,
                               QuizService quizService,
-                              SessionMapper sessionMapper) {
+                              SessionMapper sessionMapper,
+                              UserService userService) {
         this.sessionRepository = sessionRepository;
         this.participantRepository = participantRepository;
         this.answersRepository = answersRepository;
@@ -57,6 +61,7 @@ public class SessionServiceImpl implements SessionService {
         this.jwtTokenProvider = jwtTokenProvider;
         this.quizService = quizService;
         this.sessionMapper = sessionMapper;
+        this.userService = userService;
     }
 
     @Override
@@ -106,10 +111,12 @@ public class SessionServiceImpl implements SessionService {
                 .startTime(new Date())
                 .build();
 
+        newSession = sessionRepository.save(newSession);
         Participant participant = Participant.builder()
                 .session(newSession)
                 .isLeader(true)
                 .user(user).build();
+        participantRepository.save(participant);
 
         SessionDto sessionDto = sessionMapper.toDto(newSession);
         sessionDto.setParticipantToken(jwtTokenProvider.createToken(user));
@@ -121,15 +128,19 @@ public class SessionServiceImpl implements SessionService {
     public SessionDto joinSessionAsGuest(String sessionCode, String name) throws BadNameException {
         Session currentSession = sessionRepository.findBySessionCode(sessionCode);
 
+        if(currentSession == null)
+        {
+            throw new SessionNotFound();
+        }
+
         if(currentSession.getParticipants().stream().anyMatch(user -> user.getUser().getUsername().equals(name)))
             throw new BadNameException();
 
-        User mockUser = User.builder()
-                .username(name)
-                .role(Role.STUDENT_TEMP)
-                .email("")
-                .password("")
-                .build();
+        // TODO: тоже какая-то хуйня, получается на каждого участника мы создаем еще и его временный профиль,
+        // тогда эту херь еще нужно будет и чистить, временный профиль нам нужен только чтобы authentification
+        // не жаловался, а из него он по сути просто имя брать будет, крч, скорее вего нужно менять секьюрити,
+        // чтобы тот не тригерился если роль временная
+        User mockUser = userService.createTemporaryUser(name);
 
         Participant participant = Participant.builder()
                 .session(currentSession)

@@ -9,5 +9,5 @@ public class EduSynthUrl
     public static final String AUTH_SIGN = API_PUBLIC + "/sign";
 
     public static final String SWAGGER = API_PUBLIC + "/api-docs";
-    public static final String SESSION = API_PRIVATE + "/session";
+    public static final String SESSION = API_PUBLIC + "/session";
 }

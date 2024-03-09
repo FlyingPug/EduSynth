@@ -14,4 +14,6 @@ public interface UserService
     User login(CredentialsDto credentialsDto);
 
     User register(SignUpDto user);
+
+    User createTemporaryUser(String name);
 }

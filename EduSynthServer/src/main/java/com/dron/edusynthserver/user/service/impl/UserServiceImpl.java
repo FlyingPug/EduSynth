@@ -4,6 +4,7 @@ import com.dron.edusynthserver.exceptions.IncorrectCredentials;
 import com.dron.edusynthserver.exceptions.UserAlreadyExistsException;
 import com.dron.edusynthserver.user.dto.CredentialsDto;
 import com.dron.edusynthserver.user.dto.SignUpDto;
+import com.dron.edusynthserver.user.model.Role;
 import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.repository.UserRepository;
 import com.dron.edusynthserver.user.service.UserService;
@@ -58,11 +59,21 @@ public class UserServiceImpl implements UserService {
                     .role(userDto.role())
                     .build();
 
-            user = userRepository.save(user);
-
-            return user;
+            return userRepository.save(user);
         }
 
         throw new UserAlreadyExistsException();
+    }
+
+    @Override
+    public User createTemporaryUser(String name) {
+        User mockUser = User.builder()
+                .username(name)
+                .role(Role.STUDENT_TEMP)
+                .email("")
+                .password("")
+                .build();
+
+        return userRepository.save(mockUser);
     }
 }

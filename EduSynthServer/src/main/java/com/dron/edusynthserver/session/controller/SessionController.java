@@ -12,6 +12,7 @@ import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -38,14 +39,10 @@ public class SessionController
 
         SessionDto sessionDto;
 
-        if (auth.isAuthenticated())
-        {
-            sessionDto = sessionService.createSession(QuizId, userService.getUserByName(auth.getName()));
-        }
-        else
-        {
-            throw new Unauthorized();
-        }
+        if (auth instanceof AnonymousAuthenticationToken) throw new Unauthorized();
+
+        sessionDto = sessionService.createSession(QuizId, userService.getUserByName(auth.getName()));
+
         return ResponseEntity.ok(sessionDto);
     }
 
@@ -56,8 +53,8 @@ public class SessionController
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         SessionDto sessionDto;
-
-        if (auth.isAuthenticated())
+        // TODO: это полная хуйня, нет смысла делать такую проверку, сделай просто отедльную вилку
+        if (!(auth instanceof AnonymousAuthenticationToken))
         {
             sessionDto = sessionService.joinSession(sessionCode, userService.getUserByName(auth.getName()));
         }
@@ -82,7 +79,7 @@ public class SessionController
     public ResponseEntity<SessionResultDto> getResults(@PathVariable String sessionCode)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth.isAuthenticated())
+        if(!(auth instanceof AnonymousAuthenticationToken))
         {
             ParticipantDto participant = sessionService.getParticipant(sessionCode, auth.getName());
             SessionResultDto result = sessionService.getSessionResult(sessionCode);

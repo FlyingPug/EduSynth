@@ -6,6 +6,6 @@ import lombok.Data;
 public class ParticipantDto
 {
     public String name;
-    public String GameCode;
-    public String Token;
+    public String gameCode;
+    public String token;
 }
