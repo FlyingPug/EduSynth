@@ -3,6 +3,7 @@ package com.dron.edusynthserver.session.dto;
 import com.dron.edusynthserver.quiz.dto.QuizDto;
 import com.dron.edusynthserver.quiz.model.Quiz;
 import com.dron.edusynthserver.session.model.Participant;
+import com.dron.edusynthserver.session.model.SessionState;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,4 +21,5 @@ public class SessionDto
     private List<ParticipantDto> participants;
     private String sessionCode;
     private String participantToken;
+    private SessionState sessionState;
 }

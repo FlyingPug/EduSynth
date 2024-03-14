@@ -25,7 +25,7 @@ public class Question {
     @Column(name = "media_url")
     private String mediaUrl;
 
-    @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private QuestionType type;
 
     @Column(name = "time_limit_seconds")

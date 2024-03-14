@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class ParticipantDto
 {
-    public String name;
-    public String gameCode;
-    public String token;
+    private String name;
+    private String gameCode;
+    private String token;
+    private int Score;
 }

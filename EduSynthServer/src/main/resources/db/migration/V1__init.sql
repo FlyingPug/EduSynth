@@ -5,7 +5,6 @@ CREATE TABLE users (
                        password VARCHAR(255) NOT NULL,
                        email VARCHAR(255) NOT NULL,
                        role VARCHAR(20) NOT NULL
-    -- Дополнительные поля пользователя, если необходимо
 );
 
 -- Создание таблицы тестов (quizzes)
@@ -15,7 +14,6 @@ CREATE TABLE quizzes (
                          description TEXT,
                          is_public BOOLEAN NOT NULL,
                          creator_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
-    -- Дополнительные поля теста, если необходимо
 );
 
 -- Создание таблицы вопросов

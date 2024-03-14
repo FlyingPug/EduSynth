@@ -23,6 +23,9 @@ public class Answer
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
+    /*
+    В случае выбора вариант ответа, сюда записывает текст вопроса, в случае ввода, сюда записывается правильный ответ
+     */
     @Column(name = "text", nullable = false)
     private String text;
 

@@ -90,6 +90,7 @@ public class QuizController
 
         if (Objects.equals(authorName, authUsername)) {
             quizService.deleteQuizById(Math.toIntExact(quizId));
+            return;
         }
         throw new Forbidden();
     }

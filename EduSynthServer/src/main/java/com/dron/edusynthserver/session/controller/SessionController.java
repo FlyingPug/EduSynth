@@ -2,12 +2,10 @@ package com.dron.edusynthserver.session.controller;
 
 import com.dron.edusynthserver.config.EduSynthUrl;
 import com.dron.edusynthserver.exceptions.Unauthorized;
-import com.dron.edusynthserver.session.dto.SessionDto;
+import com.dron.edusynthserver.session.dto.*;
 import com.dron.edusynthserver.session.model.Session;
 import com.dron.edusynthserver.session.service.SessionService;
-import com.dron.edusynthserver.session.dto.ParticipantDto;
-import com.dron.edusynthserver.session.dto.SessionResultDto;
-import com.dron.edusynthserver.session.dto.SessionStateDto;
+import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +31,7 @@ public class SessionController
     }
 
     @PostMapping("/create-session")
-    public ResponseEntity<SessionDto> joinSession(@RequestParam int QuizId) {
+    public ResponseEntity<SessionDto> createSession(@RequestParam int QuizId) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -66,13 +64,17 @@ public class SessionController
     }
 
     @PostMapping("/answer-question")
-    public ResponseEntity.BodyBuilder answerQuestion(@RequestBody String sessionCode, @RequestBody List<Integer> answers)
+    public void answerQuestion(@RequestBody UserAnswerSessionDto userAnswerSessionDto)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        ParticipantDto participant = sessionService.getParticipant(sessionCode, auth.getName());
-        sessionService.answerQuestion(participant, answers);
+        sessionService.answerQuestion(userAnswerSessionDto.getSessionCode(), userAnswerSessionDto.getAnswers(), userService.getUserByName(auth.getName()));
+    }
 
-        return ResponseEntity.accepted();
+    @PostMapping("/start-session")
+    public void startSession(@RequestBody SessionCodeDto sessionCodeDto)
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        sessionService.startSession(sessionCodeDto.getSessionCode(), userService.getUserByName(auth.getName()));
     }
 
     @GetMapping("/participant-results/{sessionCode}")

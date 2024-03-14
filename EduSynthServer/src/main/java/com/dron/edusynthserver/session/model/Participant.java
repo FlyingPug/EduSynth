@@ -33,6 +33,9 @@ public class Participant
     @Column(name = "is_leader", nullable = false)
     private boolean isLeader;
 
+    @Column(name = "score", nullable = false)
+    private int Score;
+
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "participant_answers",

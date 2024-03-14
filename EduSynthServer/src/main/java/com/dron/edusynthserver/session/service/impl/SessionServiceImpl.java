@@ -1,20 +1,16 @@
 package com.dron.edusynthserver.session.service.impl;
 
-import com.dron.edusynthserver.exceptions.BadAnswerFormat;
-import com.dron.edusynthserver.exceptions.BadNameException;
-import com.dron.edusynthserver.exceptions.NotFoundException;
-import com.dron.edusynthserver.exceptions.SessionNotFound;
-import com.dron.edusynthserver.session.dto.SessionDto;
+import com.dron.edusynthserver.exceptions.*;
+import com.dron.edusynthserver.session.dto.*;
 import com.dron.edusynthserver.session.mapper.ParticipantMapper;
-import com.dron.edusynthserver.session.dto.ParticipantDto;
-import com.dron.edusynthserver.session.dto.SessionResultDto;
-import com.dron.edusynthserver.session.dto.SessionStateDto;
 import com.dron.edusynthserver.quiz.model.*;
 import com.dron.edusynthserver.quiz.repository.AnswersRepository;
 import com.dron.edusynthserver.session.mapper.SessionMapper;
+import com.dron.edusynthserver.session.model.SessionState;
 import com.dron.edusynthserver.session.repository.ParticipantRepository;
 import com.dron.edusynthserver.session.repository.SessionRepository;
 import com.dron.edusynthserver.quiz.service.QuizService;
+import com.dron.edusynthserver.session.service.QuestionHandler;
 import com.dron.edusynthserver.session.service.SessionService;
 import com.dron.edusynthserver.security.JwtTokenProvider;
 import com.dron.edusynthserver.session.model.CurrentQuestionState;
@@ -44,6 +40,8 @@ public class SessionServiceImpl implements SessionService {
     private static final int RADIX = 26;
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+    private final Hashtable<QuestionType, QuestionHandler> QuestionHandlers;
+
     // TODO: инъекции зависимостей go brrrrrr, исправь это, не оставляй так много зависимостей, это громадный красный флаг
     @Autowired
     public SessionServiceImpl(SessionRepository sessionRepository,
@@ -62,6 +60,11 @@ public class SessionServiceImpl implements SessionService {
         this.quizService = quizService;
         this.sessionMapper = sessionMapper;
         this.userService = userService;
+
+        QuestionHandlers = new Hashtable<>();
+        QuestionHandlers.put(QuestionType.choose_option, new QuestionHandlerSingleOption());
+        QuestionHandlers.put(QuestionType.choose_mult_options, new QuestionHandleMultipleOptions());
+        QuestionHandlers.put(QuestionType.input_text, new QuestionHandlerInputOption());
     }
 
     @Override
@@ -76,13 +79,17 @@ public class SessionServiceImpl implements SessionService {
                 currentSession.getStartTime(),
                 currentSession.getQuiz().getQuestions());
 
-        SessionStateDto sessionStateDto = SessionStateDto.builder()
+        if (currentQuestionState.getId() == -1)
+        {
+            currentSession.setSessionState(SessionState.ENDED);
+            sessionRepository.save(currentSession);
+        }
+
+        return SessionStateDto.builder()
                 .timeRemainingToNextQuestionSec(currentQuestionState.getTimeRemaining())
                 .currentQuestionId(currentQuestionState.getId())
-                .doesSessionHasEnded(currentQuestionState.getId() != -1)
+                .sessionState(currentSession.getSessionState())
                 .build();
-
-        return sessionStateDto;
     }
 
     @Override
@@ -108,6 +115,7 @@ public class SessionServiceImpl implements SessionService {
         Session newSession = Session.builder()
                 .sessionCode(generateSessionCode((int) sessionRepository.count()))
                 .quiz(quiz)
+                .sessionState(SessionState.WAITING)
                 .startTime(new Date())
                 .build();
 
@@ -122,6 +130,26 @@ public class SessionServiceImpl implements SessionService {
         sessionDto.setParticipantToken(jwtTokenProvider.createToken(user));
 
         return sessionDto;
+    }
+
+    @Override
+    public void startSession(String sessionCode, User user) {
+        Session currentSession = sessionRepository.findBySessionCode(sessionCode);
+
+        if (currentSession == null) {
+            throw new SessionNotFound();
+        }
+
+        if (currentSession.getSessionState() != SessionState.WAITING) throw new IncorrectSessionState("Сессия уже началась");
+
+        Optional<Participant> participant = currentSession.getParticipants().stream().filter(otherUser -> otherUser.getUser().getUsername().equals(user.getUsername())).findFirst();
+        if(participant.isEmpty() || !participant.get().isLeader())
+            throw new Forbidden();
+
+        currentSession.setSessionState(SessionState.STARTED);
+        currentSession.setStartTime(new Date());
+
+        sessionRepository.save(currentSession);
     }
 
     @Override
@@ -163,79 +191,63 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public void answerQuestion(ParticipantDto participantDto, List<Integer> answersIds) {
-        Optional<Participant> participantOpt = participantRepository.findParticipantByUser_Username(participantDto.name);
+    public void answerQuestion(String sessionCode, List<UserAnswerDto> answers, User user) {
+        Session currentSession = sessionRepository.findBySessionCode(sessionCode);
+        Optional<Participant> participantOpt = currentSession.getParticipants().stream().filter(part -> part.getUser().equals(user)).findFirst();
 
         if(participantOpt.isEmpty()) throw new BadNameException();
 
         Participant participant = participantOpt.get();
 
-        List<Answer> selectedAnswers = answersRepository.findAllById(answersIds);
+        // Получаем вопрос из первого ответа, предполагая, что все ответы относятся к одному вопросу
+        List<Answer> selectedAnswers = answersRepository.findAllById(answers.stream().map(UserAnswerDto::getAnswerId).toList());
         Question question = selectedAnswers.get(0).getQuestion();
 
-        boolean allAnswersForSameQuestion = answersRepository.findAllById(answersIds)
-                .stream()
+        // Проверяем, что все ответы относятся к одному вопросу
+        boolean allAnswersForSameQuestion = selectedAnswers.stream()
                 .allMatch(answer -> answer.getQuestion().equals(question));
 
         if (!allAnswersForSameQuestion) {
-            throw new BadAnswerFormat();
+            throw new BadAnswerFormat("не все ответы относятся к одному вопросу");
         }
 
+        // Получаем текущие ответы участника и удаляем ответы на текущий вопрос (чтобы у нас не было дублей)
         List<Answer> currentAnswers = participant.getParticipantAnswers();
-
         currentAnswers.removeIf(answer -> answer.getQuestion().equals(question));
 
+        // Добавляем выбранные ответы в список текущих ответов участника
         currentAnswers.addAll(selectedAnswers);
 
+        // Обновляем список ответов участника
         participant.setParticipantAnswers(currentAnswers);
 
-        /*for (Answer answer : selectedAnswers) {
-            answer.getParticipants().add(participant);
-        }*/
+        // Используем соответствующий QuestionHandler для проверки корректности ответов
+        QuestionHandler questionHandler = QuestionHandlers.get(question.getType());
+        if (questionHandler == null) {
+            throw new UnsupportedQuestionTypeException("Не поддерживаемый тип вопроса: " + question.getType());
+        }
+        boolean isCorrect = questionHandler.isAnswerCorrect(answers, selectedAnswers);
 
+        // Обновляем счет участника
+        if(isCorrect) participant.setScore(participant.getScore() + 1);
+
+        // Сохраняем обновленного участника
         participantRepository.save(participant);
-        //answersRepository.saveAll(selectedAnswers);
     }
 
     @Override
     public SessionResultDto getSessionResult(String sessionCode) {
         Session currentSession = sessionRepository.findBySessionCode(sessionCode);
 
-        List<Question> questions = currentSession.getQuiz().getQuestions();
         List<Participant> participants = currentSession.getParticipants();
         List<ParticipantResultDto> participantResults = new ArrayList<>();
 
         for (Participant participant : participants) {
-            int correctAnswersCount = 0;
-            for (Question question : questions) {
-                    if (areAnswersCorrect(question, participant.getParticipantAnswers())) {
-                        correctAnswersCount++;
-                    }
-                    break;
-            }
-            ParticipantResultDto participantResult = new ParticipantResultDto(participant.getId(), correctAnswersCount);
+            ParticipantResultDto participantResult = new ParticipantResultDto(participant.getId(), participant.getScore());
             participantResults.add(participantResult);
         }
 
         return new SessionResultDto(participantResults);
-    }
-
-    private boolean areAnswersCorrect(Question question, List<Answer> participantAnswer) {
-        List<Answer> participantAnswers = participantAnswer
-                .stream()
-                .filter(answer -> answer.getQuestion().equals(question))
-                .toList();
-
-        if (question.getType() == QuestionType.choose_mult_options) {
-            List<Answer> correctAnswers = question.getAnswers()
-                    .stream()
-                    .filter(Answer::isCorrect)
-                    .toList();
-
-            return new HashSet<>(correctAnswers).containsAll(participantAnswer) && new HashSet<>(participantAnswer).containsAll(correctAnswers);
-        } else {
-            return participantAnswers.get(0).isCorrect();
-        }
     }
 
     public static String generateSessionCode(int id) {
