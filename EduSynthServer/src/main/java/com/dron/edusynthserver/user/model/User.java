@@ -23,7 +23,10 @@ public class User {
 
     private String username;
 
-    private String password;
+    // TODO: ALERT ALERT ALERT ALERT ALERT ХРАНИ В ХЕШЕ И СОЛИ, НЕ ДОПУСКАТЬ ДО РЕЛИЗА
+    private String passwordHash;
+
+    private String salt;
 
     private String email;
 
@@ -51,7 +54,7 @@ public class User {
 
         if (id != user.id) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (passwordHash != null ? !passwordHash.equals(user.passwordHash) : user.passwordHash != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (role != user.role) return false;
         if (participants != null ? !participants.equals(user.participants) : user.participants != null) return false;

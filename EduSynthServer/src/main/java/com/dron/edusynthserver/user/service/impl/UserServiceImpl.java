@@ -7,6 +7,7 @@ import com.dron.edusynthserver.user.dto.SignUpDto;
 import com.dron.edusynthserver.user.model.Role;
 import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.repository.UserRepository;
+import com.dron.edusynthserver.user.service.PasswordEncoderService;
 import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,12 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
 
     UserRepository userRepository;
+    PasswordEncoderService passwordEncoderService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoderService passwordEncoderService) {
         this.userRepository = userRepository;
+        this.passwordEncoderService = passwordEncoderService;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class UserServiceImpl implements UserService {
     {
         User user = userRepository.findByEmail(credentialsDto.email());
 
-        if (user == null || !Objects.equals(user.getPassword(), credentialsDto.password()))
+        if (user == null || !passwordEncoderService.VerifyHash(credentialsDto.password(), user.getSalt(), user.getPasswordHash()))
         {
             throw new IncorrectCredentials();
         }
@@ -52,9 +55,11 @@ public class UserServiceImpl implements UserService {
 
         if (user == null)
         {
+            String salt = passwordEncoderService.GenerateSalt();
             user = User.builder()
                     .email(userDto.email())
-                    .password(userDto.password())
+                    .salt(salt)
+                    .passwordHash(passwordEncoderService.CalculateHash(userDto.password(), salt))
                     .username(userDto.name())
                     .role(userDto.role())
                     .build();
@@ -71,7 +76,8 @@ public class UserServiceImpl implements UserService {
                 .username(name)
                 .role(Role.STUDENT_TEMP)
                 .email("")
-                .password("")
+                .salt("")
+                .passwordHash("")
                 .build();
 
         return userRepository.save(mockUser);
