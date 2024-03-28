@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.user.mapper.controller;
+package com.dron.edusynthserver.user.controller;
 
 import com.dron.edusynthserver.config.EduSynthUrl;
 import com.dron.edusynthserver.security.JwtTokenProvider;
@@ -25,6 +25,11 @@ public class AuthController
 
     private final UserMapper userMapper;
 
+    /*
+        Знаешь, у тебя в api почему-то часто дублируются сущности, в этом нет смысла
+        Вернул id пользователя да инфу о токене, а он если нужно обратится за инфой о юзере к юзере к другому контроллеру
+        TODO: Сделать возвращения AuthInfo
+     */
     @PostMapping(EduSynthUrl.AUTH_SIGN)
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto credentialsDto) {
         User user = userService.login(credentialsDto);

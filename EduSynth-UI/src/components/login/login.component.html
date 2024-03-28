@@ -1,0 +1,15 @@
+<div class="login">
+  <form [formGroup]="formGroup">
+    <div class="row">
+      <label for="email">Емейл:</label>
+      <input id="email" type="text" formControlName="email">
+    </div>
+    <div class="row">
+      <label for="password">Пароль:</label>
+      <input id="password" type="password" formControlName="password">
+    </div>
+    <div class="actions">
+      <button (click)="login()">Войти</button>
+    </div>
+  </form>
+</div>
