@@ -1,10 +1,11 @@
+import {UntypedFormGroup} from "@angular/forms";
+
 export class LoginModel {
-  email: string | null;
-  password: string | null;
+  email: string | null = null;
+  password: string | null = null;
 
-
-  constructor(email: string | null, password: string | null) {
-    this.email = email;
-    this.password = password;
+  populateFromFormGroup(formGroup: UntypedFormGroup) {
+    this.email = formGroup.get('email')?.value;
+    this.password = formGroup.get('password')?.value;
   }
 }

@@ -1,15 +1,25 @@
+<style>
+  .login
+  {
+    height: min-content;
+    padding: 12px 24px;
+    display:flex;
+    flex-direction: row;
+    background-color: var(--mat-app-background-color);
+    transition: width 2s, height 2s;
+  }
+
+  form
+  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+</style>
+
 <div class="login">
-  <form [formGroup]="formGroup">
-    <div class="row">
-      <label for="email">Емейл:</label>
-      <input id="email" type="text" formControlName="email">
-    </div>
-    <div class="row">
-      <label for="password">Пароль:</label>
-      <input id="password" type="password" formControlName="password">
-    </div>
-    <div class="actions">
-      <button (click)="login()">Войти</button>
-    </div>
-  </form>
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="Войти"> <app-login-user></app-login-user> </mat-tab>
+    <mat-tab label="Регистрация"> <app-register-user></app-register-user> </mat-tab>
+  </mat-tab-group>
 </div>

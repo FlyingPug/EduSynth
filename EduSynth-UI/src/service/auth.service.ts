@@ -3,9 +3,12 @@ import {AuthInfo} from "../models/auth.info";
 import {environment} from "../enviroment/enviroment.development";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {ITokenResult} from "../models/token-result";
+import {ITokenResult, TokenResult} from "../models/token-result";
 import {BehaviorSubject, EMPTY, map, Observable} from "rxjs";
 import {LoginModel} from "../models/login-model";
+import {RegisterModel} from "../models/register-model";
+import {IUserInfo, UserInfo} from "../models/user-info";
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +18,7 @@ export class AuthService {
   private apiAuth: string = environment.apiUrl + '/public/auth/';
   private tokenSubject: BehaviorSubject<ITokenResult>;
   private isInitialized: Boolean = false;
+  private user : UserInfo | null = null;
 
   constructor(
     private http: HttpClient,
@@ -71,10 +75,20 @@ export class AuthService {
 
   public login(model: LoginModel): Observable<void> {
     // pipe - предобработка данных, полученных с сервака, затем можно буедт эти данные прочекать в subscribe
-    return this.http.post<ITokenResult>(this.apiAuth + "login", JSON.stringify(model)).pipe(map((result: ITokenResult) => {
-      this.tokenSubject.next(result);
+    return this.http.post<IUserInfo>(this.apiAuth + "login", model).pipe(map((result: IUserInfo) => {
+      let token = new TokenResult(result.token, "0");
+      this.tokenSubject.next(token);
     }));
   }
+
+  public register(model: RegisterModel): Observable<void> {
+    // pipe - предобработка данных, полученных с сервака, затем можно буедт эти данные прочекать в subscribe
+    return this.http.post<IUserInfo>(this.apiAuth + "register", model).pipe(map((result: IUserInfo) => {
+      let token = new TokenResult(result.token, "0");
+      this.tokenSubject.next(token);
+    }));
+  }
+
 
   public logout(): void {
     //this.http.post(this.apiAuth + 'logout', null).subscribe();
@@ -82,6 +96,7 @@ export class AuthService {
   }
 
   public tryRetrieveAccessToken(): Observable<void> {
+    console.log("retr")
     const accessToken = localStorage.getItem("access-token");
     const refreshToken = localStorage.getItem("refresh-token");
     if (accessToken && refreshToken) {

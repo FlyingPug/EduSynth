@@ -1,0 +1,7 @@
+.formGroup
+{
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

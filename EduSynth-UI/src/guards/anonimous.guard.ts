@@ -8,11 +8,13 @@ export const AnonimousGuard: CanMatchFn = (route, segments) =>
   let router = inject(Router);
 
   function checkAuth() : boolean {
-    if (authService.isAuthorized) {
+    console.log('checking');
+    if (!authService.isAuthorized) {
       return true;
     }
 
-    router.navigate(['/auth/login']);
+    console.log('redirecting to home')
+    router.navigate(['/']);
     return false;
   }
 

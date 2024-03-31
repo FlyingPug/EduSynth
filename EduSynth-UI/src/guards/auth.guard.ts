@@ -7,11 +7,13 @@ export const AuthGuard: CanMatchFn = (route, segments) => {
   let router = inject(Router);
 
   function checkAuth() : boolean {
-    if (!authService.isAuthorized) {
+    console.log('checking')
+    if (authService.isAuthorized) {
       return true;
     }
 
-    router.navigate(['/']);
+    console.log('redirecting to login')
+    router.navigate(['/auth/login']);
     return false;
   }
 

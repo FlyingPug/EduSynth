@@ -1,11 +1,19 @@
-export class UserInfo {
-  username: string | null;
-  token: string | null;
-  email: string | null;
-  role : string | null;
+export interface IUserInfo {
+  username: string;
+  token: string;
+  email: string;
+  role : string;
+}
 
 
-  constructor(username: string | null, password: string | null, token: string | null, email: string | null, role: string | null) {
+export class UserInfo implements  IUserInfo{
+  username: string;
+  token: string;
+  email: string;
+  role : string;
+
+
+  constructor(username: string, password: string, token: string, email: string, role: string) {
     this.username = username;
     this.token = token;
     this.email = email;

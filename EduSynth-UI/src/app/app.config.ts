@@ -1,9 +1,18 @@
-import { ApplicationConfig } from '@angular/core';
+import {APP_INITIALIZER, ApplicationConfig} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {HttpClient, provideHttpClient} from "@angular/common/http";
+import  {initializeAppFactory} from "./app.initializer"
+import {AuthService} from "../service/auth.service";
+
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync()]
+  providers: [provideRouter(routes), provideAnimationsAsync(), provideHttpClient(), provideAnimationsAsync(), {
+    provide: APP_INITIALIZER,
+    useFactory: initializeAppFactory,
+    multi: true,
+    deps: [AuthService],
+  },]
 };

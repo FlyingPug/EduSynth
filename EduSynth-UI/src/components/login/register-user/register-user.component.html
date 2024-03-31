@@ -1,0 +1,38 @@
+<style>
+  .formGroup
+  {
+    margin-top: 15px;
+  }
+</style>
+
+<div class="formGroup" [formGroup]="formGroup">
+  <mat-form-field>
+    <mat-label>Имя:</mat-label>
+    <input [formControl]="name" matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email:</mat-label>
+    <input [formControl]="email" matInput [errorStateMatcher]="matcher"
+           placeholder="example@example.com">
+    @if (email.hasError('email') && !email.hasError('required')) {
+    <mat-error>Пожалуйста введите корректный адрес</mat-error>
+    }
+    @if (email.hasError('required')) {
+    <mat-error>Email должен быть <strong>введен</strong></mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Пароль:</mat-label>
+    <input [formControl]="password" matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Роль:</mat-label>
+    <mat-select formControlName="role">
+      <mat-option value="TEACHER">Учитель</mat-option>
+      <mat-option value="STUDENT ">Ученик</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="actions">
+    <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onRegisterClicked()">Зарегистрироваться</button>
+  </div>
+</div>

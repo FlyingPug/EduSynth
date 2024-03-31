@@ -9,6 +9,7 @@ import com.dron.edusynthserver.user.mapper.UserMapper;
 import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +31,7 @@ public class AuthController
         Вернул id пользователя да инфу о токене, а он если нужно обратится за инфой о юзере к юзере к другому контроллеру
         TODO: Сделать возвращения AuthInfo
      */
-    @PostMapping(EduSynthUrl.AUTH_SIGN)
+    @PostMapping( path = EduSynthUrl.AUTH_SIGN, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto credentialsDto) {
         User user = userService.login(credentialsDto);
         UserDto userDto = userMapper.toDTO(user);
