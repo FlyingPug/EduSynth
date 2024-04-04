@@ -1,5 +1,8 @@
 .container
 {
-  width: 300px;
-  background: red;
+  width: 50rem;;
+  height: 30rem;
+}
+.example-container {
+  height: 100%;
 }

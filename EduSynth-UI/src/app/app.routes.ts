@@ -5,7 +5,7 @@ import {AuthGuard} from "../guards/auth.guard";
 import {AnonimousGuard} from "../guards/anonimous.guard";
 
 export const routes: Routes =
-  [  {
+  [  /*{
     path: "",
     pathMatch: "full",
     loadComponent: () => HomeComponent,
@@ -16,4 +16,11 @@ export const routes: Routes =
       pathMatch: "full",
       loadComponent: () => LoginComponent,
       canMatch: [AnonimousGuard]
-    }];
+    }
+    */
+    {
+      path: "",
+      pathMatch: "full",
+      loadComponent: () => HomeComponent
+    }
+    ];

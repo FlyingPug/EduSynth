@@ -1,4 +1,20 @@
 <div class="container">
-  <p>home works!</p>
+  <mat-drawer-container
+    class="example-container" (backdropClick)="close()">
+    <mat-drawer mode="side" #sidenav (keydown.escape)="close()">
+      <p><button mat-button (click)="close()">Toggle</button></p>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/">Home</a>
+        <a mat-list-item routerLink="/about">About</a>
+        <a mat-list-item routerLink="/contact">Contact</a>
+      </mat-nav-list>
+    </mat-drawer>
 
+    <mat-drawer-content>
+      <button mat-icon-button color="primary" aria-label="Open menu" >
+        <mat-icon>menu</mat-icon>
+        <router-outlet></router-outlet>
+      </button>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </div>
