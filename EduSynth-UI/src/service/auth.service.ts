@@ -19,6 +19,7 @@ export class AuthService {
   private tokenSubject: BehaviorSubject<ITokenResult>;
   private isInitialized: Boolean = false;
   private user : UserInfo | null = null;
+  public userSubject: BehaviorSubject<IUserInfo>; // TODO: ALERT ALERT замени на нормальный геттер прошууууууу
 
   constructor(
     private http: HttpClient,
@@ -28,6 +29,7 @@ export class AuthService {
     // наблюдаемый субъект, отличие BehaviorSubject от Subject в том, что BehaivourSubject имеет начальное значение
     // , он всегда кидает какое-то актуальное состояние
     this.tokenSubject = new BehaviorSubject<ITokenResult>({} as ITokenResult);
+    this.userSubject = new BehaviorSubject<IUserInfo>({} as IUserInfo);
 
     this.tokenSubject.subscribe((token: ITokenResult) => {
       // инициализация, нет смысла что-либо либо обрабатывать
@@ -77,6 +79,7 @@ export class AuthService {
     // pipe - предобработка данных, полученных с сервака, затем можно буедт эти данные прочекать в subscribe
     return this.http.post<IUserInfo>(this.apiAuth + "login", model).pipe(map((result: IUserInfo) => {
       let token = new TokenResult(result.token, "0");
+      this.userSubject.next(result);
       this.tokenSubject.next(token);
     }));
   }
@@ -85,6 +88,7 @@ export class AuthService {
     // pipe - предобработка данных, полученных с сервака, затем можно буедт эти данные прочекать в subscribe
     return this.http.post<IUserInfo>(this.apiAuth + "register", model).pipe(map((result: IUserInfo) => {
       let token = new TokenResult(result.token, "0");
+      this.userSubject.next(result);
       this.tokenSubject.next(token);
     }));
   }

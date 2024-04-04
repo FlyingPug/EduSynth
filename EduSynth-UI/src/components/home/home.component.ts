@@ -7,6 +7,10 @@ import {MatListModule} from "@angular/material/list";
 import { Router } from '@angular/router';
 import {LoginComponent} from "../login/login.component";
 import {RegisterUserComponent} from "../login/register-user/register-user.component";
+import { OnInit } from '@angular/core';
+import { AuthService } from '../../service/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ROUTES } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,15 +21,41 @@ const routes: Routes = [
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatSidenavModule, MatButtonModule, MatIconModule, RouterOutlet, MatListModule,MatDrawerContainer],
+  imports: [MatSidenavModule, MatButtonModule, MatIconModule, RouterOutlet, MatListModule,RouterModule],
+  providers: [
+    {
+      provide: ROUTES,
+      useValue: [
+        {
+          path: '',
+          component: RegisterUserComponent,
+        },
+      ],
+    },
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   @ViewChild('sidenav') sidenav!: MatDrawer;
+  names : string = "";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) 
+  {
 
+  }
+
+  ngOnInit() {
+    this.sidenav.toggle();
+
+    if(this.authService.isAuthorized)
+    {
+      this.authService.userSubject.subscribe(newSubject =>
+        {
+          this.names = newSubject.username;
+        })
+    }
+  }
 
 close() {
     this.sidenav.close();

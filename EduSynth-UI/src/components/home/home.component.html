@@ -1,8 +1,8 @@
 <div class="container">
   <mat-drawer-container
     class="example-container" (backdropClick)="close()">
-    <mat-drawer mode="side" #sidenav (keydown.escape)="close()">
-      <p><button mat-button (click)="close()">Toggle</button></p>
+    <mat-drawer mode="side" #sidenav (keydown.escape)="close()" opened="true">
+      <p>{{this.names}}</p>
       <mat-nav-list>
         <a mat-list-item routerLink="/">Home</a>
         <a mat-list-item routerLink="/about">About</a>
@@ -11,7 +11,7 @@
     </mat-drawer>
 
     <mat-drawer-content>
-      <button mat-icon-button color="primary" aria-label="Open menu" >
+      <button mat-icon-button color="primary" aria-label="Open menu" (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
         <router-outlet></router-outlet>
       </button>
