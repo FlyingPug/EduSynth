@@ -1,0 +1,11 @@
+<div class="formGroup" [formGroup]="formGroup">
+<div class="actions">
+  <mat-form-field>
+    <mat-label>Код теста:</mat-label>
+    <input [formControl]="code" matInput>
+  </mat-form-field>
+  <div class="action">
+  <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onJoinGameClicked()">Играть</button>
+  </div>
+</div>
+</div>

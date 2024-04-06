@@ -1,5 +1,6 @@
 package com.dron.edusynthserver.quiz.controller;
 
+import com.dron.edusynthserver.config.EduSynthUrl;
 import com.dron.edusynthserver.exceptions.Forbidden;
 import com.dron.edusynthserver.exceptions.NotFoundException;
 import com.dron.edusynthserver.exceptions.Unauthorized;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/quiz")
+@RequestMapping(EduSynthUrl.QUIZ)
 public class QuizController
 {
     private final QuizService quizService;

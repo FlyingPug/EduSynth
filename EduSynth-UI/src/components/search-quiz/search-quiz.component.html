@@ -1,0 +1,21 @@
+<div class="page">
+  <div appScroll (scrolledToEnd)="scrolledToEndHandler()" class="content">
+    <!-- <mat-card class="card" *ngFor="let sale of salesPage?.items"> FOR PAGINATOR-->
+    <mat-card class="card" *ngFor="let quiz of quizArray">
+      <mat-card-header class="card-header">
+        <mat-card-title>{{quiz.title}}</mat-card-title>
+      </mat-card-header>
+      <div class="card-image-container">
+        <img class="card-image" mat-card-image [src]="quiz.titleMediaUrl" alt="Тут могло быть ваше фото">
+      </div>
+      <mat-card-content>
+        <p>
+          {{quiz.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="card-actions">
+        <button color="primary" mat-button (click)="launchTest(quiz.id)">Играть</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

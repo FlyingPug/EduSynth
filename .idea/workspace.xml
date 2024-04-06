@@ -5,13 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="И снова работа над беком, в целом уже можно к фронту приступать">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/directives/scroll-directive.directive.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/page.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz-title-model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-D5XFDEWY.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-R5TMRJOA.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-QJRPFGUM.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/EduSynthUrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/EduSynthUrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/3rdpartylicenses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/3rdpartylicenses.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-FVBKEX3G.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-WZM7GAQ7.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-N5FA7HBX.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,28 +117,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "D:/projects/EduSynth/EduSynth",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "show.run.dashboard.notification": "false",
-    "spring.configuration.checksum": "aa4d91864b594f17266e753e199ab10a",
-    "ts.external.directory.path": "C:\\Users\\Dron\\IdeaProjects\\EduSynth\\EduSynth-UI\\node_modules\\typescript\\lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/projects/EduSynth/EduSynth&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;show.run.dashboard.notification&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;aa4d91864b594f17266e753e199ab10a&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Dron\\IdeaProjects\\EduSynth\\EduSynth-UI\\node_modules\\typescript\\lib&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.dron.edusynthserver.session.dto" />
@@ -133,7 +162,7 @@
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\browser" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
+  <component name="RunManager" selected="Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun]">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dron.edusynthserver.EduSynthServerApplication" />
       <module name="EduSynth.EduSynthServer.main" />
@@ -256,6 +285,9 @@
       <item itemvalue="Gradle.EduSynth [EduSynth-UI:build]" />
       <item itemvalue="Gradle.EduSynth [bootRun]" />
       <item itemvalue="Gradle.EduSynthServer [dependencies]" />
+      <item itemvalue="npm.ng" />
+      <item itemvalue="Spring Boot.EduSynthServerApplication" />
+      <item itemvalue="Spring Boot.EduSynthServerApplication (1)" />
     </list>
     <recent_temporary>
       <list>
@@ -310,6 +342,8 @@
       <workItem from="1712135530500" duration="3297000" />
       <workItem from="1712144018511" duration="7778000" />
       <workItem from="1712203222016" duration="1527000" />
+      <workItem from="1712219736410" duration="1799000" />
+      <workItem from="1712400462863" duration="14760000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>

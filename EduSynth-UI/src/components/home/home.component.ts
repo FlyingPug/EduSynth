@@ -12,27 +12,10 @@ import { AuthService } from '../../service/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ROUTES } from '@angular/router';
 
-const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: LoginComponent },
-  { path: 'about', component: RegisterUserComponent },
-];
-
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [MatSidenavModule, MatButtonModule, MatIconModule, RouterOutlet, MatListModule,RouterModule],
-  providers: [
-    {
-      provide: ROUTES,
-      useValue: [
-        {
-          path: '',
-          component: RegisterUserComponent,
-        },
-      ],
-    },
-  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -40,7 +23,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('sidenav') sidenav!: MatDrawer;
   names : string = "";
 
-  constructor(private router: Router, private authService: AuthService) 
+  constructor(private router: Router, private authService: AuthService)
   {
 
   }

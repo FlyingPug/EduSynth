@@ -1,0 +1,10 @@
+.formGroup
+{
+  display: flex;
+  align-content: center;
+}
+
+.action
+{
+  text-align: center;
+}

@@ -6,3 +6,14 @@
 .example-container {
   height: 100%;
 }
+
+.content
+{
+  width:100%;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+}

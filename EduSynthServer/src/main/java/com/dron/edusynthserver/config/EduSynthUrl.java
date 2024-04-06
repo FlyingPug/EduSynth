@@ -11,4 +11,5 @@ public class EduSynthUrl
 
     public static final String SWAGGER = API_PUBLIC + "/api-docs";
     public static final String SESSION = API_PUBLIC + "/session";
+    public static final String QUIZ = API_PUBLIC + "/quiz";
 }
