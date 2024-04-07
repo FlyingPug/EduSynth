@@ -3,9 +3,7 @@ package com.dron.edusynthserver.session.controller;
 import com.dron.edusynthserver.config.EduSynthUrl;
 import com.dron.edusynthserver.exceptions.Unauthorized;
 import com.dron.edusynthserver.session.dto.*;
-import com.dron.edusynthserver.session.model.Session;
 import com.dron.edusynthserver.session.service.SessionService;
-import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +12,6 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(EduSynthUrl.SESSION)

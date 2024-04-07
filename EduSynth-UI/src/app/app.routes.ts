@@ -8,6 +8,7 @@ import {JoinGameComponent} from "../components/join-game/join-game.component";
 import {UserProfileComponent} from "../components/user-profile/user-profile.component";
 import {CreateQuizComponent} from "../components/create-quiz/create-quiz.component";
 import {SearchQuizComponent} from "../components/search-quiz/search-quiz.component";
+import {ImageUploadComponent} from "../components/image-upload/image-upload.component";
 
 const homeRoutes: Routes = [
   { path: 'game', loadComponent: () => JoinGameComponent},

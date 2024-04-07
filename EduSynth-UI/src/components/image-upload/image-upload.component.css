@@ -1,0 +1,26 @@
+
+.file-input {
+  display: none;
+}
+
+.button-container
+{
+  vertical-align: middle;
+}
+
+.text-container
+{
+  vertical-align: middle;
+}
+.file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-upload .upload-btn {
+}
+
+.file-upload mat-label {
+  margin-left: 0.3rem;
+}

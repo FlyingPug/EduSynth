@@ -4,43 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="И снова работа над беком, в целом уже можно к фронту приступать">
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/directives/scroll-directive.directive.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/page.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz-title-model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-D5XFDEWY.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-R5TMRJOA.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-QJRPFGUM.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="добавление возможности просмотра текущих квизов">
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/image-upload/image-upload.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/image-upload/image-upload.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/image-upload/image-upload.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/uploaded-file-model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/files/upload/3df01193-9941-4ebd-9857-bfddb15dec6f.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/files/upload/7b4a4bce-b44a-447d-887e-c40d74cdc67a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/files/upload/98eb0967-369b-432a-8e4a-2e3a384a01c2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/files/upload7c8e25d9-685c-4c4a-9b1b-53382ea0a5af.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/controller/UploadedFilesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/dto/UploadedFileDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/service/UploadedFilesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-2YPUIO4G.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-7BI6KJRZ.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-2IIAH6XS.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/enviroment.development.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/enviroment.development.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/EduSynthUrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/EduSynthUrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionCodeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/dto/SessionCodeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/3rdpartylicenses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/3rdpartylicenses.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-FVBKEX3G.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-WZM7GAQ7.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-D5XFDEWY.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-R5TMRJOA.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-N5FA7HBX.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-QJRPFGUM.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,8 +74,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="TypeScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -343,7 +334,9 @@
       <workItem from="1712144018511" duration="7778000" />
       <workItem from="1712203222016" duration="1527000" />
       <workItem from="1712219736410" duration="1799000" />
-      <workItem from="1712400462863" duration="14760000" />
+      <workItem from="1712400462863" duration="14864000" />
+      <workItem from="1712467505089" duration="17575000" />
+      <workItem from="1712506527015" duration="1362000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>
@@ -464,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710431484941</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="добавление возможности просмотра текущих квизов">
+      <created>1712420296707</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1712420296707</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +500,8 @@
     <MESSAGE value="сессии работают? нет, фиксить конечно надо, но работают" />
     <MESSAGE value="сессии работают? нет, фиксить ,конечно, надо, но работают" />
     <MESSAGE value="И снова работа над беком, в целом уже можно к фронту приступать" />
-    <option name="LAST_COMMIT_MESSAGE" value="И снова работа над беком, в целом уже можно к фронту приступать" />
+    <MESSAGE value="добавление возможности просмотра текущих квизов" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавление возможности просмотра текущих квизов" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -512,7 +513,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java</url>
-          <line>50</line>
+          <line>46</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -530,7 +531,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java</url>
-          <line>68</line>
+          <line>64</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -542,6 +543,16 @@
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/controller/AuthController.java</url>
           <line>35</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/controller/UploadedFilesController.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/service/UploadedFilesService.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

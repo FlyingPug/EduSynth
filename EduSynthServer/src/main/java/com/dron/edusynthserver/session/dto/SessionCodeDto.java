@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.session.controller;
+package com.dron.edusynthserver.session.dto;
 
 import lombok.Data;
 
