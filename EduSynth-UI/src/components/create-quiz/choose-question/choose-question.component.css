@@ -1,0 +1,42 @@
+.container
+{
+  width: auto;
+  height:30rem;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+}
+
+.center button {
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.action
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+mat-button-toggle-group
+{
+  grid-template-columns: auto auto;
+  display: grid;
+  gap: 20px;
+}
+
+.chooseQuestionType
+{
+  margin:15px;
+}
+
+mat-button-toggle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;}

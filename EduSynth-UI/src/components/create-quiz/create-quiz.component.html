@@ -1,11 +1,15 @@
 <div class="formGroup" [formGroup]="formGroup">
-  <div class="actions">
     <mat-form-field>
-      <mat-label>Код теста:</mat-label>
+      <mat-label>Название теста:</mat-label>
       <input [formControl]="name" matInput>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Описание:</mat-label>
+      <textarea  [formControl]="description" matInput placeholder="Текстовое описание" style="height: 8rem"></textarea>
+    </mat-form-field>
+    <mat-checkbox [formControl]="isPublic">Публичный</mat-checkbox>
+    <app-image-upload [label]="'Выберите изображения теста'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
     <div class="action">
-      <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onJoinGameClicked()">Играть</button>
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onCreateQuizClick()">Продолжить</button>
     </div>
-  </div>
 </div>

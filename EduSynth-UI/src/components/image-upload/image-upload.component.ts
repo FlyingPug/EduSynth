@@ -17,9 +17,10 @@ import {environment} from "../../enviroment/enviroment.development";
 export class ImageUploadComponent {
 
   @Input()
-  public label : string = 'Выберите иконку изображения:'
+  public label  = 'Выберите иконку изображения:'
+
   @Output()
-  onFileUploaded: EventEmitter<string> = new EventEmitter();
+  onFileUploaded = new EventEmitter<string>();
 
   fileName: string = '';
   constructor(private http: HttpClient) {}
