@@ -9,11 +9,24 @@ import {UserProfileComponent} from "../components/user-profile/user-profile.comp
 import {CreateQuizComponent} from "../components/create-quiz/create-quiz.component";
 import {SearchQuizComponent} from "../components/search-quiz/search-quiz.component";
 import {ImageUploadComponent} from "../components/image-upload/image-upload.component";
+import {environment} from "../enviroment/enviroment.development";
+import {
+  CreateInputTextQuestionComponent
+} from "../components/create-quiz/create-input-text-question/create-input-text-question.component";
+import {
+  CreateChooseMultiplieOptionsQuestionComponent
+} from "../components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component";
+import {
+  CreateChooseOptionQuestionComponent
+} from "../components/create-quiz/create-choose-option-question/create-choose-option-question.component";
 
 const homeRoutes: Routes = [
   { path: 'game', loadComponent: () => JoinGameComponent},
   { path: 'profile', component: UserProfileComponent },
   { path: 'create', component: CreateQuizComponent },
+  { path: environment.input_text, component: CreateInputTextQuestionComponent },
+  { path: environment.choose_mult_options, component: CreateChooseMultiplieOptionsQuestionComponent },
+  { path: environment.choose_option, component: CreateChooseOptionQuestionComponent },
   { path: 'search', component: SearchQuizComponent },
   { path: '', redirectTo: 'game', pathMatch: "full",},
 ];

@@ -6,17 +6,20 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {Quiz} from "../../models/quiz-model";
 import {QuizService} from "../../service/quiz.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ChooseQuestionComponent} from "./choose-question/choose-question.component";
 import {ImageUploadComponent} from "../image-upload/image-upload.component";
+import {slideToLeftAnimation} from "../../animations/slide-to-left";
+import {environment} from "../../enviroment/enviroment.development";
 
 @Component({
   selector: 'app-create-quiz',
   standalone: true,
   imports: [ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, MatCheckbox, ImageUploadComponent],
   templateUrl: './create-quiz.component.html',
-  styleUrl: './create-quiz.component.css'
+  styleUrl: './create-quiz.component.css',
+  animations: [slideToLeftAnimation]
 })
 export class CreateQuizComponent {
   private imageUrl: string = '';
@@ -39,7 +42,7 @@ export class CreateQuizComponent {
     this.imageUrl = imageUrl;
   }
 
-  constructor(private quizService : QuizService, public dialog: MatDialog) {
+  constructor(private quizService : QuizService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
   }
 
   onCreateQuizClick()
@@ -52,8 +55,10 @@ export class CreateQuizComponent {
 
     const dialogRef = this.dialog.open(ChooseQuestionComponent);
 
-    dialogRef.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === environment.choose_option || result === environment.choose_mult_options || result === environment.input_text) {
+        this.router.navigate(["../" + result], { relativeTo: this.route });
+      }
     });
   }
 }

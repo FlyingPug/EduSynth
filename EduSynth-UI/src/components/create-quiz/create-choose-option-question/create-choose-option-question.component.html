@@ -1,0 +1,17 @@
+<div class="formGroup" [formGroup]="formGroup">
+  <label>Текст вопроса:</label>
+  <textarea [(ngModel)]="questionText"></textarea>
+
+  <label>Загрузить картинку:</label>
+  <input type="file">
+
+  <label>Ответы:</label>
+  <div *ngFor="let answer of answers; let i = index">
+    <input type="text" [(ngModel)]="answer.text">
+    <input type="checkbox" [(ngModel)]="answer.correct">
+    <button (click)="removeAnswer(i)">Удалить</button>
+  </div>
+  <button (click)="addAnswer()">Добавить ответ</button>
+
+  <button (click)="submitQuestion()">Создать вопрос</button>
+</div>
