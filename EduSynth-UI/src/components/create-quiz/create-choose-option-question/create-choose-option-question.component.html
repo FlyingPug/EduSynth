@@ -1,17 +1,41 @@
-<div class="formGroup" [formGroup]="formGroup">
-  <label>Текст вопроса:</label>
-  <textarea [(ngModel)]="questionText"></textarea>
+<div class="container">
+<div class="formGroup" [formGroup]="form">
+  <mat-form-field>
+  <mat-label>Текст вопроса:</mat-label>
+    <textarea  [formControl]="questionText" matInput placeholder="Текст вопроса"  class="textview"></textarea>
+  </mat-form-field>
 
-  <label>Загрузить картинку:</label>
-  <input type="file">
+  <mat-form-field>
+    <mat-label>Ограничение по времени:</mat-label>
+    <input type="number" [formControl]="timeLimit" matInput>
+  </mat-form-field>
 
-  <label>Ответы:</label>
-  <div *ngFor="let answer of answers; let i = index">
-    <input type="text" [(ngModel)]="answer.text">
-    <input type="checkbox" [(ngModel)]="answer.correct">
-    <button (click)="removeAnswer(i)">Удалить</button>
+  <div class="add-button">
+    <button mat-mini-fab [disabled]="(answers.length >= 6)" (click)="addAnswer()">
+      <mat-icon class="add-course-btn">add</mat-icon>
+    </button>
   </div>
-  <button (click)="addAnswer()">Добавить ответ</button>
 
-  <button (click)="submitQuestion()">Создать вопрос</button>
+  <mat-label>Ответы:</mat-label>
+  <ng-container class="container" formArrayName="answers">
+  <ng-container class="container" *ngFor="let answerForms of answers.controls; let i = index">
+    <div class="answer-form-row" [formGroupName]="i">
+    <mat-form-field>
+    <input matInput placeholder="вариант ответа" type="text" formControlName="text">
+    </mat-form-field>
+      <mat-label>Верен ли?</mat-label>
+      <mat-checkbox formControlName="isTrue"></mat-checkbox>
+      <button mat-mini-fab color="warn" [disabled]="(answers.length <= 1)" (click)="removeAnswer(i)">
+    <mat-icon class="delete-btn">delete</mat-icon>
+      </button>
+    </div>
+  </ng-container>
+  </ng-container>
+  <app-image-upload [label]="'Выберите изображения вопроса'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
+
+  <div class="actions">
+  <button mat-raised-button  [disabled]="!form.valid" (click)="onCreateQuizClick()">Закончить</button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submitQuestion()">Добавить вопрос</button>
+  </div>
+</div>
 </div>

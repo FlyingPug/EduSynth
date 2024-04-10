@@ -1,11 +1,12 @@
 import {APP_INITIALIZER, ApplicationConfig} from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {provideRouter, RouteReuseStrategy} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {HttpClient, provideHttpClient} from "@angular/common/http";
 import  {initializeAppFactory} from "./app.initializer"
 import {AuthService} from "../service/auth.service";
+import {CustomRouteReuseStrategy} from "../enviroment/router-reuse-strategy";
 
 
 export const appConfig: ApplicationConfig = {
@@ -14,5 +15,6 @@ export const appConfig: ApplicationConfig = {
     useFactory: initializeAppFactory,
     multi: true,
     deps: [AuthService],
-  },]
+  }
+  ]
 };
