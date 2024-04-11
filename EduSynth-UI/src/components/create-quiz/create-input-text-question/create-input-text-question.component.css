@@ -1,0 +1,38 @@
+.formGroup
+{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  vertical-align: top;
+  left: 50%;
+  top: -13rem;
+  transform: translate(-50%, 0);
+// пиздец...
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.answer-form-row
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textview
+{
+  height: 1rem;
+  min-height: 1rem;
+}
+
+.container
+{
+  vertical-align: top;
+}

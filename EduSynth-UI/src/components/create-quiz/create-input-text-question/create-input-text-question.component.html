@@ -1,1 +1,25 @@
-<p>create-input-text-question works!</p>
+<div class="container">
+  <div class="formGroup" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Текст вопроса:</mat-label>
+      <textarea  [formControl]="questionText" matInput placeholder="Текст вопроса"  class="textview"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ограничение по времени:</mat-label>
+      <input type="number" [formControl]="timeLimit" matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ответ:</mat-label>
+      <textarea  [formControl]="answer" matInput placeholder="Ответ вопроса"  class="textview"></textarea>
+    </mat-form-field>
+
+    <app-image-upload [label]="'Выберите изображения вопроса'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
+
+    <div class="actions">
+      <button mat-raised-button  [disabled]="!form.valid" (click)="onCreateQuizClick()">Закончить</button>
+      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submitQuestion()">Добавить вопрос</button>
+    </div>
+  </div>
+</div>

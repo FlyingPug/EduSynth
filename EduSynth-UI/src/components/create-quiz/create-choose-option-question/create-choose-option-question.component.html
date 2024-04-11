@@ -18,18 +18,22 @@
 
   <mat-label>Ответы:</mat-label>
   <ng-container class="container" formArrayName="answers">
+    <mat-radio-group [formControl]="trueIndex">
   <ng-container class="container" *ngFor="let answerForms of answers.controls; let i = index">
     <div class="answer-form-row" [formGroupName]="i">
     <mat-form-field>
     <input matInput placeholder="вариант ответа" type="text" formControlName="text">
     </mat-form-field>
       <mat-label>Верен ли?</mat-label>
-      <mat-checkbox formControlName="isTrue"></mat-checkbox>
+
+        <mat-radio-button [value]=i>Да</mat-radio-button>
+
       <button mat-mini-fab color="warn" [disabled]="(answers.length <= 1)" (click)="removeAnswer(i)">
     <mat-icon class="delete-btn">delete</mat-icon>
       </button>
     </div>
   </ng-container>
+    </mat-radio-group>
   </ng-container>
   <app-image-upload [label]="'Выберите изображения вопроса'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
 

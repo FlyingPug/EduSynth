@@ -17,53 +17,53 @@ import {ImageUploadComponent} from "../../image-upload/image-upload.component";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MatIconModule} from "@angular/material/icon";
 import {QuizService} from "../../../service/quiz.service";
-import {Answer} from "../../../models/quiz-answer-model";
 import {ChooseQuestionComponent} from "../choose-question/choose-question.component";
 import {ActivatedRoute, Router, RouteReuseStrategy} from "@angular/router";
 import {environment} from "../../../enviroment/enviroment.development";
 import {MatDialog} from "@angular/material/dialog";
-import {CustomRouteReuseStrategy} from "../../../enviroment/router-reuse-strategy";
+import {MatRadioModule} from "@angular/material/radio";
+import {query} from "@angular/animations";
+import {QuestionCreator} from "../question-creator";
 
 @Component({
   selector: 'app-create-choose-option-question',
   standalone: true,
   imports: [FormsModule, CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule,
-    ImageUploadComponent, MatCheckbox, MatIconModule, ChooseQuestionComponent],
+    ImageUploadComponent, MatCheckbox, MatIconModule, ChooseQuestionComponent,
+  MatRadioModule],
   templateUrl: './create-choose-option-question.component.html',
   styleUrl: './create-choose-option-question.component.css',
   animations: [slideToLeftAnimation],
 })
-export class CreateChooseOptionQuestionComponent {
+export class CreateChooseOptionQuestionComponent extends QuestionCreator
+{
+  constructor(fb: FormBuilder, quizService: QuizService, router: Router, dialog: MatDialog, route: ActivatedRoute) {
+    super(fb, quizService, router, dialog, route); // Вызов конструктора родительского класса с помощью super
+  }
+
     form = this.fb.group({
     "questionText": new FormControl<string>("",
       [Validators.required, Validators.maxLength(364), Validators.minLength(1)]),
       "timeLimit": new FormControl<number>(60, [Validators.min(5)]),
-      answers: this.fb.array([])
+      answers: this.fb.array([]),
+      "trueIndex": new FormControl<string>("0"),
     });
-
-  constructor(private fb: FormBuilder, private quizService: QuizService, private  router: Router, public dialog: MatDialog, private route: ActivatedRoute) {}
 
   @Output() questionCreated = new EventEmitter<any>();
 
   questionImageUrl: string = '';
 
-  // https://stackoverflow.com/questions/40983055/how-to-reload-the-current-route-with-the-angular-2-router
-  // не я эту хуйню придумал, но почему это не предусмотрено в ангуляре я чет не понимаю TODO: спроси
-  redirectTo(uri: string) {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([uri])});
-  }
-
-  private addQuestion()
+  public override addQuestion()
   {
-    const answersArray = this.answers.controls.map(control => {
-      return { id: 0, mediaUrl: '', text: control.get('isTrue')?.value, correct: control.get('isTrue')?.value };
+    let trueIndex = this.trueIndex.get("trueIndex")?.value;
+    const answersArray = this.answers.controls.map((control, index) => {
+      return { id: 0, mediaUrl: '', text: control.get('isTrue')?.value, correct: index == trueIndex};
     });
 
     this.quizService.addQuestion(
       {
         id: 0,
-        text: this.timeLimit.get("questionText")?.value,
+        text: this.questionText.get("questionText")?.value,
         mediaUrl: this.questionImageUrl,
         type: 'choose_option',
         timeLimitSeconds: this.timeLimit.get("timeLimit")?.value,
@@ -75,8 +75,7 @@ export class CreateChooseOptionQuestionComponent {
   addAnswer() {
     if (this.answers.length < 6) {
       const answerForm = this.fb.group({
-        text: ['',[ Validators.required, Validators.minLength(1)]],
-        isTrue: [false]
+        text: ['',[ Validators.required, Validators.minLength(1)]]
       });
 
       this.answers.push(answerForm);
@@ -87,29 +86,6 @@ export class CreateChooseOptionQuestionComponent {
     if (this.answers.length > 1) {
       this.answers.removeAt(index);
     }
-  }
-
-  submitQuestion() {
-    this.addQuestion();
-    /*const questionData = {
-      text: this.questionText,
-      image: this.questionImage,
-      answers: this.answers
-    };
-    this.questionCreated.emit(questionData);*/
-    const dialogRef = this.dialog.open(ChooseQuestionComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === environment.choose_option || result === environment.choose_mult_options || result === environment.input_text) {
-       // this.router.navigate(["../" + result], { relativeTo: this.route });
-        this.redirectTo("../" + result);
-      }
-    });
-  }
-
-  onCreateQuizClick() {
-    this.addQuestion();
-    // допилитьrouter.navigate('quiz')
   }
 
   onTitleImageUrlGet($event: string) {
@@ -125,10 +101,13 @@ export class CreateChooseOptionQuestionComponent {
   public get timeLimit() {
     return this.form.controls["timeLimit"] as FormControl<number>;
   }
+  public get trueIndex()
+  {
+    return this.form.controls["trueIndex"] as FormControl<string>;
+  }
 
   ngOnInit()
   {
     this.addAnswer();
-
   }
 }
