@@ -63,6 +63,7 @@ public class QuizController
     public ResponseEntity<QuizDto> getQuiz(@PathVariable Long quizId)
     {
         Quiz quiz = quizService.getQuizById(Math.toIntExact(quizId));
+        if (quiz == null) throw new NotFoundException("Тест не найден");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         boolean isPublicQuiz = quiz.isPublic();

@@ -49,16 +49,16 @@ export class CreateChooseMultiplieOptionsQuestionComponent extends QuestionCreat
   public override addQuestion()
   {
     const answersArray = this.answers.controls.map(control => {
-      return { id: 0, mediaUrl: '', text: control.get('isTrue')?.value, correct: control.get('isTrue')?.value };
+      return { id: 0, mediaUrl: '', text: control.get('text')?.value, correct: control.get('isTrue')?.value };
     });
 
     this.quizService.addQuestion(
       {
         id: 0,
-        text: this.questionText.get("questionText")?.value,
+        text: this.questionText?.value,
         mediaUrl: this.questionImageUrl,
         type: 'choose_mult_options',
-        timeLimitSeconds: this.timeLimit.get("timeLimit")?.value,
+        timeLimitSeconds: this.timeLimit?.value,
         answers: answersArray,
       }
     )
@@ -89,10 +89,10 @@ export class CreateChooseMultiplieOptionsQuestionComponent extends QuestionCreat
     return this.form.controls["answers"] as FormArray;
   }
   public get questionText() {
-    return this.form.controls["questionText"] as FormControl<string>;
+    return this.form.get("questionText") as FormControl<string>;
   }
   public get timeLimit() {
-    return this.form.controls["timeLimit"] as FormControl<number>;
+    return this.form.get("timeLimit") as FormControl<number>;
   }
 
   ngOnInit()

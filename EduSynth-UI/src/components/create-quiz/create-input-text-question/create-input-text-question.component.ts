@@ -47,19 +47,18 @@ export class CreateInputTextQuestionComponent extends QuestionCreator{
     "questionText": new FormControl<string>("",
       [Validators.required, Validators.maxLength(364), Validators.minLength(1)]),
     "timeLimit": new FormControl<number>(60, [Validators.min(5)]),
-    answers: this.fb.array([]),
     "answer": new FormControl<string>("", [Validators.required, Validators.maxLength(100), Validators.minLength(1)]),
   });
 
   public get questionText() {
-    return this.form.controls["questionText"] as FormControl<string>;
+    return this.form.get("questionText") as FormControl<string>;
   }
   public get timeLimit() {
-    return this.form.controls["timeLimit"] as FormControl<number>;
+    return this.form.get("timeLimit") as FormControl<number>;
   }
   public get answer()
   {
-    return this.form.controls["answer"] as FormControl<string>;
+    return this.form.get("answer") as FormControl<string>;
   }
 
   onTitleImageUrlGet($event: string) {
@@ -68,14 +67,15 @@ export class CreateInputTextQuestionComponent extends QuestionCreator{
 
   public override addQuestion()
   {
+    let answer = this.answer?.value;
     this.quizService.addQuestion(
       {
         id: 0,
-        text: this.questionText.get("questionText")?.value,
+        text: this.questionText?.value,
         mediaUrl: this.questionImageUrl,
         type: 'input_text',
-        timeLimitSeconds: this.timeLimit.get("timeLimit")?.value,
-        answers: [this.answer.get("answer")?.value],
+        timeLimitSeconds: this.timeLimit?.value,
+        answers: [{id: 0, text: answer, mediaUrl:'', correct: true}],
       }
     )
   }

@@ -27,7 +27,7 @@ export class CreateQuizComponent {
   public formGroup: FormGroup = new FormGroup(
     {
       "name": new FormControl<string>("",
-        [Validators.required, Validators.maxLength(18), Validators.minLength(4)]),
+        [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       "description": new FormControl<string>("",
         [Validators.maxLength(500)]),
       "isPublic": new FormControl<boolean>(true)
@@ -49,7 +49,7 @@ export class CreateQuizComponent {
   {
     this.quizService.createNewQuiz(this.formGroup.get("name")?.value,
       this.formGroup.get("description")?.value,
-      this.formGroup.get("public")?.value,
+      this.formGroup.get("isPublic")?.value,
       this.imageUrl
       )
 

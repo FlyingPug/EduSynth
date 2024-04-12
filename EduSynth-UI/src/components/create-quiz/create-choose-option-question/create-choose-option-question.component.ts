@@ -46,7 +46,7 @@ export class CreateChooseOptionQuestionComponent extends QuestionCreator
       [Validators.required, Validators.maxLength(364), Validators.minLength(1)]),
       "timeLimit": new FormControl<number>(60, [Validators.min(5)]),
       answers: this.fb.array([]),
-      "trueIndex": new FormControl<string>("0"),
+      "trueIndex": new FormControl<number>(0),
     });
 
   @Output() questionCreated = new EventEmitter<any>();
@@ -55,18 +55,18 @@ export class CreateChooseOptionQuestionComponent extends QuestionCreator
 
   public override addQuestion()
   {
-    let trueIndex = this.trueIndex.get("trueIndex")?.value;
+    let trueIndex = this.trueIndex?.value;
     const answersArray = this.answers.controls.map((control, index) => {
-      return { id: 0, mediaUrl: '', text: control.get('isTrue')?.value, correct: index == trueIndex};
+      return { id: 0, mediaUrl: '', text: control.get('text')?.value, correct: index == trueIndex};
     });
 
     this.quizService.addQuestion(
       {
         id: 0,
-        text: this.questionText.get("questionText")?.value,
+        text: this.questionText?.value,
         mediaUrl: this.questionImageUrl,
         type: 'choose_option',
-        timeLimitSeconds: this.timeLimit.get("timeLimit")?.value,
+        timeLimitSeconds: this.timeLimit?.value,
         answers: answersArray,
       }
     )
@@ -96,14 +96,14 @@ export class CreateChooseOptionQuestionComponent extends QuestionCreator
     return this.form.controls["answers"] as FormArray;
   }
   public get questionText() {
-    return this.form.controls["questionText"] as FormControl<string>;
+    return this.form.get("questionText") as FormControl<string>;
   }
   public get timeLimit() {
-    return this.form.controls["timeLimit"] as FormControl<number>;
+    return this.form.get("timeLimit") as FormControl<number>;
   }
   public get trueIndex()
   {
-    return this.form.controls["trueIndex"] as FormControl<string>;
+    return this.form.get("trueIndex") as FormControl<number>;
   }
 
   ngOnInit()

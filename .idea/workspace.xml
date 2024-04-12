@@ -4,21 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="Добавлено форма для создания вопросов">
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/question-creator.ts" afterDir="false" />
+    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="Добавлены формы для всех типов вопросов">
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-4245FSOP.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-VNA65AQP.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-ZNQ6HL2B.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/assets/images/mult_choice.png" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/assets/images/mult_choice.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/assets/images/only_option.png" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/assets/images/only_option.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/choose-question/choose-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/choose-question/choose-question.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/mult_choice.png" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/mult_choice.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/only_option.png" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/only_option.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-GMBCMOAA.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-RF3HKT2A.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-6H5YZDK3.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +69,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="TypeScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -101,6 +109,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -350,7 +359,9 @@
       <workItem from="1712750943521" duration="65000" />
       <workItem from="1712751022973" duration="17183000" />
       <workItem from="1712841533821" duration="3537000" />
-      <workItem from="1712852730552" duration="6609000" />
+      <workItem from="1712852730552" duration="6650000" />
+      <workItem from="1712889713888" duration="16060000" />
+      <workItem from="1712929977890" duration="6804000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>
@@ -500,7 +511,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712769846351</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Добавлены формы для всех типов вопросов">
+      <option name="closed" value="true" />
+      <created>1712859529279</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1712859529279</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +559,8 @@
     <MESSAGE value="Добавлена возможность загружать файлы" />
     <MESSAGE value="добавлена форма для создания теста, а также меню для выбора типа вопросов" />
     <MESSAGE value="Добавлено форма для создания вопросов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлено форма для создания вопросов" />
+    <MESSAGE value="Добавлены формы для всех типов вопросов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены формы для всех типов вопросов" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

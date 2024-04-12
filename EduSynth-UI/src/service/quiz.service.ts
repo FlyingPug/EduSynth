@@ -7,15 +7,16 @@ import {QuizTitleModel} from "../models/quiz-title-model";
 import {Page} from "../models/page";
 import {Quiz} from "../models/quiz-model";
 import {Question} from "../models/quiz-question-model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
   private apiQuiz: string = environment.apiUrl + '/public/quiz';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  private QuizData : Quiz | null = null;
+  private quizData : Quiz | null = null;
 
   public getQuizTitles(query: Query) : Observable<Page<QuizTitleModel>> {
     let params = new HttpParams();
@@ -27,15 +28,30 @@ export class QuizService {
 
   public createNewQuiz(name : string, description : string, isPublic : boolean, titleImageUrl : string)
   {
-      this.QuizData  = new Quiz(name, description, titleImageUrl, isPublic);
+    this.quizData  = new Quiz(name, description, titleImageUrl, isPublic);
   }
 
   public addQuestion(question : Question)
   {
-
+    this.quizData?.questions.push(question);
   }
 
   finishQuizCreation() {
+    console.log(this.quizData);
+    this.http.post<Quiz>(this.apiQuiz, this.quizData).subscribe(quiz =>
+    {
+      this.router.navigate(['/quiz/' + quiz.id]);
+    });
+    this.quizData = null;
+  }
 
+  startQuiz(id: number) {
+
+  }
+
+  getQuiz(id: number) : Observable<Quiz> {
+    const url = `${this.apiQuiz}/${id}`;
+
+    return this.http.get<Quiz>(url);
   }
 }

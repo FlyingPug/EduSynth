@@ -19,11 +19,13 @@ import {
 import {
   CreateChooseOptionQuestionComponent
 } from "../components/create-quiz/create-choose-option-question/create-choose-option-question.component";
+import {DisplayQuizDetailsComponent} from "../components/display-quiz-details/display-quiz-details.component";
 
 const homeRoutes: Routes = [
   { path: 'game', loadComponent: () => JoinGameComponent},
   { path: 'profile', component: UserProfileComponent },
   { path: 'create', component: CreateQuizComponent },
+  { path: 'quiz/:id', component: DisplayQuizDetailsComponent },
   { path: environment.input_text, component: CreateInputTextQuestionComponent },
   { path: environment.choose_mult_options, component: CreateChooseMultiplieOptionsQuestionComponent },
   { path: environment.choose_option, component: CreateChooseOptionQuestionComponent },
