@@ -4,29 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="Добавлены формы для всех типов вопросов">
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-4245FSOP.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-VNA65AQP.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-ZNQ6HL2B.js" afterDir="false" />
+    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="Добавлен переход на страницу квиза после его создания">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.spec.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/mult_choice.png" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/mult_choice.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/only_option.png" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/only_option.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-GMBCMOAA.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-RF3HKT2A.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuizDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuizDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-6H5YZDK3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-ZNQ6HL2B.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,35 +94,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/projects/EduSynth/EduSynth&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;aa4d91864b594f17266e753e199ab10a&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\projects\\EduSynth\\EduSynth\\EduSynth-UI\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/projects/EduSynth/EduSynth",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "aa4d91864b594f17266e753e199ab10a",
+    "ts.external.directory.path": "D:\\projects\\EduSynth\\EduSynth\\EduSynth-UI\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.dron.edusynthserver.session.dto" />
@@ -361,7 +349,8 @@
       <workItem from="1712841533821" duration="3537000" />
       <workItem from="1712852730552" duration="6650000" />
       <workItem from="1712889713888" duration="16060000" />
-      <workItem from="1712929977890" duration="6804000" />
+      <workItem from="1712929977890" duration="6974000" />
+      <workItem from="1712978316343" duration="5777000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>
@@ -519,7 +508,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712859529279</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Добавлен переход на страницу квиза после его создания">
+      <option name="closed" value="true" />
+      <created>1712940188612</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1712940188612</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -560,7 +557,8 @@
     <MESSAGE value="добавлена форма для создания теста, а также меню для выбора типа вопросов" />
     <MESSAGE value="Добавлено форма для создания вопросов" />
     <MESSAGE value="Добавлены формы для всех типов вопросов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены формы для всех типов вопросов" />
+    <MESSAGE value="Добавлен переход на страницу квиза после его создания" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен переход на страницу квиза после его создания" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -612,6 +610,11 @@
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/service/UploadedFilesService.java</url>
           <line>32</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

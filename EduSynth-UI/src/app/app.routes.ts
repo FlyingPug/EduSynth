@@ -34,10 +34,10 @@ const homeRoutes: Routes = [
 ];
 
 export const routes: Routes =
-  [  /*{
+  [ /* {
     path: "",
-    pathMatch: "full",
     loadComponent: () => HomeComponent,
+    children: homeRoutes,
     canMatch: [AuthGuard]
     },
     {
@@ -45,8 +45,7 @@ export const routes: Routes =
       pathMatch: "full",
       loadComponent: () => LoginComponent,
       canMatch: [AnonimousGuard]
-    }
-    */
+    },*/
     {
       path: "",
       loadComponent: () => HomeComponent,

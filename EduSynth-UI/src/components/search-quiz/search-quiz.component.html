@@ -1,11 +1,11 @@
 <div class="page">
-  <div appScroll (scrolledToEnd)="scrolledToEndHandler()" class="content">
+  <div appScroll (scrolledToEnd)="scrolledToEndHandler()" class="contents">
     <!-- <mat-card class="card" *ngFor="let sale of salesPage?.items"> FOR PAGINATOR-->
     <mat-card class="card" *ngFor="let quiz of quizArray">
       <mat-card-header class="card-header">
         <mat-card-title>{{quiz.title}}</mat-card-title>
       </mat-card-header>
-      <div class="card-image-container">
+      <div class="card-image-container" *ngIf="quiz.titleMediaUrl != '' && quiz.titleMediaUrl != null">
         <img class="card-image" mat-card-image [src]="quiz.titleMediaUrl" alt="Тут могло быть ваше фото">
       </div>
       <mat-card-content>

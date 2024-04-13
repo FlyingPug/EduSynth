@@ -1,0 +1,12 @@
+.contents
+{
+  display:grid;
+  gap: 5px;
+  column-count: 5;
+  grid-template-columns: auto auto auto;
+}
+
+.card
+{
+  width: 10rem;
+}

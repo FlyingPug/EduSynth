@@ -4,7 +4,7 @@
     <mat-card-header class="card-header">
       <mat-card-title>{{quiz!.title}}</mat-card-title>
     </mat-card-header>
-    <div class="card-image-container">
+    <div class="card-image-container"  *ngIf="quiz.titleMediaUrl != ''">
       <img class="card-image" mat-card-image [src]="quiz!.titleMediaUrl" alt="Тут могло быть ваше фото">
     </div>
     <mat-card-content>

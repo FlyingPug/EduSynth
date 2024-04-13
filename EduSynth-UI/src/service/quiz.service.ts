@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../enviroment/enviroment.development";
 import {Query} from "../models/query";
 import {Observable} from "rxjs";
@@ -38,7 +38,13 @@ export class QuizService {
 
   finishQuizCreation() {
     console.log(this.quizData);
-    this.http.post<Quiz>(this.apiQuiz, this.quizData).subscribe(quiz =>
+    const jwtToken = localStorage.getItem('access-token'); // получаем токен из localStorage
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwtToken}`
+    });
+
+    this.http.post<Quiz>(this.apiQuiz, this.quizData, {headers: headers}).subscribe(quiz =>
     {
       this.router.navigate(['/quiz/' + quiz.id]);
     });
