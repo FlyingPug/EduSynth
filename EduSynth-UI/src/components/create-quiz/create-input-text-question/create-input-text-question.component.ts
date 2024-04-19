@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {slideToLeftAnimation} from "../../../animations/slide-to-left";
 import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ImageUploadComponent} from "../../image-upload/image-upload.component";
@@ -9,11 +9,10 @@ import {MatInput} from "@angular/material/input";
 import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
 import {NgForOf} from "@angular/common";
 import {QuizService} from "../../../service/quiz.service";
-import {ChooseQuestionComponent} from "../choose-question/choose-question.component";
-import {environment} from "../../../enviroment/enviroment.development";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {QuestionCreator} from "../question-creator";
+import {QuestionType} from "../../../models/enums/question-type";
 
 @Component({
   selector: 'app-create-input-text-question',
@@ -73,7 +72,7 @@ export class CreateInputTextQuestionComponent extends QuestionCreator{
         id: 0,
         text: this.questionText?.value,
         mediaUrl: this.questionImageUrl,
-        type: 'input_text',
+        type: QuestionType.InputAnswer,
         timeLimitSeconds: this.timeLimit?.value,
         answers: [{id: 0, text: answer, mediaUrl:'', correct: true}],
       }

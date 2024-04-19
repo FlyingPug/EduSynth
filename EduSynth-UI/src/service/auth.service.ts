@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AuthInfo} from "../models/auth.info";
 import {environment} from "../enviroment/enviroment.development";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ITokenResult, TokenResult} from "../models/token-result";
 import {BehaviorSubject, EMPTY, map, Observable} from "rxjs";
@@ -73,6 +73,15 @@ export class AuthService {
 
   public get isAuthorized(): boolean {
     return !!this.authInfo?.accessToken;
+  }
+
+  public get AuthHeader(): HttpHeaders
+  {
+    const jwtToken = localStorage.getItem('access-token'); // получаем токен из localStorage
+
+    return new HttpHeaders({
+      'Authorization': `Bearer ${jwtToken}`
+    });
   }
 
   public login(model: LoginModel): Observable<void> {

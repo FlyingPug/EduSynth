@@ -27,7 +27,7 @@ public class SessionController
     }
 
     @PostMapping("/create-session")
-    public ResponseEntity<SessionDto> createSession(@RequestParam int QuizId) {
+    public ResponseEntity<SessionDto> createSession(@RequestBody int QuizId) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -42,7 +42,7 @@ public class SessionController
 
     // Ветка для незарегистрированных пользователей
     @PostMapping("/join-session")
-    public ResponseEntity<SessionDto> joinSession(@RequestParam String sessionCode, @RequestParam String name) {
+    public ResponseEntity<SessionDto> joinSession(@RequestBody JoinSession joinSession) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -50,11 +50,11 @@ public class SessionController
         // TODO: это полная хуйня, нет смысла делать такую проверку, сделай просто отедльную вилку
         if (!(auth instanceof AnonymousAuthenticationToken))
         {
-            sessionDto = sessionService.joinSession(sessionCode, userService.getUserByName(auth.getName()));
+            sessionDto = sessionService.joinSession(joinSession.sessionCode(), userService.getUserByName(auth.getName()));
         }
         else
         {
-            sessionDto = sessionService.joinSessionAsGuest(sessionCode, name);
+            sessionDto = sessionService.joinSessionAsGuest(joinSession.sessionCode(), joinSession.name());
         }
         return ResponseEntity.ok(sessionDto);
     }

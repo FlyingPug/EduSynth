@@ -20,8 +20,10 @@ import {
   CreateChooseOptionQuestionComponent
 } from "../components/create-quiz/create-choose-option-question/create-choose-option-question.component";
 import {DisplayQuizDetailsComponent} from "../components/display-quiz-details/display-quiz-details.component";
+import {LobbyComponent} from "../components/session/lobby/lobby.component";
 
 const homeRoutes: Routes = [
+  { path: '', loadComponent: () => LobbyComponent},
   { path: 'game', loadComponent: () => JoinGameComponent},
   { path: 'profile', component: UserProfileComponent },
   { path: 'create', component: CreateQuizComponent },
@@ -49,6 +51,6 @@ export const routes: Routes =
     {
       path: "",
       loadComponent: () => HomeComponent,
-      children: homeRoutes,
+      children: homeRoutes
     }
     ];

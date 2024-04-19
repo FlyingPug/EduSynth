@@ -1,23 +1,20 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {slideToLeftAnimation} from "../../../animations/slide-to-left";
-import {
-  CreateChooseOptionQuestionComponent
-} from "../create-choose-option-question/create-choose-option-question.component";
 import {ImageUploadComponent} from "../../image-upload/image-upload.component";
-import {MatButton, MatButtonModule, MatMiniFabButton} from "@angular/material/button";
+import {MatButtonModule} from "@angular/material/button";
 import {MatCheckbox} from "@angular/material/checkbox";
-import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
-import {MatInput, MatInputModule} from "@angular/material/input";
-import {CommonModule, NgForOf} from "@angular/common";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {CommonModule} from "@angular/common";
 import {FormArray, FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {QuizService} from "../../../service/quiz.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ChooseQuestionComponent} from "../choose-question/choose-question.component";
-import {environment} from "../../../enviroment/enviroment.development";
 import {MatRadioModule} from "@angular/material/radio";
 import {QuestionCreator} from "../question-creator";
+import {QuestionType} from "../../../models/enums/question-type";
 
 @Component({
   selector: 'app-create-choose-multiplie-options-question',
@@ -57,7 +54,7 @@ export class CreateChooseMultiplieOptionsQuestionComponent extends QuestionCreat
         id: 0,
         text: this.questionText?.value,
         mediaUrl: this.questionImageUrl,
-        type: 'choose_mult_options',
+        type: QuestionType.MultipleOptions,
         timeLimitSeconds: this.timeLimit?.value,
         answers: answersArray,
       }

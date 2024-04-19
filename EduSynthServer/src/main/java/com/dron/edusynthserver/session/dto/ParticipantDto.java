@@ -6,7 +6,8 @@ import lombok.Data;
 public class ParticipantDto
 {
     private String name;
-    private String gameCode;
-    private String token;
+    // private String gameCode; ну и зачем это надо
+    // private String token;
     private int Score;
+    private boolean isLeader;
 }

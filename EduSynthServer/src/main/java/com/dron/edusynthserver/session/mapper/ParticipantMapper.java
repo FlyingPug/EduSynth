@@ -10,9 +10,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ParticipantMapper {
 
-    @Mapping(target = "name", source = "participant.user.username")
-    @Mapping(target = "gameCode", source = "participant.session.sessionCode")
-    @Mapping(target = "token", ignore = true)
+     @Mapping(target = "name", source = "participant.user.username")
+    //@Mapping(target = "gameCode", source = "participant.session.sessionCode")
+   // @Mapping(target = "token", ignore = true)
     ParticipantDto toDto(Participant participant);
 
 

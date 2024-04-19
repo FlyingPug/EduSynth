@@ -1,14 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {slideToLeftAnimation} from "../../../animations/slide-to-left";
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators
-} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -18,12 +10,11 @@ import {MatCheckbox} from "@angular/material/checkbox";
 import {MatIconModule} from "@angular/material/icon";
 import {QuizService} from "../../../service/quiz.service";
 import {ChooseQuestionComponent} from "../choose-question/choose-question.component";
-import {ActivatedRoute, Router, RouteReuseStrategy} from "@angular/router";
-import {environment} from "../../../enviroment/enviroment.development";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {MatRadioModule} from "@angular/material/radio";
-import {query} from "@angular/animations";
 import {QuestionCreator} from "../question-creator";
+import {QuestionType} from "../../../models/enums/question-type";
 
 @Component({
   selector: 'app-create-choose-option-question',
@@ -65,7 +56,7 @@ export class CreateChooseOptionQuestionComponent extends QuestionCreator
         id: 0,
         text: this.questionText?.value,
         mediaUrl: this.questionImageUrl,
-        type: 'choose_option',
+        type: QuestionType.SingleOption,
         timeLimitSeconds: this.timeLimit?.value,
         answers: answersArray,
       }

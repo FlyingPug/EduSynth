@@ -14,7 +14,7 @@ import {CommonModule} from "@angular/common";
 })
 export class DisplayQuizDetailsComponent {
   id: number = 0;
-  protected quiz: Quiz | null = null;
+  quiz: Quiz | null = null;
   private sub: any;
 
   constructor(private route: ActivatedRoute, private quizService : QuizService) {}

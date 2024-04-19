@@ -1,0 +1,37 @@
+.lobby-content
+{
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+.info-container
+{
+  display: flex;
+  justify-content: space-around;
+}
+
+.qr-code
+{
+  margin: 20px;
+  padding: 20px;
+  background: #FCF79D;
+  height: fit-content;
+  width:8rem;
+  align-content: center;
+}
+
+.bottom-content
+{
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+:host
+{
+  width: 100%;
+  height: 100%;
+}
