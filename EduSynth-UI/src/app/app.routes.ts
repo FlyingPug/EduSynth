@@ -23,11 +23,12 @@ import {DisplayQuizDetailsComponent} from "../components/display-quiz-details/di
 import {LobbyComponent} from "../components/session/lobby/lobby.component";
 
 const homeRoutes: Routes = [
-  { path: '', loadComponent: () => LobbyComponent},
+//  { path: '', loadComponent: () => LobbyComponent},
   { path: 'game', loadComponent: () => JoinGameComponent},
   { path: 'profile', component: UserProfileComponent },
   { path: 'create', component: CreateQuizComponent },
   { path: 'quiz/:id', component: DisplayQuizDetailsComponent },
+  { path: 'lobby/:code', component: LobbyComponent },
   { path: environment.input_text, component: CreateInputTextQuestionComponent },
   { path: environment.choose_mult_options, component: CreateChooseMultiplieOptionsQuestionComponent },
   { path: environment.choose_option, component: CreateChooseOptionQuestionComponent },
@@ -36,21 +37,22 @@ const homeRoutes: Routes = [
 ];
 
 export const routes: Routes =
-  [ /* {
+  [
+    {
+    path: "auth/login",
+      pathMatch:'full',
+    loadComponent: () => LoginComponent,
+    canMatch: [AnonimousGuard]
+  },
+    {
     path: "",
     loadComponent: () => HomeComponent,
     children: homeRoutes,
-    canMatch: [AuthGuard]
+    canMatch: [AuthGuard],
     },
-    {
-      path: "auth/login",
-      pathMatch: "full",
-      loadComponent: () => LoginComponent,
-      canMatch: [AnonimousGuard]
-    },*/
-    {
+    /*{
       path: "",
       loadComponent: () => HomeComponent,
       children: homeRoutes
-    }
+    }*/
     ];

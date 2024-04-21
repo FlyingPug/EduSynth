@@ -7,6 +7,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {CommonModule} from "@angular/common";
 import {Page} from "../../models/page";
+import {SessionService} from "../../service/session.service";
 
 @Component({
   selector: 'app-search-quiz',
@@ -24,7 +25,7 @@ export class SearchQuizComponent {
   public quizArray: QuizTitleModel[] = [];
   public isLoading: boolean = false;
   public currentPage: Page<QuizTitleModel> | null = null;
-  constructor(private readonly quizService: QuizService) {}
+  constructor(private readonly quizService: QuizService, private  readonly  sessionService: SessionService) {}
 
   ngOnInit(): void {
     this.loadQuizes();
@@ -50,8 +51,8 @@ export class SearchQuizComponent {
     });
   }
 
-  public launchTest(id : string)
+  public launchTest(id : number)
   {
-    console.log('test');
+    this.sessionService.createSession(id);
   }
 }

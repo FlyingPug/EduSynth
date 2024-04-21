@@ -17,10 +17,10 @@ import com.dron.edusynthserver.session.model.CurrentQuestionState;
 import com.dron.edusynthserver.session.model.Participant;
 import com.dron.edusynthserver.session.model.Session;
 import com.dron.edusynthserver.user.dto.ParticipantResultDto;
-import com.dron.edusynthserver.user.model.Role;
 import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -40,6 +40,9 @@ public class SessionServiceImpl implements SessionService {
     private static final int RADIX = 26;
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+    // приколы будем делать, можно будем потом уйти от этого
+    private final SimpMessagingTemplate messagingTemplate;
+
     private final Hashtable<QuestionType, QuestionHandler> QuestionHandlers;
 
     // TODO: инъекции зависимостей go brrrrrr, исправь это, не оставляй так много зависимостей, это громадный красный флаг
@@ -51,7 +54,7 @@ public class SessionServiceImpl implements SessionService {
                               JwtTokenProvider jwtTokenProvider,
                               QuizService quizService,
                               SessionMapper sessionMapper,
-                              UserService userService) {
+                              UserService userService, SimpMessagingTemplate messagingTemplate) {
         this.sessionRepository = sessionRepository;
         this.participantRepository = participantRepository;
         this.answersRepository = answersRepository;
@@ -60,6 +63,7 @@ public class SessionServiceImpl implements SessionService {
         this.quizService = quizService;
         this.sessionMapper = sessionMapper;
         this.userService = userService;
+        this.messagingTemplate = messagingTemplate; // уберешь потом
 
         QuestionHandlers = new Hashtable<>();
         QuestionHandlers.put(QuestionType.choose_option, new QuestionHandlerSingleOption());
@@ -89,7 +93,13 @@ public class SessionServiceImpl implements SessionService {
                 .timeRemainingToNextQuestionSec(currentQuestionState.getTimeRemaining())
                 .currentQuestionId(currentQuestionState.getId())
                 .sessionState(currentSession.getSessionState())
+                .participantDtoList(participantMapper.toDtoList(currentSession.getParticipants()))
                 .build();
+    }
+
+    public void sendSessionState(SessionStateDto sessionStateDto)
+    {
+        messagingTemplate.convertAndSend("/topic/session", sessionStateDto);
     }
 
     @Override
@@ -101,9 +111,12 @@ public class SessionServiceImpl implements SessionService {
                 .isLeader(false)
                 .user(user).build();
         participantRepository.save(participant);
+        currentSession.AddParticipant(participant);
 
         SessionDto sessionDto = sessionMapper.toDto(currentSession);
         sessionDto.setParticipantToken(jwtTokenProvider.createToken(user));
+
+        sendSessionState(getSessionState(sessionCode));
 
         return sessionDto;
     }

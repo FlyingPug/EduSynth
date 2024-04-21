@@ -7,6 +7,8 @@ import {HttpClient, provideHttpClient} from "@angular/common/http";
 import  {initializeAppFactory} from "./app.initializer"
 import {AuthService} from "../service/auth.service";
 import {CustomRouteReuseStrategy} from "../enviroment/router-reuse-strategy";
+import {RxStompService} from "../service/rx-stomp-service";
+import {rxStompServiceFactory} from "../factory/rxStompServiceFactory";
 
 
 export const appConfig: ApplicationConfig = {
@@ -15,6 +17,10 @@ export const appConfig: ApplicationConfig = {
     useFactory: initializeAppFactory,
     multi: true,
     deps: [AuthService],
-  }
+  },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+    }
   ]
 };

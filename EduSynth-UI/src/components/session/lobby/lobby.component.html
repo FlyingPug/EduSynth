@@ -26,35 +26,4 @@
     <ng-template #elseBlock><button color="primary" mat-button (click)="StartSession()">Играть</button></ng-template>
   </div>
 </div>
-
-
-<div class="lobby-content">
-  <h2>Как быть охуенным?</h2>
-  <mat-divider></mat-divider>
-  <div class="info-container">
-    <mat-list>
-      <div mat-subheader>Участники</div>
-      <mat-list-item>
-        <mat-icon matListItemIcon>person</mat-icon>
-        Salt
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon matListItemIcon>person</mat-icon>
-        Paprika
-      </mat-list-item>
-    </mat-list>
-    <div class="qr-code">
-      <qr-code
-        [value]="GetLink()"
-        errorCorrectionLevel="L">
-      </qr-code>
-      <button mat-button (click)="CopyLink()"><mat-icon>link</mat-icon>Копировать</button>
-    </div>
-  </div>
-  <div class="bottom-content">
-  <div *ngIf="true">
-    <p>Ожидаем начала тестирования...</p>
-  </div>
-    <ng-template #elseBlock><button color="primary" mat-button (click)="StartSession()">Играть</button></ng-template>
-  </div>
-</div>
+<ng-template #elseBlock>Что-то пошло не так</ng-template>

@@ -16,5 +16,5 @@ public interface ParticipantMapper {
     ParticipantDto toDto(Participant participant);
 
 
-    List<ParticipantDto> toDtoList(List<ParticipantDto> participantDtoList);
+    List<ParticipantDto> toDtoList(List<Participant> participantList);
 }

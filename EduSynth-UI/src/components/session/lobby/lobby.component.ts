@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
-import {Quiz} from "../../../models/quiz-model";
-import {ActivatedRoute, Router} from "@angular/router";
-import {QuizService} from "../../../service/quiz.service";
+import {Component} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 import {SessionService} from "../../../service/session.service";
 import {SessionInfo} from "../../../models/session/session-info";
 import {MatDividerModule} from "@angular/material/divider";
 import {CommonModule} from "@angular/common";
-import {MatListModule, MatListSubheaderCssMatStyler} from "@angular/material/list";
-import {MatSubheaderHarness} from "@angular/material/list/testing";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
-import { QrCodeModule } from 'ng-qrcode';
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
+import {QrCodeModule} from 'ng-qrcode';
 import {MatButtonModule} from "@angular/material/button";
 import {AuthService} from "../../../service/auth.service";
+import {RxStompService} from "../../../service/rx-stomp-service";
+import {SessionState} from "../../../models/enums/session-state";
 
 @Component({
   selector: 'app-lobby',
@@ -25,7 +24,10 @@ export class LobbyComponent {
   session: SessionInfo | null = null;
   private sub: any;
 
-  constructor(private route: ActivatedRoute, private sessionService : SessionService, private authService: AuthService) {}
+  constructor(private route: ActivatedRoute,
+              private sessionService : SessionService,
+              private authService: AuthService,
+             ) {}
 
 
   public GetLink() : string
@@ -34,12 +36,15 @@ export class LobbyComponent {
   }
 
   ngOnInit() {
+    console.log('WHAT');
     this.sub = this.route.params.subscribe(params => {
       this.code = params['code'];
 
-      if(this.sessionService.CurrentSession == null) {
-        this.sessionService.joinSession(this.code)
-      }
+      this.sessionService.CurrentSession.subscribe((session) =>
+      {
+        console.log('updating');
+        this.session = session;
+      })
     });
   }
 

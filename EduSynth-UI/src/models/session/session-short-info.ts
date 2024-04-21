@@ -2,11 +2,10 @@ import {Quiz} from "../quiz-model";
 import {ParticipantInfo} from "./participant-info";
 import {SessionState} from "../enums/session-state";
 
-export interface SessionInfo
+export interface SessionShortInfo
 {
-  quiz: Quiz;
-  participants: ParticipantInfo[];
-  participantToken: string;
-  sessionCode: string;
+  participantDtoList: ParticipantInfo[];
+  timeRemainingToNextQuestionSec: number;
+  currentQuestionId: number;
   sessionState: SessionState;
 }

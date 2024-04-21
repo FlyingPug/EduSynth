@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QuizTitleDto
 {
-    private String id;
+    private int id;
     private String title;
     private String title_media_url;
     private String description;

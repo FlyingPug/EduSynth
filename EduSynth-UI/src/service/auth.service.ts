@@ -9,6 +9,7 @@ import {LoginModel} from "../models/login-model";
 import {RegisterModel} from "../models/register-model";
 import {IUserInfo, UserInfo} from "../models/user-info";
 import {Location} from '@angular/common';
+import {StompHeaders} from "@stomp/stompjs";
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,12 @@ export class AuthService {
     return !!this.authInfo?.accessToken;
   }
 
+  public get StompHeader(): StompHeaders
+  {
+    const jwtToken = localStorage.getItem('access-token'); // получаем токен из localStorage
+
+    return { 'Authorization': `Bearer ${jwtToken}`};
+  }
   public get AuthHeader(): HttpHeaders
   {
     const jwtToken = localStorage.getItem('access-token'); // получаем токен из localStorage

@@ -45,4 +45,9 @@ public class Session {
                 ", sessionState=" + sessionState +
                 '}';
     }
+
+    public void AddParticipant(Participant participant)
+    {
+        participants.add(participant);
+    }
 }

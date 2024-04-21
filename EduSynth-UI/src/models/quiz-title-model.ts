@@ -1,5 +1,5 @@
 export interface QuizTitleModel {
-  id: string;
+  id: number;
   title: string;
   titleMediaUrl: string;
   description: string;
