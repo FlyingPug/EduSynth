@@ -97,14 +97,14 @@ public class SessionServiceImpl implements SessionService {
                 .build();
     }
 
-    public void sendSessionState(SessionStateDto sessionStateDto)
+    public void sendSessionState(SessionStateDto sessionStateDto, String sessionCode)
     {
-        messagingTemplate.convertAndSend("/topic/session", sessionStateDto);
+        messagingTemplate.convertAndSend("/topic/session/" + sessionCode, sessionStateDto);
     }
 
     @Override
     public SessionDto joinSession(String sessionCode, User user) {
-        Session currentSession = sessionRepository.findBySessionCode(sessionCode);
+        Session currentSession = sessionRepository.getSessionBySessionCode(sessionCode);
 
         Participant participant = Participant.builder()
                 .session(currentSession)
@@ -116,7 +116,7 @@ public class SessionServiceImpl implements SessionService {
         SessionDto sessionDto = sessionMapper.toDto(currentSession);
         sessionDto.setParticipantToken(jwtTokenProvider.createToken(user));
 
-        sendSessionState(getSessionState(sessionCode));
+        sendSessionState(getSessionState(sessionCode), sessionCode);
 
         return sessionDto;
     }
@@ -130,14 +130,18 @@ public class SessionServiceImpl implements SessionService {
                 .quiz(quiz)
                 .sessionState(SessionState.WAITING)
                 .startTime(new Date())
+                .participants(new ArrayList<>())
                 .build();
 
-        newSession = sessionRepository.save(newSession);
         Participant participant = Participant.builder()
                 .session(newSession)
                 .isLeader(true)
                 .user(user).build();
-        participantRepository.save(participant);
+
+        newSession.getParticipants().add(participant);
+
+        newSession = sessionRepository.save(newSession);
+
 
         SessionDto sessionDto = sessionMapper.toDto(newSession);
         sessionDto.setParticipantToken(jwtTokenProvider.createToken(user));

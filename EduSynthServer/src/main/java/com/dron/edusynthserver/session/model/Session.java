@@ -5,6 +5,7 @@ import com.dron.edusynthserver.user.model.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Session {
     private Date startTime;
 
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Participant> participants;
+    private List<Participant> participants = Collections.emptyList();
 
     @Column(name = "session_code", nullable = false, unique = true)
     private String sessionCode;

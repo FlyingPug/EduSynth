@@ -2,6 +2,8 @@ package com.dron.edusynthserver.user.controller;
 
 import com.dron.edusynthserver.config.EduSynthUrl;
 import com.dron.edusynthserver.security.JwtTokenProvider;
+import com.dron.edusynthserver.session.dto.ParticipantDto;
+import com.dron.edusynthserver.session.dto.SessionResultDto;
 import com.dron.edusynthserver.user.dto.CredentialsDto;
 import com.dron.edusynthserver.user.dto.SignUpDto;
 import com.dron.edusynthserver.user.dto.UserDto;
@@ -9,8 +11,13 @@ import com.dron.edusynthserver.user.mapper.UserMapper;
 import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +44,18 @@ public class AuthController
         UserDto userDto = userMapper.toDTO(user);
         userDto.setToken(userAuthenticationProvider.createToken(user));
         return ResponseEntity.ok(userDto);
+    }
+
+    @GetMapping (path = EduSynthUrl.CURRENT_USER_PROFILE)
+    public ResponseEntity<UserDto> GetCurrentUserProfile() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(!(authentication instanceof AnonymousAuthenticationToken))
+        {
+            return ResponseEntity.ok(userMapper.toDTO((User)authentication.getPrincipal()));
+        }
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
     }
 
     @PostMapping(EduSynthUrl.AUTH_REGISTER)

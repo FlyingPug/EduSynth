@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface SessionRepository extends JpaRepository<Session, Integer>
 {
     Session findBySessionCode(String sessionCode);
+    Session getSessionBySessionCode(String sessionCode);
 }

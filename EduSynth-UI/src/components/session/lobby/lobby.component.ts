@@ -66,6 +66,11 @@ export class LobbyComponent {
 
   IsLeader() {
     let name = this.authService.userSubject.getValue().username;
-    return this.session?.participants?.find(participant => participant.name == name)?.isLeader
+    console.log(name);
+    console.log(this.session?.sessionCode);
+    console.log(this.session?.participants);
+    console.log(this.session?.participants?.find(participant => participant.name == name)?.name);
+    return this.session?.participants?.find(participant => participant.name == name)?.leader
+
   }
 }

@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.security.auth.Subject;
+import java.security.Principal;
 import java.util.List;
 
 @Entity
@@ -16,7 +18,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+// хз насколько хорошая практика делать сущность бд и principal одной вещью, но лан
+public class User implements Principal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -43,6 +46,16 @@ public class User {
     public String toString()
     {
         return username;
+    }
+
+    @Override
+    public String getName() {
+        return username;
+    }
+
+    @Override
+    public boolean implies(Subject subject) {
+        return Principal.super.implies(subject);
     }
 
     @Override

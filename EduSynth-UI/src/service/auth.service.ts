@@ -10,6 +10,7 @@ import {RegisterModel} from "../models/register-model";
 import {IUserInfo, UserInfo} from "../models/user-info";
 import {Location} from '@angular/common';
 import {StompHeaders} from "@stomp/stompjs";
+import {Quiz} from "../models/quiz-model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ import {StompHeaders} from "@stomp/stompjs";
 export class AuthService {
   private authInfo: AuthInfo | null = null;
   private apiAuth: string = environment.apiUrl + '/public/auth/';
+  private userAPI: string = environment.apiUrl + '/public/user';
   private tokenSubject: BehaviorSubject<ITokenResult>;
   private isInitialized: Boolean = false;
   private user : UserInfo | null = null;
@@ -62,6 +64,12 @@ export class AuthService {
 
       this.updateTokens();
 
+      if(!this.userSubject.getValue().username)
+      {
+        console.log('получаю пользователя');
+        this.getCurrentUserInfo().then();
+      }
+
       if (isNewSession) {
         //this.startRefreshTokenTimer();
         // если мы сейчас на странице логина/регистрации переходим на главную
@@ -91,6 +99,28 @@ export class AuthService {
     });
   }
 
+  public async getCurrentUser(): Promise<IUserInfo> {
+    if (!this.userSubject.getValue()) {
+      await this.getCurrentUserInfo();
+    }
+    return this.userSubject.getValue();
+  }
+
+  private async getCurrentUserInfo() {
+    try {
+      const user = await this.http.get<IUserInfo>(this.userAPI, { headers: this.AuthHeader }).toPromise();
+      if (user) {
+        console.log('получил юзера');
+        this.userSubject.next(user);
+      }
+    } catch (error) {
+      // Обработка ошибок при получении информации о пользователе
+      console.error("Ошибка при получении информации о пользователе:", error);
+      throw error;
+    }
+  }
+
+
   public login(model: LoginModel): Observable<void> {
     // pipe - предобработка данных, полученных с сервака, затем можно буедт эти данные прочекать в subscribe
     return this.http.post<IUserInfo>(this.apiAuth + "login", model).pipe(map((result: IUserInfo) => {
@@ -119,14 +149,14 @@ export class AuthService {
     console.log("retr")
     const accessToken = localStorage.getItem("access-token");
     const refreshToken = localStorage.getItem("refresh-token");
-    if (accessToken && refreshToken) {
+    if (accessToken && refreshToken && AuthService.isTokenValid(accessToken)) {
       this.tokenSubject.next({ accessToken: accessToken, refreshToken: refreshToken });
     }
     return EMPTY;
   }
 
   private updateTokens() {
-    // localStorage - хранилище в браузере хранящее инфорамцию до 5мб
+    // localStorage - хранилище в браузере хранящее информацию до 5мб
     if (!this.authInfo) {
       localStorage.removeItem("access-token");
       localStorage.removeItem("refresh-token");
@@ -146,5 +176,12 @@ export class AuthService {
     const payload = JSON.parse(json);
 
     return new AuthInfo(accessToken, refreshToken, payload.id, payload.exp);
+  }
+
+  private static isTokenValid(token : string) : boolean
+  {
+    const accessToken = JSON.parse(atob(token.split('.')[1]));
+    const expires = new Date(accessToken.exp * 1000);
+    return expires.getTime() - Date.now() > 0
   }
 }

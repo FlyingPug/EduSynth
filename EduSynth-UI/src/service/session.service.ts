@@ -23,7 +23,14 @@ export class SessionService {
   constructor(private http: HttpClient, private router: Router, private authService: AuthService, private rxStompService: RxStompService)
   {
     console.log('sheise');
-    this.rxStompService.watch('/topic/session').subscribe( (message) => {
+    this.currentSessionData.subscribe(sessionStorage => {
+
+    })
+  }
+
+  private watchSession(code: string)
+  {
+    this.rxStompService.watch('/topic/session/' + code).subscribe( (message) => {
       if (message.body) {
         console.log('New message received:', message.body);
         let session : SessionShortInfo = JSON.parse(message.body);
@@ -51,6 +58,7 @@ export class SessionService {
     {
       console.log('Its okay', session);
       this.currentSessionData.next(session);
+      this.watchSession(session.sessionCode);
       this.router.navigate(['/lobby/' + session.sessionCode]);
     });
   }
@@ -62,6 +70,7 @@ export class SessionService {
       this.http.post<SessionInfo>(this.apiSession + "join-session", {name: this.authService.userSubject.getValue().username, sessionCode: sessionCode}, {headers: this.authService.AuthHeader}).subscribe(session =>
       {
         this.currentSessionData.next(session);
+        this.watchSession(session.sessionCode);
         this.router.navigate(['/lobby/' + sessionCode]);
       });
     }

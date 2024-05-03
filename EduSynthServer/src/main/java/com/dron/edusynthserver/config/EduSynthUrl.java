@@ -8,6 +8,7 @@ public class EduSynthUrl
     public static final String AUTH = API_PUBLIC + "/auth";
     public static final String AUTH_REGISTER = AUTH + "/register";
     public static final String AUTH_SIGN = AUTH + "/login";
+    public static final String CURRENT_USER_PROFILE =  API_PUBLIC + "/user";
 
     public static final String SWAGGER = API_PUBLIC + "/api-docs";
     public static final String SESSION = API_PUBLIC + "/session";
