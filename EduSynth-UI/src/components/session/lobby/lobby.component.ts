@@ -11,6 +11,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {AuthService} from "../../../service/auth.service";
 import {RxStompService} from "../../../service/rx-stomp-service";
 import {SessionState} from "../../../models/enums/session-state";
+import {SessionShortInfo} from "../../../models/session/session-short-info";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-lobby',
@@ -22,12 +24,16 @@ import {SessionState} from "../../../models/enums/session-state";
 export class LobbyComponent {
   code: string = '';
   session: SessionInfo | null = null;
+  sessionState$: BehaviorSubject<SessionShortInfo | null>;
   private sub: any;
 
   constructor(private route: ActivatedRoute,
               private sessionService : SessionService,
               private authService: AuthService,
-             ) {}
+             )
+  {
+    this.sessionState$ = this.sessionService.CurrentSessionState;
+  }
 
 
   public GetLink() : string
@@ -36,14 +42,14 @@ export class LobbyComponent {
   }
 
   ngOnInit() {
-    console.log('WHAT');
+    console.log('INITIZALIZING LOBBY');
     this.sub = this.route.params.subscribe(params => {
       this.code = params['code'];
+      this.session = this.sessionService.CurrentSession;
 
-      this.sessionService.CurrentSession.subscribe((session) =>
+      this.sessionState$.subscribe((session) =>
       {
-        console.log('updating');
-        this.session = session;
+        console.log('updating', session);
       })
     });
   }
@@ -66,9 +72,6 @@ export class LobbyComponent {
 
   IsLeader() {
     let name = this.authService.userSubject.getValue().username;
-    console.log(name);
-    console.log(this.session?.sessionCode);
-    console.log(this.session?.participants);
     console.log(this.session?.participants?.find(participant => participant.name == name)?.name);
     return this.session?.participants?.find(participant => participant.name == name)?.leader
 

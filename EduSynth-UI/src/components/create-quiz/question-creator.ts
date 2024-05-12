@@ -7,7 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 
 export abstract class QuestionCreator
 {
-  constructor(public fb : FormBuilder, public quizService : QuizService, public  router: Router, public dialog: MatDialog, public route: ActivatedRoute) {
+  protected constructor(public fb : FormBuilder, public quizService : QuizService, public  router: Router, public dialog: MatDialog, public route: ActivatedRoute) {
   }
 
   protected abstract addQuestion() : void;

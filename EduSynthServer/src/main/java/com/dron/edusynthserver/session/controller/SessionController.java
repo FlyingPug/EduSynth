@@ -60,10 +60,10 @@ public class SessionController
     }
 
     @PostMapping("/answer-question")
-    public void answerQuestion(@RequestBody UserAnswerSessionDto userAnswerSessionDto)
+    public void answerQuestion(@RequestBody UserAnswerSessionForm userAnswerSessionForm)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        sessionService.answerQuestion(userAnswerSessionDto.getSessionCode(), userAnswerSessionDto.getAnswers(), userService.getUserByName(auth.getName()));
+        sessionService.answerQuestion(userAnswerSessionForm.getSessionCode(), userAnswerSessionForm.getAnswers(), userService.getUserByName(auth.getName()));
     }
 
     @PostMapping("/start-session")

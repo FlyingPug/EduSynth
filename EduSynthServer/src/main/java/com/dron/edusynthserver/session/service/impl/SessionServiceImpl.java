@@ -79,28 +79,36 @@ public class SessionServiceImpl implements SessionService {
             throw new SessionNotFound();
         }
 
-        CurrentQuestionState currentQuestionState = getCurrentQuestionIndex(
-                currentSession.getStartTime(),
-                currentSession.getQuiz().getQuestions());
+        List<Question> questions = currentSession.getQuiz().getQuestions();
 
-        if (currentQuestionState.getId() == -1)
+        Date currentTime = new Date();
+        long elapsedTimeInSeconds = (currentTime.getTime() - currentSession.getStartTime().getTime()) / 1000;
+        long timeLimit = questions.get(currentSession.getCurrentQuestionIndex()).getTimeLimitSeconds();
+        if(elapsedTimeInSeconds > timeLimit)
         {
-            currentSession.setSessionState(SessionState.ENDED);
-            sessionRepository.save(currentSession);
+            goToNextQuestion(currentSession);
+            elapsedTimeInSeconds = (currentTime.getTime() - currentSession.getStartTime().getTime()) / 1000;
+            timeLimit = questions.get(currentSession.getCurrentQuestionIndex()).getTimeLimitSeconds();
         }
 
         return SessionStateDto.builder()
-                .timeRemainingToNextQuestionSec(currentQuestionState.getTimeRemaining())
-                .currentQuestionId(currentQuestionState.getId())
+                .timeRemainingToNextQuestionSec((int) (timeLimit - elapsedTimeInSeconds))
+                .currentQuestionId(currentSession.getCurrentQuestionIndex())
                 .sessionState(currentSession.getSessionState())
                 .participantDtoList(participantMapper.toDtoList(currentSession.getParticipants()))
                 .build();
     }
 
-    public void sendSessionState(SessionStateDto sessionStateDto, String sessionCode)
+    private void sendSessionState(SessionStateDto sessionStateDto, String sessionCode)
     {
         messagingTemplate.convertAndSend("/topic/session/" + sessionCode, sessionStateDto);
     }
+
+    public void sendSessionState(String sessionCode)
+    {
+        messagingTemplate.convertAndSend("/topic/session/" + sessionCode, getSessionState(sessionCode));
+    }
+
 
     @Override
     public SessionDto joinSession(String sessionCode, User user) {
@@ -116,7 +124,7 @@ public class SessionServiceImpl implements SessionService {
         SessionDto sessionDto = sessionMapper.toDto(currentSession);
         sessionDto.setParticipantToken(jwtTokenProvider.createToken(user));
 
-        sendSessionState(getSessionState(sessionCode), sessionCode);
+        sendSessionState(sessionCode);
 
         return sessionDto;
     }
@@ -130,6 +138,7 @@ public class SessionServiceImpl implements SessionService {
                 .quiz(quiz)
                 .sessionState(SessionState.WAITING)
                 .startTime(new Date())
+                .currentQuestionIndex(0)
                 .participants(new ArrayList<>())
                 .build();
 
@@ -159,14 +168,17 @@ public class SessionServiceImpl implements SessionService {
 
         if (currentSession.getSessionState() != SessionState.WAITING) throw new IncorrectSessionState("Сессия уже началась");
 
-        Optional<Participant> participant = currentSession.getParticipants().stream().filter(otherUser -> otherUser.getUser().getUsername().equals(user.getUsername())).findFirst();
+        Optional<Participant> participant = currentSession.getParticipants().stream().filter(otherUser -> otherUser.getUser().equals(user)).findFirst();
         if(participant.isEmpty() || !participant.get().isLeader())
             throw new Forbidden();
 
         currentSession.setSessionState(SessionState.STARTED);
         currentSession.setStartTime(new Date());
+        currentSession.setCurrentQuestionIndex(0);
 
         sessionRepository.save(currentSession);
+
+        sendSessionState(sessionCode);
     }
 
     @Override
@@ -194,6 +206,8 @@ public class SessionServiceImpl implements SessionService {
         participantRepository.save(participant);
         SessionDto sessionDto = sessionMapper.toDto(currentSession);
         sessionDto.setParticipantToken(jwtTokenProvider.createToken(mockUser));
+
+        sendSessionState(sessionCode);
 
         return sessionDto;
     }
@@ -247,6 +261,16 @@ public class SessionServiceImpl implements SessionService {
 
         // Обновляем счет участника
         if(isCorrect) participant.setScore(participant.getScore() + 1);
+
+        // все участники ответили на вопрос?
+        if(currentSession.getParticipants().stream().allMatch
+                (participant1 -> participant1.getParticipantAnswers().stream().anyMatch(
+                answer -> answer.getQuestion().equals(question))))
+        {
+            goToNextQuestion(currentSession);
+        }
+
+        sendSessionState(sessionCode);
 
         // Сохраняем обновленного участника
         participantRepository.save(participant);
@@ -305,4 +329,19 @@ public class SessionServiceImpl implements SessionService {
         return  new CurrentQuestionState(-1, 0);  // Все вопросы закончились
     }
 
+    private void goToNextQuestion(Session session)
+    {
+        int currentQuestionIndex = session.getCurrentQuestionIndex();;
+        if (currentQuestionIndex == session.getQuiz().getQuestions().size() - 1)
+        {
+           session.setSessionState(SessionState.ENDED);
+        }
+        else
+        {
+            session.setCurrentQuestionIndex(currentQuestionIndex + 1);
+            session.setStartTime(new Date());
+        }
+
+        sessionRepository.save(session);
+    }
 }

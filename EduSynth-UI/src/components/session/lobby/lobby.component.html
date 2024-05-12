@@ -1,10 +1,12 @@
-<div class="lobby-content"  *ngIf=" session != null && session.quiz != null">
+<div class="lobby-content"  *ngIf="this.session && this.session.quiz && this.sessionState$ | async as sessionState">
+  <div class="quiz-header">
   <h2>{{session!.quiz!.title}}</h2>
+  </div>
   <mat-divider></mat-divider>
   <div class="info-container">
     <mat-list>
       <div mat-subheader>Участники</div>
-      <div *ngFor="let participant of session.participants">
+      <div *ngFor="let participant of sessionState.participantDtoList">
         <mat-list-item>
           <mat-icon matListItemIcon>person</mat-icon>
           <div matListItemTitle>{{participant.name}}</div>
@@ -19,25 +21,13 @@
       <button mat-button (click)="CopyLink()"><mat-icon>link</mat-icon>Копировать</button>
     </div>
   </div>
-  <div class="text-container">
-    что-то произошло
-    <div>
-      <p>Ожидаем начала тестирования...</p>
-    </div>
-    <ng-template #notLeader>
-      как тривиально
-
-    </ng-template>
-  </div>
   <div class="bottom-content">
-    <div  *ngIf="this.session"><
-
+    <div  *ngIf="this.session">
     <div *ngIf="!IsLeader(); else notLeader">
       <p>Ожидаем начала тестирования...</p>
     </div>
     <ng-template #notLeader>
-      как тривиально
-
+      <button mat-raised-button #button color="primary"  (click)="StartSession()">Начать игру</button>
     </ng-template>
   </div>
   </div>

@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.config;
+package com.dron.edusynthserver.websocket.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

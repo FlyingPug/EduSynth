@@ -1,0 +1,19 @@
+<h2>{{question.text}}</h2>
+<flx-circle-timer #timer
+                  color="#40337f"
+                  [duration]="question.timeLimitSeconds * 1000"
+                  (onComplete)="onTimerComplete()">
+</flx-circle-timer>
+
+<mat-divider></mat-divider>
+<label id="example-radio-group-label">Выберите ответ:</label>
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="answerId">
+  <ng-container class="container" *ngFor="let answer of question.answers; let i = index">
+    <mat-radio-button [value]=answer.id>{{answer.text}}</mat-radio-button>
+  </ng-container>
+
+  <button mat-raised-button #button color="primary"  (click)="submitQuestion()">Ответить</button>
+</mat-radio-group>

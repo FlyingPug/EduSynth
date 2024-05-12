@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface SessionService
 {
+    void sendSessionState(String sessionCode);
+
     SessionStateDto getSessionState(String sessionCode);
 
     SessionDto joinSession(String sessionCode, User user);

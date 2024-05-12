@@ -36,6 +36,9 @@ public class Session {
     @Enumerated(EnumType.STRING)
     private SessionState sessionState;
 
+    @Column(name = "current_question_index")
+    private int currentQuestionIndex = 0;
+
     @Override
     public String toString() {
         return "Session{" +

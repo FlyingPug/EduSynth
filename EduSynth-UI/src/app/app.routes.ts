@@ -22,6 +22,10 @@ import {
 import {DisplayQuizDetailsComponent} from "../components/display-quiz-details/display-quiz-details.component";
 import {LobbyComponent} from "../components/session/lobby/lobby.component";
 
+const quizRoutes: Routes = [
+  { path: 'question/choose_option', component: LobbyComponent },
+]
+
 const homeRoutes: Routes = [
 //  { path: '', loadComponent: () => LobbyComponent},
   { path: 'game', loadComponent: () => JoinGameComponent},

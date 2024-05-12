@@ -15,7 +15,7 @@ export function rxStompServiceFactory() {
   const wsUrl = `${protocol}${host}${port}/ws`;
 
   const headers =  authService.StompHeader;
-  console.log('fuck');
+  console.log('rxStompServiceFactory начинаю соединение с сервером ws');
   const myRxStompConfig: RxStompConfig = {
     brokerURL: wsUrl,
     heartbeatIncoming: 0,
@@ -25,9 +25,9 @@ export function rxStompServiceFactory() {
       console.log(new Date(), msg);
     },
   };
-  console.log('this');
+  console.log('всё');
   rxStomp.configure(myRxStompConfig);
   rxStomp.activate();
-  console.log('shit');
+  console.log('получилось');
   return rxStomp;
 }

@@ -13,6 +13,11 @@
   justify-content: space-around;
 }
 
+.quiz-header
+{
+  padding:1rem;
+}
+
 .qr-code
 {
   margin: 20px;
