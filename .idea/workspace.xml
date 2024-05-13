@@ -4,44 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="кучу багов с созданием лобби зафиксил">
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/question-template.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/SessionCodeDto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/user-answer-session-form.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/websocket/controller/WebSocketController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/db/migration/V6__change_session.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-BJSPHUHM.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-F3PARMPZ.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-Y5H5GPAZ.js" afterDir="false" />
+    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="куча багов исправлена, сейчас пойдет">
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/shared/shared.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-DVTR4SXT.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-Q3J5RQM3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-Y4SFEK2Q.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/question-creator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/question-creator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/factory/rxStompServiceFactory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/factory/rxStompServiceFactory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/question-template.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/question-template.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/websocket/config/WebSocketConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/dto/UserAnswerSessionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/dto/UserAnswerSessionForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/model/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/model/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/SessionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/SessionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/SessionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-6RENLDPC.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-CNG22I7C.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/3rdpartylicenses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/3rdpartylicenses.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-BJSPHUHM.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-F3PARMPZ.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-W53T4MGF.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-Y5H5GPAZ.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -391,7 +378,8 @@
       <workItem from="1715177264573" duration="1537000" />
       <workItem from="1715233714261" duration="21924000" />
       <workItem from="1715429518088" duration="14988000" />
-      <workItem from="1715503484785" duration="21928000" />
+      <workItem from="1715503484785" duration="22132000" />
+      <workItem from="1715569588725" duration="12121000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>
@@ -571,7 +559,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714756327154</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="куча багов исправлена, сейчас пойдет">
+      <created>1715534578824</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1715534578824</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,7 +610,8 @@
     <MESSAGE value="Добавлен переход на страницу квиза после его создания" />
     <MESSAGE value="Добавлено лобби" />
     <MESSAGE value="кучу багов с созданием лобби зафиксил" />
-    <option name="LAST_COMMIT_MESSAGE" value="кучу багов с созданием лобби зафиксил" />
+    <MESSAGE value="куча багов исправлена, сейчас пойдет" />
+    <option name="LAST_COMMIT_MESSAGE" value="куча багов исправлена, сейчас пойдет" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,9 +1,6 @@
-<h2>{{question.text}}</h2>
-<flx-circle-timer #timer
-                  color="#40337f"
-                  [duration]="question.timeLimitSeconds * 1000"
-                  (onComplete)="onTimerComplete()">
-</flx-circle-timer>
+<div class="question">
+<h2>{{question?.text}}</h2>
+<countdown [config]="config" (event)="onTimerComplete()" class="custom-style" />
 
 <mat-divider></mat-divider>
 <div class="formGroup" [formGroup]="formGroup">
@@ -15,4 +12,5 @@
   </mat-form-field>
 
   <button mat-raised-button #button color="primary"  (click)="submitQuestion()">Ответить</button>
+</div>
 </div>

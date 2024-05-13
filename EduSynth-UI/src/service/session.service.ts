@@ -114,4 +114,12 @@ export class SessionService {
       this.http.post(this.apiSession + "/answer-question", new UserAnswerSessionForm(this.currentSessionData.sessionCode, answers), {headers: this.authService.AuthHeader});
     }
   }
+
+  public get CurrentQuestion() {
+    let index = this.CurrentSessionState.getValue()?.currentQuestionId;
+    if(index) {
+      return this.currentSessionData?.quiz.questions[index];
+    }
+    return undefined;
+  }
 }

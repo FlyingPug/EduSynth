@@ -21,6 +21,15 @@ import {
 } from "../components/create-quiz/create-choose-option-question/create-choose-option-question.component";
 import {DisplayQuizDetailsComponent} from "../components/display-quiz-details/display-quiz-details.component";
 import {LobbyComponent} from "../components/session/lobby/lobby.component";
+import {
+  ChooseSingeOptionQuestionComponent
+} from "../components/session/questions/choose-singe-option-question/choose-singe-option-question.component";
+import {
+  ChooseMultipleOptionsQuestionComponent
+} from "../components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component";
+import {
+  InputTextQuestionComponent
+} from "../components/session/questions/input-text-question/input-text-question.component";
 
 const quizRoutes: Routes = [
   { path: 'question/choose_option', component: LobbyComponent },
@@ -33,6 +42,9 @@ const homeRoutes: Routes = [
   { path: 'create', component: CreateQuizComponent },
   { path: 'quiz/:id', component: DisplayQuizDetailsComponent },
   { path: 'lobby/:code', component: LobbyComponent },
+  { path: 'question/choose_option', component: ChooseSingeOptionQuestionComponent },
+  { path: 'question/choose_mult_options', component: ChooseMultipleOptionsQuestionComponent },
+  { path: 'question/input_text', component: InputTextQuestionComponent },
   { path: environment.input_text, component: CreateInputTextQuestionComponent },
   { path: environment.choose_mult_options, component: CreateChooseMultiplieOptionsQuestionComponent },
   { path: environment.choose_option, component: CreateChooseOptionQuestionComponent },

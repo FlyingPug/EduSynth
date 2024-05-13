@@ -556,6 +556,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 --------------------------------------------------------------------------------
+Package: ngx-countdown
+License: "MIT"
+
+
+--------------------------------------------------------------------------------
 Package: @angular/animations
 License: "MIT"
 
