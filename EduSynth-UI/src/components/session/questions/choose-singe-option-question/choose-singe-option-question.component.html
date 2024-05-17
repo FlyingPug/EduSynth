@@ -1,16 +1,18 @@
 <div class="question">
-<h2>{{question?.text}}</h2>
-<countdown [config]="config" (event)="onTimerComplete()" class="custom-style" />
+  <div class="question-header">
+    <h2>{{currentQuestion?.text}}</h2>
+  </div>
+<countdown [config]="config" (event)="onTimerComplete()" class="timer" />
 <mat-divider></mat-divider>
-<label id="example-radio-group-label">Выберите ответ:</label>
-<mat-radio-group
-  aria-labelledby="example-radio-group-label"
-  class="example-radio-group"
-  [(ngModel)]="answerId">
-  <ng-container class="container" *ngFor="let answer of question.answers; let i = index">
-    <mat-radio-button [value]=answer.id>{{answer.text}}</mat-radio-button>
+  <div class="question-content">
+<mat-radio-group class="example-radio-group" [(ngModel)]="gay">
+  <label>Выберите ответ:</label>
+  <ng-container class="container" *ngFor="let answer of currentQuestion?.answers; let i = index">
+    <mat-radio-button (change)="onAnswerChange(answer.id)">{{answer.text}}</mat-radio-button>
   </ng-container>
-
-  <button mat-raised-button #button color="primary"  (click)="submitQuestion()">Ответить</button>
 </mat-radio-group>
+  </div>
+  <div class="bottom-content">
+    <button mat-raised-button #button color="primary" id="submit-button" (click)="submitQuestion()">Ответить</button>
+  </div>
 </div>

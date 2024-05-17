@@ -279,16 +279,9 @@ public class SessionServiceImpl implements SessionService {
     @Override
     public SessionResultDto getSessionResult(String sessionCode) {
         Session currentSession = sessionRepository.findBySessionCode(sessionCode);
-
         List<Participant> participants = currentSession.getParticipants();
-        List<ParticipantResultDto> participantResults = new ArrayList<>();
 
-        for (Participant participant : participants) {
-            ParticipantResultDto participantResult = new ParticipantResultDto(participant.getId(), participant.getScore());
-            participantResults.add(participantResult);
-        }
-
-        return new SessionResultDto(participantResults);
+        return new SessionResultDto(participantMapper.toDtoList(participants));
     }
 
     public static String generateSessionCode(int id) {

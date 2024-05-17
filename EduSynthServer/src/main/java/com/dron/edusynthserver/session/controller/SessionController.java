@@ -76,19 +76,17 @@ public class SessionController
     @GetMapping("/participant-results/{sessionCode}")
     public ResponseEntity<SessionResultDto> getResults(@PathVariable String sessionCode)
     {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(!(auth instanceof AnonymousAuthenticationToken))
-        {
-            ParticipantDto participant = sessionService.getParticipant(sessionCode, auth.getName());
-            SessionResultDto result = sessionService.getSessionResult(sessionCode);
-            return ResponseEntity.ok(result);
-        }
+      //  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        //if (auth instanceof AnonymousAuthenticationToken) throw new Unauthorized();
+
+        //ParticipantDto participant = sessionService.getParticipant(sessionCode, auth.getName());
+        SessionResultDto result = sessionService.getSessionResult(sessionCode);
+        return ResponseEntity.ok(result);
     }
 
     // Получить текущее состояние сессии
-    @GetMapping("/{sessionCode}")
+    @GetMapping("/session-state/{sessionCode}")
     public ResponseEntity<SessionStateDto> getSessionState(@PathVariable String sessionCode) {
         SessionStateDto questionDto = sessionService.getSessionState(sessionCode);
         return ResponseEntity.ok(questionDto);

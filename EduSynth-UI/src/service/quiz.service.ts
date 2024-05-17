@@ -3,10 +3,10 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../enviroment/enviroment.development";
 import {Query} from "../models/query";
 import {Observable} from "rxjs";
-import {QuizTitleModel} from "../models/quiz-title-model";
+import {QuizTitleModel} from "../models/quiz/quiz-title-model";
 import {Page} from "../models/page";
-import {Quiz} from "../models/quiz-model";
-import {Question} from "../models/quiz-question-model";
+import {Quiz} from "../models/quiz/quiz-model";
+import {Question} from "../models/quiz/quiz-question-model";
 import {Router} from "@angular/router";
 
 @Injectable({

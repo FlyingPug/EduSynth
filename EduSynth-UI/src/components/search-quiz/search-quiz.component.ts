@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {QuizService} from "../../service/quiz.service";
 import {Query} from "../../models/query";
-import {QuizTitleModel} from "../../models/quiz-title-model";
+import {QuizTitleModel} from "../../models/quiz/quiz-title-model";
 import {ScrollDirectiveDirective} from "../../directives/scroll-directive.directive";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";

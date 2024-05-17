@@ -32,7 +32,7 @@ export class LobbyComponent {
               private authService: AuthService,
              )
   {
-    this.sessionState$ = this.sessionService.CurrentSessionState;
+    this.sessionState$ = this.sessionService.currentSessionState;
   }
 
 
@@ -45,7 +45,7 @@ export class LobbyComponent {
     console.log('INITIZALIZING LOBBY');
     this.sub = this.route.params.subscribe(params => {
       this.code = params['code'];
-      this.session = this.sessionService.CurrentSession;
+      this.session = this.sessionService.currentSession;
 
       this.sessionState$.subscribe((session) =>
       {

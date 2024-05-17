@@ -10,7 +10,7 @@ import {RegisterModel} from "../models/register-model";
 import {IUserInfo, UserInfo} from "../models/user-info";
 import {Location} from '@angular/common';
 import {StompHeaders} from "@stomp/stompjs";
-import {Quiz} from "../models/quiz-model";
+import {Quiz} from "../models/quiz/quiz-model";
 
 @Injectable({
   providedIn: 'root'

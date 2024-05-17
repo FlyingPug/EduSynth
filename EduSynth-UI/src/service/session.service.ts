@@ -4,14 +4,17 @@ import {environment} from "../enviroment/enviroment.development";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {AuthService} from "./auth.service";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {SessionState} from "../models/enums/session-state";
 import {RxStompService} from "./rx-stomp-service";
 import {SessionShortInfo} from "../models/session/session-short-info";
-import {Answer} from "../models/quiz-answer-model";
-import {UserAnswerSessionForm} from "../models/user-answer-session-form";
+import {Answer} from "../models/quiz/quiz-answer-model";
+import {UserAnswerSessionForm} from "../models/session/user-answer-session-form";
 import {ParticipantInfo} from "../models/session/participant-info";
-import {SessionCodeDto} from "../models/SessionCodeDto";
+import {SessionCodeDto} from "../models/session/session-code-dto";
+import {Quiz} from "../models/quiz/quiz-model";
+import {SessionResultDto} from "../models/session/session-result-dto";
+import {UserAnswerDto} from "../models/session/user-answer-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +23,7 @@ export class SessionService {
   private apiSession: string = environment.apiUrl + '/public/session';
   private currentSessionData :  SessionInfo | null = null;
   private sessionState  :  BehaviorSubject<SessionShortInfo | null> = new BehaviorSubject<SessionShortInfo | null>(null);
+
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService, private rxStompService: RxStompService)
   {
@@ -34,7 +38,7 @@ export class SessionService {
           let session: SessionShortInfo = JSON.parse(message.body);
           if (session.sessionState == SessionState.STARTED) {
             let currentQuestionId = session.currentQuestionId;
-            let currentSession = this.CurrentSessionState.getValue();
+            let currentSession = this.currentSessionState.getValue();
             if (currentSession && currentQuestionId != this.sessionState.getValue()?.currentQuestionId) {
               this.router.navigate(['/question/' + this.currentSessionData?.quiz.questions[currentQuestionId].type]);
             }
@@ -54,17 +58,12 @@ export class SessionService {
 
   }
 
-  private showQuestion(questionId : number)
-  {
-
-  }
-
-  public get CurrentSession()  :  SessionInfo | null
+  public get currentSession()  :  SessionInfo | null
   {
     return this.currentSessionData;
   }
 
-  public get CurrentSessionState()  :  BehaviorSubject<SessionShortInfo | null>
+  public get currentSessionState()  :  BehaviorSubject<SessionShortInfo | null>
   {
     return this.sessionState;
   }
@@ -100,24 +99,26 @@ export class SessionService {
     }
   }
 
-  startSession() {
+  public startSession() {
     if(this.currentSessionData?.sessionCode) {
-      this.http.post(this.apiSession + "/start-session", new SessionCodeDto(this.currentSessionData.sessionCode), {headers: this.authService.AuthHeader}).subscribe(answer =>
-      {
-        console.log(answer);
-      });
+      this.http.post(this.apiSession + "/start-session", new SessionCodeDto(this.currentSessionData.sessionCode), {headers: this.authService.AuthHeader}).subscribe();
     }
   }
 
-  answer(answers: Answer[]) {
+  public answer(answers: UserAnswerDto[]) {
     if(this.currentSessionData?.sessionCode) {
-      this.http.post(this.apiSession + "/answer-question", new UserAnswerSessionForm(this.currentSessionData.sessionCode, answers), {headers: this.authService.AuthHeader});
+      this.http.post(this.apiSession + "/answer-question", new UserAnswerSessionForm(this.currentSessionData.sessionCode, answers), {headers: this.authService.AuthHeader}).subscribe(answer => {});
     }
   }
 
-  public get CurrentQuestion() {
-    let index = this.CurrentSessionState.getValue()?.currentQuestionId;
-    if(index) {
+  public getResult(sessionCode : string) : Observable<SessionResultDto>
+  {
+    return this.http.get<SessionResultDto>(this.apiSession + "/participant-results/" + sessionCode, {headers: this.authService.AuthHeader});
+  }
+
+  public get currentQuestion() {
+    let index = this.currentSessionState.getValue()?.currentQuestionId;
+    if(index !== undefined) {
       return this.currentSessionData?.quiz.questions[index];
     }
     return undefined;

@@ -8,6 +8,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {MatInputModule} from "@angular/material/input";
 import {SharedModule} from "../../../../shared/shared.module";
 import {CountdownModule} from "ngx-countdown";
+import {UserAnswerDto} from "../../../../models/session/user-answer-dto";
 
 @Component({
   selector: 'app-input-text-question',
@@ -30,8 +31,7 @@ export class InputTextQuestionComponent  extends QuestionTemplateComponent {
     if(this.question && this.button) {
       this.button.nativeElement.textContent = 'Текст после нажатия';
       this.button.nativeElement.disabled = true;
-      let answer = structuredClone(this.question.answers[0])
-      answer.text = this.formGroup.get('answer')?.value;
+      let answer = new UserAnswerDto(this.question.answers[0].id, this.formGroup.get('answer')?.value);
       this.sessionService.answer([answer]);
     }
   }

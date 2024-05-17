@@ -6,11 +6,12 @@ import {CircleTimerComponent, CircleTimerModule} from "@flxng/circle-timer";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {Answer} from "../../../../models/quiz-answer-model";
+import {Answer} from "../../../../models/quiz/quiz-answer-model";
 import {SharedModule} from "../../../../shared/shared.module";
 import {CountdownConfig, CountdownModule} from "ngx-countdown";
 import {BrowserModule} from "@angular/platform-browser";
 import {SessionService} from "../../../../service/session.service";
+import {UserAnswerDto} from "../../../../models/session/user-answer-dto";
 
 @Component({
   selector: 'app-choose-multiple-options-question',
@@ -46,12 +47,10 @@ export class ChooseMultipleOptionsQuestionComponent  extends QuestionTemplateCom
   }
 
 
-  getSelectedAnswers() : Answer[] {
+  getSelectedAnswers() : UserAnswerDto[] {
     return Object.keys(this.formGroup.value).filter(key => this.formGroup.get(key)?.value).map(Number).map(id => ({
-      id: id,
-      text: "",
-      mediaUrl:"",
-      correct: true,
+      answerId: id,
+      answer: "",
     }));
   }
 
@@ -63,8 +62,6 @@ export class ChooseMultipleOptionsQuestionComponent  extends QuestionTemplateCom
     if(this.question && this.button) {
       this.button.nativeElement.textContent = 'Текст после нажатия';
       this.button.nativeElement.disabled = true;
-      let answer = structuredClone(this.question.answers[0])
-      answer.text = this.formGroup.get('answer')?.value;
       this.sessionService.answer(this.getSelectedAnswers());
     }
   }

@@ -1,18 +1,24 @@
-<div class="question">
-<h2>{{question?.text}}</h2>
-<countdown [config]="config" (event)="onTimerComplete()" class="custom-style" />
+<div class="question" *ngIf="this.currentQuestion">
+  <div class="question-header">
+    <h2>{{currentQuestion?.text}}</h2>
+  </div>
+<h2>{{currentQuestion?.text}}</h2>
+<countdown [config]="config" (event)="onTimerComplete()" class="timer" />
 <mat-divider></mat-divider>
+  <div class="question-content">
 <div class="formGroup" [formGroup]="formGroup">
-<label id="example-radio-group-label">Выберите ответ:</label>
+<label id="example-radio-group-label">Выберите правильные ответы:</label>
 
-  <ng-container class="container" *ngFor="let answer of question?.answers; let i = index">
+  <ng-container class="container" *ngFor="let answer of currentQuestion?.answers; let i = index">
     <!--
     короче, по логике answer вообще должен быть иммутабельным, очень сомнительная хрень,
     но что будет лучше, следить за выбранными индексами в коллекции?
     -->
     <mat-checkbox [formControlName]="answer.id">{{answer.text}}</mat-checkbox>
   </ng-container>
-
-  <button mat-raised-button #button color="primary"  (click)="submitQuestion()">Ответить</button>
 </div>
+  </div>
+  <div class="bottom-content">
+    <button mat-raised-button #button color="primary"  (click)="submitQuestion()">Ответить</button>
+  </div>
 </div>

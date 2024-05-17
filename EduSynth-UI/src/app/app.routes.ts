@@ -30,6 +30,7 @@ import {
 import {
   InputTextQuestionComponent
 } from "../components/session/questions/input-text-question/input-text-question.component";
+import {ResultComponent} from "../components/session/result/result.component";
 
 const quizRoutes: Routes = [
   { path: 'question/choose_option', component: LobbyComponent },
@@ -45,6 +46,7 @@ const homeRoutes: Routes = [
   { path: 'question/choose_option', component: ChooseSingeOptionQuestionComponent },
   { path: 'question/choose_mult_options', component: ChooseMultipleOptionsQuestionComponent },
   { path: 'question/input_text', component: InputTextQuestionComponent },
+  { path: 'result/:code', component: ResultComponent},
   { path: environment.input_text, component: CreateInputTextQuestionComponent },
   { path: environment.choose_mult_options, component: CreateChooseMultiplieOptionsQuestionComponent },
   { path: environment.choose_option, component: CreateChooseOptionQuestionComponent },

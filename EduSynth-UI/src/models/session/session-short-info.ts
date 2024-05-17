@@ -1,4 +1,4 @@
-import {Quiz} from "../quiz-model";
+import {Quiz} from "../quiz/quiz-model";
 import {ParticipantInfo} from "./participant-info";
 import {SessionState} from "../enums/session-state";
 

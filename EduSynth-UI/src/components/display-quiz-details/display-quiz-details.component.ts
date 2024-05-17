@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
-import {Quiz} from "../../models/quiz-model";
+import {Quiz} from "../../models/quiz/quiz-model";
 import {QuizService} from "../../service/quiz.service";
 import {CommonModule} from "@angular/common";
 

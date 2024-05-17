@@ -1,8 +1,11 @@
-<div class="question">
-<h2>{{question?.text}}</h2>
-<countdown [config]="config" (event)="onTimerComplete()" class="custom-style" />
+<div class="question"  *ngIf="this.question">
+  <div class="question-header">
+    <h2>{{question?.text}}</h2>
+  </div>
+<countdown [config]="config" (event)="onTimerComplete()" class="timer" />
 
 <mat-divider></mat-divider>
+  <div class="question-content">
 <div class="formGroup" [formGroup]="formGroup">
   <label id="example-radio-group-label">Введите ответ:</label>
 
@@ -10,7 +13,9 @@
   <mat-label>Пароль</mat-label>
   <input matInput [formControl]="answer">
   </mat-form-field>
-
-  <button mat-raised-button #button color="primary"  (click)="submitQuestion()">Ответить</button>
 </div>
+    </div>
+  <div class="bottom-content">
+    <button mat-raised-button #button color="primary"  (click)="submitQuestion()">Ответить</button>
+  </div>
 </div>

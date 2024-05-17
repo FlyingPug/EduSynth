@@ -4,7 +4,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckbox} from "@angular/material/checkbox";
-import {Quiz} from "../../models/quiz-model";
+import {Quiz} from "../../models/quiz/quiz-model";
 import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
