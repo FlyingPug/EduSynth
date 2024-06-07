@@ -9,10 +9,11 @@ import {AuthService} from "../service/auth.service";
 import {CustomRouteReuseStrategy} from "../enviroment/router-reuse-strategy";
 import {RxStompService} from "../service/rx-stomp-service";
 import {rxStompServiceFactory} from "../factory/rxStompServiceFactory";
+import {SessionService} from "../service/session.service";
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync(), provideHttpClient(), provideAnimationsAsync(), {
+  providers: [SessionService, provideRouter(routes), provideAnimationsAsync(), provideHttpClient(), provideAnimationsAsync(), {
     provide: APP_INITIALIZER,
     useFactory: initializeAppFactory,
     multi: true,

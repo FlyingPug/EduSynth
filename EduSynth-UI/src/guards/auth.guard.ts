@@ -7,7 +7,6 @@ export const AuthGuard: CanMatchFn = (route, segments) => {
   let router = inject(Router);
 
   function checkAuth() : boolean {
-    console.log('checking')
     if (authService.isAuthorized) {
       return true;
     }

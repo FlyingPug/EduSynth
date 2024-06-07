@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatDrawer, MatDrawerContainer, MatSidenav, MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
@@ -19,7 +19,7 @@ import { ROUTES } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
   @ViewChild('sidenav') sidenav!: MatDrawer;
   names : string = "";
 
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.sidenav.toggle();
 
     if(this.authService.isAuthorized)

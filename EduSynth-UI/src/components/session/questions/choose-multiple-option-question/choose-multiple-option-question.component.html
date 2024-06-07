@@ -1,0 +1,42 @@
+<div class="question">
+  <div class="question-header">
+    <h2>{{currentQuestion?.text}}</h2>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div class="question-content">
+
+
+
+    <div class="formGroup" [formGroup]="formGroup">
+      <div class="question-content-group">
+      <label id="example-radio-group-label">Выберите правильные ответы:</label>
+
+      <ng-container class="answer-container" *ngFor="let answer of currentQuestion?.answers; let i = index">
+        <!--
+        короче, по логике answer вообще должен быть иммутабельным, очень сомнительная хрень,
+        но что будет лучше, следить за выбранными индексами в коллекции?
+        -->
+        <mat-checkbox [formControlName]="answer.id" (ngModelChange)="onInputChange()">{{answer.text}}</mat-checkbox>
+      </ng-container>
+        </div>
+    </div>
+
+    <div class="counter-container">
+      <ng-circle-countdown
+        #timer
+        [duration]="this.TimeLimitSeconds * 1000"
+        [colors]="[ '#004777', '#F7B801', '#A30000', '#A30000' ]"
+        [colorsTime]="[ 7, 5, 2, 0 ]"
+        [size]=75>
+        <ng-template #counter let-counter>
+          <span class="remaining-time" [style.color]="counter.color">{{counter.value}}</span>
+        </ng-template>
+      </ng-circle-countdown>
+    </div>
+
+  </div>
+  <div class="bottom-content">
+    <button mat-raised-button #button color="primary"  (click)="submitQuestion()" [disabled]="isDisabled">{{ isDisabled ? 'Ожидание' : 'Ответить' }}</button>
+  </div>
+</div>

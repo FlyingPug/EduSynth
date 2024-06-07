@@ -8,7 +8,6 @@ export const AnonimousGuard: CanMatchFn = (route, segments) =>
   let router = inject(Router);
 
   function checkAuth() : boolean {
-    console.log('checking ANON');
     if (!authService.isAuthorized) {
       return true;
     }

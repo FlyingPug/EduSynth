@@ -74,6 +74,5 @@ export class LobbyComponent {
     let name = this.authService.userSubject.getValue().username;
     console.log(this.session?.participants?.find(participant => participant.name == name)?.name);
     return this.session?.participants?.find(participant => participant.name == name)?.leader
-
   }
 }

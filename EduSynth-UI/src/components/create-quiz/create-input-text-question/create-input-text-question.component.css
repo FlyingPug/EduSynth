@@ -1,14 +1,8 @@
 .formGroup
 {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   vertical-align: top;
-  left: 50%;
-  top: -13rem;
-  transform: translate(-50%, 0);
-// пиздец...
 }
 
 .add-button {

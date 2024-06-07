@@ -37,7 +37,7 @@ import {QuestionType} from "../../../models/enums/question-type";
 export class CreateInputTextQuestionComponent extends QuestionCreator{
 
   constructor(fb: FormBuilder, quizService: QuizService, router: Router, dialog: MatDialog, route: ActivatedRoute) {
-    super(fb, quizService, router, dialog, route); // Вызов конструктора родительского класса с помощью super
+    super(fb, quizService, router, dialog, route);
   }
 
   questionImageUrl: string = '';

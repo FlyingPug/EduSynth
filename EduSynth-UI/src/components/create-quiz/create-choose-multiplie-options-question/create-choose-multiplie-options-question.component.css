@@ -1,14 +1,10 @@
 .formGroup
 {
-  position: absolute;
-  display: flex;
+  display:flex;
   flex-direction: column;
   overflow: hidden;
   vertical-align: top;
-  left: 50%;
-  top: -13rem;
-  transform: translate(-50%, 0);
-// пиздец...
+
 }
 
 .add-button {
@@ -17,13 +13,22 @@
   justify-content: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  width: 35rem;
+}
+
+.answer-container
+{
+  height:8rem;
+  overflow-y: scroll;
+  width: 30rem;
 }
 
 .answer-form-row
 {
+  gap: 1rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .textview
@@ -34,6 +39,27 @@
 
 .container
 {
-  vertical-align: top;
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
 
+
+.bottom-content
+{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  position: absolute;
+  bottom: -1rem;
+}
+
+:host
+{
+  position: relative;
+  top:0;
+  height:100%;
+  display: flex;
+  align-content: center;
+  width: 100%;
 }

@@ -223,6 +223,8 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public void answerQuestion(String sessionCode, List<UserAnswerDto> answers, User user) {
+        if (answers.isEmpty()) return;
+
         Session currentSession = sessionRepository.findBySessionCode(sessionCode);
         Optional<Participant> participantOpt = currentSession.getParticipants().stream().filter(part -> part.getUser().equals(user)).findFirst();
 

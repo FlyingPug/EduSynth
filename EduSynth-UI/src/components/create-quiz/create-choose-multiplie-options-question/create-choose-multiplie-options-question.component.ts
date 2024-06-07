@@ -15,6 +15,7 @@ import {ChooseQuestionComponent} from "../choose-question/choose-question.compon
 import {MatRadioModule} from "@angular/material/radio";
 import {QuestionCreator} from "../question-creator";
 import {QuestionType} from "../../../models/enums/question-type";
+import {Answer} from "../../../models/quiz/quiz-answer-model";
 
 @Component({
   selector: 'app-create-choose-multiplie-options-question',

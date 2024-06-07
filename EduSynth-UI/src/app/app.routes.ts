@@ -25,15 +25,15 @@ import {
   ChooseSingeOptionQuestionComponent
 } from "../components/session/questions/choose-singe-option-question/choose-singe-option-question.component";
 import {
-  ChooseMultipleOptionsQuestionComponent
-} from "../components/session/questions/choose-multiple-options-question/choose-multiple-options-question.component";
-import {
   InputTextQuestionComponent
 } from "../components/session/questions/input-text-question/input-text-question.component";
 import {ResultComponent} from "../components/session/result/result.component";
+import {
+  ChooseMultipleOptionQuestionComponent
+} from "../components/session/questions/choose-multiple-option-question/choose-multiple-option-question.component";
 
-const quizRoutes: Routes = [
-  { path: 'question/choose_option', component: LobbyComponent },
+const testRoutes: Routes = [
+  { path: '', component: CreateChooseMultiplieOptionsQuestionComponent },
 ]
 
 const homeRoutes: Routes = [
@@ -44,7 +44,7 @@ const homeRoutes: Routes = [
   { path: 'quiz/:id', component: DisplayQuizDetailsComponent },
   { path: 'lobby/:code', component: LobbyComponent },
   { path: 'question/choose_option', component: ChooseSingeOptionQuestionComponent },
-  { path: 'question/choose_mult_options', component: ChooseMultipleOptionsQuestionComponent },
+  { path: 'question/choose_mult_options', component: ChooseMultipleOptionQuestionComponent },
   { path: 'question/input_text', component: InputTextQuestionComponent },
   { path: 'result/:code', component: ResultComponent},
   { path: environment.input_text, component: CreateInputTextQuestionComponent },
@@ -55,8 +55,7 @@ const homeRoutes: Routes = [
 ];
 
 export const routes: Routes =
-  [
-    {
+  [{
     path: "auth/login",
       pathMatch:'full',
     loadComponent: () => LoginComponent,
@@ -68,9 +67,10 @@ export const routes: Routes =
     children: homeRoutes,
     canMatch: [AuthGuard],
     },
-    /*{
+    /*
+    {
       path: "",
       loadComponent: () => HomeComponent,
-      children: homeRoutes
+      children: testRoutes
     }*/
     ];

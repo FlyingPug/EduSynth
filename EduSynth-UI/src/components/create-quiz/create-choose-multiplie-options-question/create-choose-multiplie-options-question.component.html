@@ -10,15 +10,12 @@
       <input type="number" [formControl]="timeLimit" matInput>
     </mat-form-field>
 
-    <div class="add-button">
-      <button mat-mini-fab [disabled]="(answers.length >= 6)" (click)="addAnswer()">
-        <mat-icon class="add-course-btn">add</mat-icon>
-      </button>
-    </div>
 
+    <app-image-upload [label]="'Выберите изображения вопроса'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
     <mat-label>Ответы:</mat-label>
-    <ng-container class="container" formArrayName="answers">
-      <ng-container class="container" *ngFor="let answerForms of answers.controls; let i = index">
+    <div class="answer-container">
+    <ng-container class="" formArrayName="answers">
+      <ng-container class="" *ngFor="let answerForms of answers.controls; let i = index">
         <div class="answer-form-row" [formGroupName]="i">
           <mat-form-field>
             <input matInput placeholder="вариант ответа" type="text" formControlName="text">
@@ -31,11 +28,13 @@
         </div>
       </ng-container>
     </ng-container>
-    <app-image-upload [label]="'Выберите изображения вопроса'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
-
-    <div class="actions">
-      <button mat-raised-button  [disabled]="!form.valid" (click)="onCreateQuizClick()">Закончить</button>
-      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submitQuestion()">Добавить вопрос</button>
     </div>
+  </div>
+  <div class="bottom-content">
+    <button mat-raised-button  [disabled]="!form.valid" (click)="onCreateQuizClick()">Закончить</button>
+    <button mat-mini-fab [disabled]="(answers.length >= 6)" (click)="addAnswer()">
+      <mat-icon class="add-course-btn">add</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submitQuestion()">Добавить вопрос</button>
   </div>
 </div>

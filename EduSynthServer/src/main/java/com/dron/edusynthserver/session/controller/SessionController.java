@@ -48,6 +48,8 @@ public class SessionController
 
         SessionDto sessionDto;
         // TODO: это полная хуйня, нет смысла делать такую проверку, сделай просто отедльную вилку
+
+        // какую ещё вилку ебалай?
         if (!(auth instanceof AnonymousAuthenticationToken))
         {
             sessionDto = sessionService.joinSession(joinSession.sessionCode(), userService.getUserByName(auth.getName()));

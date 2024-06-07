@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {SessionInfo} from "../models/session/session-info";
 import {environment} from "../enviroment/enviroment.development";
 import {HttpClient} from "@angular/common/http";
@@ -8,25 +8,30 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {SessionState} from "../models/enums/session-state";
 import {RxStompService} from "./rx-stomp-service";
 import {SessionShortInfo} from "../models/session/session-short-info";
-import {Answer} from "../models/quiz/quiz-answer-model";
 import {UserAnswerSessionForm} from "../models/session/user-answer-session-form";
-import {ParticipantInfo} from "../models/session/participant-info";
 import {SessionCodeDto} from "../models/session/session-code-dto";
-import {Quiz} from "../models/quiz/quiz-model";
 import {SessionResultDto} from "../models/session/session-result-dto";
 import {UserAnswerDto} from "../models/session/user-answer-dto";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SessionService {
+export class SessionService implements  OnDestroy{
   private apiSession: string = environment.apiUrl + '/public/session';
   private currentSessionData :  SessionInfo | null = null;
   private sessionState  :  BehaviorSubject<SessionShortInfo | null> = new BehaviorSubject<SessionShortInfo | null>(null);
 
+  ngOnDestroy(): void
+  {
+    console.log('DESTROYING SESSION :(');
+  }
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService, private rxStompService: RxStompService)
   {
+    console.log('CREATING SESSION SERVICE');
+    this.sessionState.subscribe(newValue => {
+      console.log('THIS SHEISE IS UPDATING', newValue);
+    })
   }
 
   private watchSession(code: string)
@@ -36,18 +41,20 @@ export class SessionService {
         if (message.body) {
           console.log('New message received:', message.body);
           let session: SessionShortInfo = JSON.parse(message.body);
-          if (session.sessionState == SessionState.STARTED) {
-            let currentQuestionId = session.currentQuestionId;
-            let currentSession = this.currentSessionState.getValue();
-            if (currentSession && currentQuestionId != this.sessionState.getValue()?.currentQuestionId) {
-              this.router.navigate(['/question/' + this.currentSessionData?.quiz.questions[currentQuestionId].type]);
+          let currentSession = this.currentSessionState.getValue();
+          this.sessionState.next(session);
+          if (session.sessionState == SessionState.STARTED)
+          {
+            let nextQuestionId = session.currentQuestionId;
+            if (currentSession && nextQuestionId != currentSession.currentQuestionId) {
+              console.log('NAVIGATE');
+              this.router.navigate(['/question/' + this.currentSessionData?.quiz.questions[nextQuestionId].type]);
             }
           } else if (session.sessionState == SessionState.ENDED) {
             this.router.navigate(['/result/' + this.currentSessionData?.sessionCode]);
           }
-
-          this.sessionState.next(session);
           console.log('Done', session);
+          console.log('Done2', this.currentSessionState.getValue());
         }
       })
     }
@@ -118,7 +125,9 @@ export class SessionService {
 
   public get currentQuestion() {
     let index = this.currentSessionState.getValue()?.currentQuestionId;
+    console.log('GETTING QUESTION YAY', this.currentSessionState.getValue());
     if(index !== undefined) {
+      console.log('GETTING QUESTION index', index);
       return this.currentSessionData?.quiz.questions[index];
     }
     return undefined;
