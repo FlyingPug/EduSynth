@@ -55,4 +55,5 @@
 .counter-container
 {
   float: right;
+  margin-left: 30px;
 }

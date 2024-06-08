@@ -1,1 +1,22 @@
-<p>user-profile works!</p>
+
+<div class="card-conatiner">
+  <mat-card class="personal-info-card">
+
+      <div class="formGroup" [formGroup]="formGroup">
+
+        <mat-form-field>
+          <mat-label>Старый пароль</mat-label>
+          <input  matInput [formControl]="oldPassword">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Новый пароль</mat-label>
+          <input  matInput [formControl]="newPassword">
+        </mat-form-field>
+        <mat-card-actions>
+          <app-image-upload [label]="'PC'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
+          <button mat-button (click)="saveInfo()">Сохранить</button>
+        </mat-card-actions>
+      </div>
+  </mat-card>
+</div>
+

@@ -11,6 +11,7 @@ import {IUserInfo, UserInfo} from "../models/user-info";
 import {Location} from '@angular/common';
 import {StompHeaders} from "@stomp/stompjs";
 import {Quiz} from "../models/quiz/quiz-model";
+import {UserCredentials} from "../models/user/UserCredentials";
 
 @Injectable({
   providedIn: 'root'
@@ -183,5 +184,13 @@ export class AuthService {
     const accessToken = JSON.parse(atob(token.split('.')[1]));
     const expires = new Date(accessToken.exp * 1000);
     return expires.getTime() - Date.now() > 0
+  }
+
+  changeCredentials(newCreditentials : UserCredentials) {
+    return this.http.put<IUserInfo>(this.apiAuth + "user", newCreditentials).pipe(map((result: IUserInfo) => {
+      let token = new TokenResult(result.token, "0");
+      this.userSubject.next(result);
+      this.tokenSubject.next(token);
+    }));
   }
 }

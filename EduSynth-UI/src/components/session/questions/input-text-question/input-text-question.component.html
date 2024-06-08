@@ -1,20 +1,9 @@
 <div class="question">
   <div class="question-header">
+    <img src="{{currentQuestion?.mediaUrl}}" alt="Girl in a jacket" height="400">
     <h2>{{currentQuestion?.text}}</h2>
   </div>
 
-  <div class="counter-container">
-    <ng-circle-countdown
-      #timer
-      [duration]="this.TimeLimitSeconds"
-      [colors]="[ '#004777', '#F7B801', '#A30000', '#A30000' ]"
-      [colorsTime]="[ 7, 5, 2, 0 ]"
-      (onComplete)="onTimerComplete()">
-      <ng-template #counter let-counter>
-        <span class="remaining-time" [style.color]="counter.color">{{counter.value}}</span>
-      </ng-template>
-    </ng-circle-countdown>
-  </div>
 
 <mat-divider></mat-divider>
   <div class="question-content">
@@ -25,6 +14,20 @@
   <mat-label>Ответ</mat-label>
   <input matInput [formControl]="answer">
   </mat-form-field>
+
+  <div class="counter-container">
+    <ng-circle-countdown
+      #timer
+      [duration]="this.TimeLimitSeconds * 1000"
+      [colors]="[ '#004777', '#F7B801', '#A30000', '#A30000' ]"
+      [colorsTime]="[ 7, 5, 2, 0 ]"
+      [size]=75>
+      <ng-template #counter let-counter>
+        <span class="remaining-time" [style.color]="counter.color">{{counter.value}}</span>
+      </ng-template>
+    </ng-circle-countdown>
+  </div>
+
 </div>
     </div>
   <div class="bottom-content">

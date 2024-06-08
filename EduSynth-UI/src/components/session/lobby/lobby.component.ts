@@ -54,7 +54,7 @@ export class LobbyComponent {
     });
   }
 
-  async CopyLink() {
+  async copyLink() {
     try {
       await navigator.clipboard.writeText(this.GetLink());
     }
