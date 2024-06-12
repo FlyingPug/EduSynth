@@ -6,6 +6,7 @@
 </style>
 
 <div class="formGroup" [formGroup]="formGroup">
+  <div class="error">{{this.errorMessage}}</div>
   <mat-form-field>
     <mat-label>Email</mat-label>
     <input matInput [formControl]="email">

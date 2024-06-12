@@ -35,7 +35,7 @@ export class LoginUserComponent {
 
   public get email() : FormControl<string> { return this.formGroup.get("email") as FormControl<string> }
   public get password() : FormControl<string> { return this.formGroup.get("password") as FormControl<string> }
-
+  public errorMessage : string = '';
   authService : AuthService;
 
   constructor(authService: AuthService) {
@@ -45,6 +45,11 @@ export class LoginUserComponent {
   onLoginClicked() {
     let model = new LoginModel();
     model.populateFromFormGroup(this.formGroup);
-    this.authService.login(model).subscribe();
+      this.errorMessage = '';
+      this.authService.login(model).subscribe(      () => {}, // Обработчик успешного выполнения подписки
+        (error) => { // Обработчик ошибки
+          console.log('not catching');
+          this.errorMessage = error.message || 'Произошла ошибка при входе в систему';
+        });
   }
 }

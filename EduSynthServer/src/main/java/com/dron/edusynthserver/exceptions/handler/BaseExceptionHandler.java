@@ -19,12 +19,12 @@ public class BaseExceptionHandler {
 
     @ExceptionHandler(IncorrectCredentials.class)
     public ResponseEntity<ErrorModel> WrongCredentials(IncorrectCredentials ex) {
-        return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.UNAUTHORIZED.value()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.UNAUTHORIZED.value()), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(BadAnswerFormat.class)
     public ResponseEntity<ErrorModel> BadAnswer(BadAnswerFormat ex) {
-        return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotFoundException.class)
@@ -39,6 +39,6 @@ public class BaseExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ErrorModel> UserAlreadyExists(UserAlreadyExistsException ex) {
-        return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
     }
 }
