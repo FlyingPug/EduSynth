@@ -33,7 +33,15 @@ export class AuthService {
     // наблюдаемый субъект, отличие BehaviorSubject от Subject в том, что BehaivourSubject имеет начальное значение
     // , он всегда кидает какое-то актуальное состояние
     this.tokenSubject = new BehaviorSubject<ITokenResult>({} as ITokenResult);
-    this.userSubject = new BehaviorSubject<IUserInfo>({} as IUserInfo);
+    this.userSubject = new BehaviorSubject<IUserInfo>(
+      {
+        username : '',
+        balance: 0,
+        token : '',
+        role: '',
+        email: '',
+        profilePictureUrl: ''
+      });
 
     this.tokenSubject.subscribe((token: ITokenResult) => {
       // инициализация, нет смысла что-либо либо обрабатывать

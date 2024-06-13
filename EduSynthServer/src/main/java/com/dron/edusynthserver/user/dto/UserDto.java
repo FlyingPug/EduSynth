@@ -20,4 +20,8 @@ public class UserDto {
     private String email;
 
     private Role role;
+
+    private long balance = 0;
+
+    private String profilePictureUrl;
 }

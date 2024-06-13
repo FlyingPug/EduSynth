@@ -26,12 +26,17 @@ public class User implements Principal {
 
     private String username;
 
-    // TODO: ALERT ALERT ALERT ALERT ALERT ХРАНИ В ХЕШЕ И СОЛИ, НЕ ДОПУСКАТЬ ДО РЕЛИЗА
+    // TODO: добавить refreshtoken
     private String passwordHash;
 
     private String salt;
 
     private String email;
+
+    private int balance = 0;
+
+    @Column(name = "profile_picture_url", nullable = false)
+    private String profilePictureUrl;
 
     @Enumerated(EnumType.STRING)
     private Role role;

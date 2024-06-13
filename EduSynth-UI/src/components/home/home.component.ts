@@ -11,17 +11,22 @@ import { OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ROUTES } from '@angular/router';
+import {IUserInfo} from "../../models/user-info";
+import {ProfileDisplayComponent} from "./profile-display/profile-display.component";
+import {Observable} from "rxjs";
+import {AsyncPipe} from "@angular/common";
+import {MatDividerModule} from "@angular/material/divider";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatSidenavModule, MatButtonModule, MatIconModule, RouterOutlet, MatListModule,RouterModule],
+  imports: [MatSidenavModule, MatButtonModule, MatIconModule, RouterOutlet, MatListModule, RouterModule, ProfileDisplayComponent, AsyncPipe, MatDividerModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('sidenav') sidenav!: MatDrawer;
-  names : string = "";
+  user : Observable<IUserInfo>;
 
   constructor(private router: Router, private authService: AuthService)
   {
@@ -30,14 +35,6 @@ export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.sidenav.toggle();
-
-    if(this.authService.isAuthorized)
-    {
-      this.authService.userSubject.subscribe(newSubject =>
-        {
-          this.names = newSubject.username;
-        })
-    }
   }
 
 close() {

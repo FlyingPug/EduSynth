@@ -1,8 +1,9 @@
 <div class="container">
   <mat-drawer-container
     class="example-container" (backdropClick)="close()">
-    <mat-drawer mode="side" #sidenav (keydown.escape)="close()" opened="true">
-      <p>{{this.names}}</p>
+    <mat-drawer mode="side" #sidenav  opened="true" (keydown.escape)="close()">
+      <app-profile-display></app-profile-display>
+     <mat-divider></mat-divider>
       <mat-nav-list>
         <a mat-list-item routerLink="game">Играть</a>
         <a mat-list-item routerLink="profile">Профиль</a>

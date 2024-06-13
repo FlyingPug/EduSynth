@@ -1,6 +1,7 @@
 <div class="page">
   <div appScroll (scrolledToEnd)="scrolledToEndHandler()" class="contents">
     <!-- <mat-card class="card" *ngFor="let sale of salesPage?.items"> FOR PAGINATOR-->
+    <span *ngIf="quizArray.length === 0">Не найдено публичных тестов!</span>
     <mat-card class="card" *ngFor="let quiz of quizArray">
       <mat-card-header class="card-header">
         <mat-card-title>{{quiz.title}}</mat-card-title>
