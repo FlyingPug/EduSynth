@@ -1,8 +1,8 @@
 
 export class SessionCodeDto {
-  sessionCode: string;
+    sessionCode: string;
 
-  constructor(sessionCode: string) {
-    this.sessionCode = sessionCode;
-  }
+    constructor(sessionCode: string) {
+        this.sessionCode = sessionCode;
+    }
 }

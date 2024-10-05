@@ -1,6 +1,6 @@
 export interface QuizTitleModel {
-  id: number;
-  title: string;
-  titleMediaUrl: string;
-  description: string;
+    id: number;
+    title: string;
+    titleMediaUrl: string;
+    description: string;
 }

@@ -4,26 +4,81 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="Добавлены обработчики ошибок">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/assets/images/profile_pic.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/profile-display/profile-display.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/profile-display/profile-display.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/profile-display/profile-display.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/db/migration/V7__change_user.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/profile_pic.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-RRIZZDTR.js" afterDir="false" />
+    <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="добавлен показ текущего профиля">
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-QT33MPPS.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/animations/slide-to-left.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/animations/slide-to-left.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.initializer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.initializer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/choose-question/choose-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/choose-question/choose-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/question-creator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/question-creator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/profile-display/profile-display.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/profile-display/profile-display.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/image-upload/image-upload.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/image-upload/image-upload.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/register-user/register-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/register-user/register-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-option-question/choose-multiple-option-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-option-question/choose-multiple-option-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/question-template.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/question-template.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/result/result.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/result/result.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/directives/scroll-directive.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/directives/scroll-directive.directive.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/enviroment.development.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/enviroment.development.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/router-reuse-strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/router-reuse-strategy.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/factory/rxStompServiceFactory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/factory/rxStompServiceFactory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/guards/anonimous.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/guards/anonimous.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/guards/auth.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/guards/auth.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/interceptors/auth.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/interceptors/auth.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/auth.info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/auth.info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/enums/question-type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/enums/question-type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/enums/session-state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/enums/session-state.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/login-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/login-model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-answer-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-answer-model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-question-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-question-model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-title-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-title-model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/register-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/register-model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/participant-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/participant-info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-code-dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-code-dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-result-dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-result-dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-short-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-short-info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/user-answer-dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/user-answer-dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/user-answer-session-form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/user-answer-session-form.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/token-result.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/token-result.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/uploaded-file-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/uploaded-file-model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/user-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/user-info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/user/UserCredentials.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/user/UserCredentials.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/rx-stomp-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/rx-stomp-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/session.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/shared/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/shared/shared.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/EduSynthServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/EduSynthServerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-YOZWE74J.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-RRIZZDTR.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,43 +158,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth2&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/projects/EduSynth/EduSynth&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;aa4d91864b594f17266e753e199ab10a&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Dron\\IdeaProjects\\EduSynth\\EduSynth-UI\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelOrder2": "2",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RequestMappingsPanelWidth2": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Dron/IdeaProjects/EduSynth/EduSynth-UI",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.lint:fix.executor": "Run",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "spring.configuration.checksum": "aa4d91864b594f17266e753e199ab10a",
+    "ts.external.directory.path": "C:\\Users\\Dron\\IdeaProjects\\EduSynth\\EduSynth-UI\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
-      &quot;PostgreSQL&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "PostgreSQL"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.dron.edusynthserver.session.dto" />
@@ -163,7 +222,7 @@
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynth-UI\src\service" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.EduSynthServerApplication">
+  <component name="RunManager" selected="npm.lint:fix">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dron.edusynthserver.EduSynthServerApplication" />
       <module name="EduSynth.EduSynthServer.main" />
@@ -190,6 +249,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="EduSynth [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
@@ -211,6 +271,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="EduSynthServer [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -232,6 +293,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="EduSynth:EduSynthServer [:EduSynthServer:bootRun]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
@@ -253,6 +315,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="Angular Application (EduSynth-UI)" type="JavascriptDebugType" uri="http://localhost:4200">
@@ -283,6 +346,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="lint:fix" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/EduSynth-UI/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="lint:fix" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="ng" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/EduSynth-UI/package.json" />
       <command value="run" />
@@ -301,12 +374,14 @@
       <item itemvalue="Gradle.EduSynthServer [dependencies]" />
       <item itemvalue="JavaScript Debug.Angular Application (EduSynth-UI)" />
       <item itemvalue="npm.Angular CLI Server (EduSynth-UI)" />
+      <item itemvalue="npm.lint:fix" />
       <item itemvalue="npm.ng" />
       <item itemvalue="Spring Boot.EduSynthServerApplication" />
       <item itemvalue="Spring Boot.EduSynthServerApplication (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.lint:fix" />
         <item itemvalue="Gradle.EduSynthServer [dependencies]" />
       </list>
     </recent_temporary>
@@ -314,8 +389,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
       </set>
     </attachedChunks>
   </component>
@@ -417,7 +492,22 @@
       <workItem from="1718247835555" duration="8950000" />
       <workItem from="1718296005461" duration="1266000" />
       <workItem from="1718299086520" duration="5085000" />
-      <workItem from="1718308237725" duration="788000" />
+      <workItem from="1718308237725" duration="834000" />
+      <workItem from="1718452287497" duration="1924000" />
+      <workItem from="1718533663877" duration="769000" />
+      <workItem from="1718613035665" duration="26000" />
+      <workItem from="1721126622967" duration="685000" />
+      <workItem from="1721364987205" duration="52000" />
+      <workItem from="1721374423573" duration="829000" />
+      <workItem from="1721631105945" duration="51000" />
+      <workItem from="1721802335322" duration="22000" />
+      <workItem from="1722315438110" duration="724000" />
+      <workItem from="1722341986400" duration="1323000" />
+      <workItem from="1722951150672" duration="625000" />
+      <workItem from="1724216122523" duration="1436000" />
+      <workItem from="1728076153877" duration="4875000" />
+      <workItem from="1728085884702" duration="124000" />
+      <workItem from="1728086479875" duration="261000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>
@@ -639,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718217218097</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="добавлен показ текущего профиля">
+      <created>1718309068614</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1718309068614</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +758,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/EduSynthServer" />
     </ignored-roots>
-    <MESSAGE value="добавил сущности в код, начал заниматься контроллером квиза, далее нужно что-то с security придумать" />
     <MESSAGE value="работа над security" />
     <MESSAGE value="работа над backend частью" />
     <MESSAGE value="исправление ошибок в backend" />
@@ -686,7 +782,8 @@
     <MESSAGE value="Добавил красивые таймеры" />
     <MESSAGE value="Прототип профиля + перереаботка прохождения квиза" />
     <MESSAGE value="Добавлены обработчики ошибок" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены обработчики ошибок" />
+    <MESSAGE value="добавлен показ текущего профиля" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлен показ текущего профиля" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

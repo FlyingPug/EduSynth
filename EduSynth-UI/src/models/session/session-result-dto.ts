@@ -1,6 +1,5 @@
-import {ParticipantInfo} from "./participant-info";
+import { ParticipantInfo } from './participant-info';
 
-export interface SessionResultDto
-{
-  participantDtoList: ParticipantInfo[];
+export interface SessionResultDto {
+    participantDtoList: ParticipantInfo[];
 }

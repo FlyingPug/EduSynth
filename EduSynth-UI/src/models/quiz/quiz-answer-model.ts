@@ -1,6 +1,6 @@
 export interface Answer {
-  id: number;
-  text: string;
-  mediaUrl: string;
-  correct: boolean;
+    id: number;
+    text: string;
+    mediaUrl: string;
+    correct: boolean;
 }

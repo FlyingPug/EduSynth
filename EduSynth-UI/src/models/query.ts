@@ -1,4 +1,4 @@
 export interface Query {
-  pageNumber: number;
-  pageSize: number;
+    pageNumber: number;
+    pageSize: number;
 }
