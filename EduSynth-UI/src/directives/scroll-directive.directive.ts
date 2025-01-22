@@ -1,21 +1,16 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import {Directive, ElementRef, EventEmitter, HostListener, inject, Input, Output} from "@angular/core";
 
 @Directive({
-    selector: '[appScrollDirective]',
+    selector: "[appScrollDirective]",
     standalone: true
 })
 export class ScrollDirectiveDirective {
-    @Input()
-    public pixelLimit: number = 200;
+    @Input() public pixelLimit: number = 200;
+    @Output() public scrolledToEnd: EventEmitter<void> = new EventEmitter();
 
-    @Output()
-    public scrolledToEnd: EventEmitter<void> = new EventEmitter();
+    private element = inject(ElementRef);
 
-    constructor(private element: ElementRef) {
-
-    }
-
-    @HostListener('scroll')
+    @HostListener("scroll")
     public onScrollHandler(): void {
         const totalElementHeight = this.element.nativeElement.scrollHeight;
         const alreadyScrolled = this.element.nativeElement.scrollTop;
@@ -27,4 +22,5 @@ export class ScrollDirectiveDirective {
             this.scrolledToEnd.emit();
         }
     }
+
 }

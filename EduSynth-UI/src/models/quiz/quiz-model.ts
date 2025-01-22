@@ -1,7 +1,8 @@
-import { Question } from './quiz-question-model';
-import { UntypedFormGroup } from '@angular/forms';
+import { Question } from "./quiz-question-model";
+import { UntypedFormGroup } from "@angular/forms";
 
 export class Quiz {
+
     id: number;
     title: string;
     description: string;
@@ -9,7 +10,6 @@ export class Quiz {
     creatorId: number;
     questions: Question[];
     isPublic: boolean;
-
 
     constructor(title: string, description: string, titleMediaUrl: string, isPublic: boolean) {
         this.title = title;
@@ -20,4 +20,5 @@ export class Quiz {
         this.creatorId = 0;
         this.questions = [];
     }
+
 }

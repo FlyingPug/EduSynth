@@ -1,6 +1,6 @@
-import { CanMatchFn, Router } from '@angular/router';
-import { inject } from '@angular/core';
-import { AuthService } from '../service/auth.service';
+import { CanMatchFn, Router } from "@angular/router";
+import { inject } from "@angular/core";
+import { AuthService } from "../service/auth.service";
 
 export const AuthGuard: CanMatchFn = (route, segments) => {
     const authService = inject(AuthService);
@@ -11,8 +11,8 @@ export const AuthGuard: CanMatchFn = (route, segments) => {
             return true;
         }
 
-        console.log('redirecting to login');
-        router.navigate(['/auth/login']);
+        console.log("redirecting to login");
+        router.navigate(["/auth/login"]);
         return false;
     }
 

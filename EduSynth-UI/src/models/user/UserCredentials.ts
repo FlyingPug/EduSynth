@@ -1,4 +1,5 @@
 export class UserCredentials {
+
     oldPassword: string;
     newPassword: string;
     imageSrc : string;
@@ -8,4 +9,5 @@ export class UserCredentials {
         this.newPassword = newPassword;
         this.imageSrc = imageSrc;
     }
+
 }

@@ -1,7 +1,7 @@
-import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpErrorResponse, HttpInterceptorFn } from "@angular/common/http";
+import { catchError, throwError } from "rxjs";
+import { inject } from "@angular/core";
+import { Router } from "@angular/router";
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const router = inject(Router);
@@ -10,11 +10,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
             if (error.status === 401) {
                 // Перенаправляем на страницу входа
                 // router.navigate(['/login']);
-                return throwError(() => new Error('Неправильный логин или пароль!'));
+                return throwError(() => new Error("Неправильный логин или пароль!"));
             }
-            console.log('Error detected');
+            console.log("Error detected");
             // Возвращаем ошибку, если необходимо обрабатывать её дальше
-            return throwError(() => new Error('Unknown exception'));
+            return throwError(() => new Error("Unknown exception"));
         })
     );
 };

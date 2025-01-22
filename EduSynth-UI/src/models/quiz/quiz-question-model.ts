@@ -1,5 +1,5 @@
-import { Answer } from './quiz-answer-model';
-import { QuestionType } from '../enums/question-type';
+import { Answer } from "./quiz-answer-model";
+import { QuestionType } from "../enums/question-type";
 
 export interface Question {
     id: number;

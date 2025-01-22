@@ -2,7 +2,8 @@ export interface ITokenResult {
     accessToken: string;
     refreshToken: string;
 }
-export class TokenResult implements  ITokenResult {
+export class TokenResult implements ITokenResult {
+
     accessToken: string;
     refreshToken: string;
 
@@ -10,4 +11,5 @@ export class TokenResult implements  ITokenResult {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
     }
+
 }

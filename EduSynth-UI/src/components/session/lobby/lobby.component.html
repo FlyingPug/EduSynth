@@ -22,12 +22,12 @@
     </div>
   </div>
   <div class="bottom-content">
-    <div  *ngIf="this.session">
-    <div *ngIf="!IsLeader(); else notLeader">
+    <div *ngIf="session">
+    <div *ngIf="!isLeader(); else notLeader">
       <p>Ожидаем начала тестирования...</p>
     </div>
     <ng-template #notLeader>
-      <button mat-raised-button #button color="primary"  (click)="StartSession()">Начать игру</button>
+      <button mat-raised-button #button color="primary"  (click)="startSession()">Начать игру</button>
     </ng-template>
   </div>
   </div>

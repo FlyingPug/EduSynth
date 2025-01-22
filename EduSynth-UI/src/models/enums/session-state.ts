@@ -1,5 +1,5 @@
 export enum SessionState {
-    WAITING = 'WAITING',
-    STARTED = 'STARTED',
-    ENDED = 'ENDED'
+    WAITING = "WAITING",
+    STARTED = "STARTED",
+    ENDED = "ENDED"
 }

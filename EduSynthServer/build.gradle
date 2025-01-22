@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(':EduSynth-UI'))
+    // implementation(project(':EduSynth-UI'))
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -39,11 +39,6 @@ flyway {
     url = 'jdbc:postgresql://localhost:5432/edusynthDb'
     user = 'edusynthDb'
     password = 'edusynthDb'
-}
-
-
-task prepareKotlinBuildScriptModel {
-
 }
 
 java {

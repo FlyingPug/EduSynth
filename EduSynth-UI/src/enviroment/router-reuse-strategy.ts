@@ -1,6 +1,7 @@
-import { ActivatedRouteSnapshot, RouteReuseStrategy } from '@angular/router';
+import { ActivatedRouteSnapshot, RouteReuseStrategy } from "@angular/router";
 
 export class CustomRouteReuseStrategy implements RouteReuseStrategy {
+
     shouldDetach(route: ActivatedRouteSnapshot): boolean {
         return false;
     }
@@ -18,4 +19,5 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
     shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
         return false;
     }
+
 }

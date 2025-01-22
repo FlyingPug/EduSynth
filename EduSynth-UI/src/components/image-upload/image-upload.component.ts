@@ -1,28 +1,28 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { MatInputModule, MatLabel } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { UploadedFileModel } from '../../models/uploaded-file-model';
-import { environment } from '../../enviroment/enviroment.development';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { MatIcon, MatIconModule } from "@angular/material/icon";
+import { MatInputModule, MatLabel } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { UploadedFileModel } from "../../models/uploaded-file-model";
+import { environment } from "../../enviroment/enviroment.development";
 
 @Component({
-    selector: 'app-image-upload',
+    selector: "app-image-upload",
     standalone: true,
     imports: [MatIconModule, MatInputModule, MatButtonModule, MatLabel],
-    templateUrl: './image-upload.component.html',
-    styleUrl: './image-upload.component.css'
+    templateUrl: "./image-upload.component.html",
+    styleUrl: "./image-upload.component.css"
 })
 export class ImageUploadComponent {
 
     @Input()
-    public label  = 'Выберите иконку изображения:';
+    public label = "Выберите иконку изображения:";
 
     @Output()
         onFileUploaded = new EventEmitter<string>();
 
-    fileName: string = '';
+    fileName: string = "";
     constructor(private http: HttpClient) {}
 
     onFileSelected(event: Event) {
@@ -33,7 +33,7 @@ export class ImageUploadComponent {
             if (file) {
 
                 if (file.size > 10485760) { // ограничение до 10 Мб (в байтах)
-                    alert('Файл слишком большой. Максимальный размер: 10 Мб');
+                    alert("Файл слишком большой. Максимальный размер: 10 Мб");
                     return;
                 }
 
@@ -41,9 +41,9 @@ export class ImageUploadComponent {
 
                 const formData = new FormData();
 
-                formData.append('image', file);
+                formData.append("image", file);
 
-                const upload = this.http.post<UploadedFileModel>(environment.apiUrl + '/public/upload/image', formData);
+                const upload = this.http.post<UploadedFileModel>(environment.apiUrl + "/public/upload/image", formData);
 
                 upload.subscribe((result: UploadedFileModel) => {
                     this.onFileUploaded.emit(result.uploadedFileURL);
@@ -51,4 +51,5 @@ export class ImageUploadComponent {
             }
         }
     }
+
 }

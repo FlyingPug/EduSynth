@@ -7,7 +7,8 @@ export interface IUserInfo {
     balance : number;
 }
 
-export class UserInfo implements  IUserInfo {
+export class UserInfo implements IUserInfo {
+
     username: string;
     token: string;
     email: string;
@@ -23,4 +24,5 @@ export class UserInfo implements  IUserInfo {
         this.profilePictureUrl = profilePictureUrl;
         this.balance = balance;
     }
+
 }

@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
-import { RxStomp } from '@stomp/rx-stomp';
+import { Injectable } from "@angular/core";
+import { RxStomp } from "@stomp/rx-stomp";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: "root"
 })
 export class RxStompService extends RxStomp {
+
     constructor() {
         super();
     }
+
 }

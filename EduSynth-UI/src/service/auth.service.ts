@@ -1,24 +1,25 @@
-import { Injectable } from '@angular/core';
-import { AuthInfo } from '../models/auth.info';
-import { environment } from '../enviroment/enviroment.development';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { ITokenResult, TokenResult } from '../models/token-result';
-import { BehaviorSubject, EMPTY, map, Observable } from 'rxjs';
-import { LoginModel } from '../models/login-model';
-import { RegisterModel } from '../models/register-model';
-import { IUserInfo, UserInfo } from '../models/user-info';
-import { Location } from '@angular/common';
-import { StompHeaders } from '@stomp/stompjs';
-import { UserCredentials } from '../models/user/UserCredentials';
+import { Injectable } from "@angular/core";
+import { AuthInfo } from "../models/auth.info";
+import { environment } from "../enviroment/enviroment.development";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { ITokenResult, TokenResult } from "../models/token-result";
+import { BehaviorSubject, EMPTY, map, Observable } from "rxjs";
+import { LoginModel } from "../models/login-model";
+import { RegisterModel } from "../models/register-model";
+import { IUserInfo, UserInfo } from "../models/user-info";
+import { Location } from "@angular/common";
+import { StompHeaders } from "@stomp/stompjs";
+import { UserCredentials } from "../models/user/UserCredentials";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: "root"
 })
 export class AuthService {
+
     private authInfo: AuthInfo | null = null;
-    private apiAuth: string = environment.apiUrl + '/public/auth/';
-    private userAPI: string = environment.apiUrl + '/public/user';
+    private apiAuth: string = environment.apiUrl + "/public/auth/";
+    private userAPI: string = environment.apiUrl + "/public/user";
     private tokenSubject: BehaviorSubject<ITokenResult>;
     private isInitialized: boolean = false;
     private user : UserInfo | null = null;
@@ -34,12 +35,12 @@ export class AuthService {
         this.tokenSubject = new BehaviorSubject<ITokenResult>({} as ITokenResult);
         this.userSubject = new BehaviorSubject<IUserInfo>(
             {
-                username : '',
+                username : "",
                 balance: 0,
-                token : '',
-                role: '',
-                email: '',
-                profilePictureUrl: ''
+                token : "",
+                role: "",
+                email: "",
+                profilePictureUrl: ""
             });
 
         this.tokenSubject.subscribe((token: ITokenResult) => {
@@ -62,7 +63,7 @@ export class AuthService {
                 }
 
                 //this.stopRefreshTokenTimer();
-                this.router.navigate(['auth/login']);
+                this.router.navigate(["auth/login"]);
 
                 return;
             }
@@ -73,15 +74,15 @@ export class AuthService {
             this.updateTokens();
 
             if (!this.userSubject.getValue().username) {
-                console.log('получаю пользователя');
+                console.log("получаю пользователя");
                 this.getCurrentUserInfo().then();
             }
 
             if (isNewSession) {
                 //this.startRefreshTokenTimer();
                 // если мы сейчас на странице логина/регистрации переходим на главную
-                if (this.router.routerState.snapshot.url.indexOf('/auth/') === 0) {
-                    this.router.navigate(['/']);
+                if (this.router.routerState.snapshot.url.indexOf("/auth/") === 0) {
+                    this.router.navigate(["/"]);
                 }
             }
         });
@@ -92,16 +93,16 @@ export class AuthService {
     }
 
     public get StompHeader(): StompHeaders {
-        const jwtToken = localStorage.getItem('access-token'); // получаем токен из localStorage
+        const jwtToken = localStorage.getItem("access-token"); // получаем токен из localStorage
 
-        return { 'Authorization': `Bearer ${jwtToken}` };
+        return { "Authorization": `Bearer ${jwtToken}` };
     }
 
     public get AuthHeader(): HttpHeaders {
-        const jwtToken = localStorage.getItem('access-token'); // получаем токен из localStorage
+        const jwtToken = localStorage.getItem("access-token"); // получаем токен из localStorage
 
         return new HttpHeaders({
-            'Authorization': `Bearer ${jwtToken}`
+            "Authorization": `Bearer ${jwtToken}`
         });
     }
 
@@ -116,21 +117,20 @@ export class AuthService {
         try {
             const user = await this.http.get<IUserInfo>(this.userAPI, { headers: this.AuthHeader }).toPromise();
             if (user) {
-                console.log('получил юзера');
+                console.log("получил юзера");
                 this.userSubject.next(user);
             }
         } catch (error) {
             // Обработка ошибок при получении информации о пользователе
-            console.error('Ошибка при получении информации о пользователе:', error);
+            console.error("Ошибка при получении информации о пользователе:", error);
             throw error;
         }
     }
 
-
     public login(model: LoginModel): Observable<void> {
     // pipe - предобработка данных, полученных с сервака, затем можно буедт эти данные прочекать в subscribe
-        return this.http.post<IUserInfo>(this.apiAuth + 'login', model).pipe(map((result: IUserInfo) => {
-            const token = new TokenResult(result.token, '0');
+        return this.http.post<IUserInfo>(this.apiAuth + "login", model).pipe(map((result: IUserInfo) => {
+            const token = new TokenResult(result.token, "0");
             this.userSubject.next(result);
             this.tokenSubject.next(token);
         }));
@@ -138,13 +138,12 @@ export class AuthService {
 
     public register(model: RegisterModel): Observable<void> {
     // pipe - предобработка данных, полученных с сервака, затем можно буедт эти данные прочекать в subscribe
-        return this.http.post<IUserInfo>(this.apiAuth + 'register', model).pipe(map((result: IUserInfo) => {
-            const token = new TokenResult(result.token, '0');
+        return this.http.post<IUserInfo>(this.apiAuth + "register", model).pipe(map((result: IUserInfo) => {
+            const token = new TokenResult(result.token, "0");
             this.userSubject.next(result);
             this.tokenSubject.next(token);
         }));
     }
-
 
     public logout(): void {
     //this.http.post(this.apiAuth + 'logout', null).subscribe();
@@ -152,9 +151,9 @@ export class AuthService {
     }
 
     public tryRetrieveAccessToken(): Observable<void> {
-        console.log('retr');
-        const accessToken = localStorage.getItem('access-token');
-        const refreshToken = localStorage.getItem('refresh-token');
+        console.log("retr");
+        const accessToken = localStorage.getItem("access-token");
+        const refreshToken = localStorage.getItem("refresh-token");
         if (accessToken && refreshToken && AuthService.isTokenValid(accessToken)) {
             this.tokenSubject.next({ accessToken: accessToken, refreshToken: refreshToken });
         }
@@ -164,20 +163,20 @@ export class AuthService {
     private updateTokens() {
     // localStorage - хранилище в браузере хранящее информацию до 5мб
         if (!this.authInfo) {
-            localStorage.removeItem('access-token');
-            localStorage.removeItem('refresh-token');
+            localStorage.removeItem("access-token");
+            localStorage.removeItem("refresh-token");
             return;
         }
 
         if (this.authInfo && this.authInfo.accessToken && this.authInfo.refreshToken) {
-            localStorage.setItem('access-token', this.authInfo.accessToken);
-            localStorage.setItem('refresh-token', this.authInfo.refreshToken);
+            localStorage.setItem("access-token", this.authInfo.accessToken);
+            localStorage.setItem("refresh-token", this.authInfo.refreshToken);
         }
     }
 
     private decodeJwt(accessToken: string, refreshToken: string) {
-        const base64Url = accessToken.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const base64Url = accessToken.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
         const json = window.atob(base64);
         const payload = JSON.parse(json);
 
@@ -185,16 +184,17 @@ export class AuthService {
     }
 
     private static isTokenValid(token : string) : boolean {
-        const accessToken = JSON.parse(atob(token.split('.')[1]));
+        const accessToken = JSON.parse(atob(token.split(".")[1]));
         const expires = new Date(accessToken.exp * 1000);
         return expires.getTime() - Date.now() > 0;
     }
 
     changeCredentials(newCreditentials : UserCredentials) {
-        return this.http.put<IUserInfo>(this.apiAuth + 'user', newCreditentials).pipe(map((result: IUserInfo) => {
-            const token = new TokenResult(result.token, '0');
+        return this.http.put<IUserInfo>(this.apiAuth + "user", newCreditentials).pipe(map((result: IUserInfo) => {
+            const token = new TokenResult(result.token, "0");
             this.userSubject.next(result);
             this.tokenSubject.next(token);
         }));
     }
+
 }
