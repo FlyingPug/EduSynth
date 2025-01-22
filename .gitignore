@@ -40,3 +40,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/EduSynthServer/src/main/resources/static/browser/
+/EduSynth-UI/.angular/
+/EduSynth-UI/.gradle/
+/EduSynth-UI/build/
+/EduSynth-UI/node_modules/
