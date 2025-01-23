@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { SessionInfo } from "../models/session/session-info";
 import { environment } from "../enviroment/enviroment.development";
 import { HttpClient } from "@angular/common/http";
@@ -13,47 +13,27 @@ import { SessionCodeDto } from "../models/session/session-code-dto";
 import { SessionResultDto } from "../models/session/session-result-dto";
 import { UserAnswerDto } from "../models/session/user-answer-dto";
 import { Question } from "../models/quiz/quiz-question-model";
+import { ApiClient } from "./api.service";
+import { UserService } from "./user.service";
+import { ParticipantInfo } from "../models/session/participant-info";
 
 @Injectable({
     providedIn: "root"
 })
 export class SessionService {
 
-    private apiSession: string = environment.apiUrl + "/public/session";
+    private api = inject(ApiClient);
+    private router = inject(Router);
+    private rxStompService = inject(RxStompService);
+
+    private apiSession: string = "/public/session";
     private currentSessionData : SessionInfo | null = null;
     private sessionState : BehaviorSubject<SessionShortInfo | null> = new BehaviorSubject<SessionShortInfo | null>(null);
 
-    constructor(private http: HttpClient, private router: Router, private authService: AuthService, private rxStompService: RxStompService) {
+    constructor() {
         this.sessionState.subscribe(newValue => {
             console.log("THIS SHEISE IS UPDATING", newValue);
         });
-    }
-
-    private watchSession(code: string) {
-        if (this.currentSessionData?.quiz) {
-            this.rxStompService.watch("/topic/session/" + code).subscribe(message => {
-                if (message.body) {
-
-                    const session: SessionShortInfo = JSON.parse(message.body);
-                    const currentSession = this.currentSessionState.getValue();
-
-                    this.sessionState.next(session);
-
-                    if (session.sessionState == SessionState.STARTED) {
-                        const nextQuestionId = session.currentQuestionId;
-                        if (currentSession && nextQuestionId != currentSession.currentQuestionId) {
-                            console.log("NAVIGATE");
-                            this.router.navigate(["/question/" + this.currentSessionData?.quiz.questions[nextQuestionId].type]);
-                        }
-                    } else if (session.sessionState == SessionState.ENDED) {
-                        this.router.navigate(["/result/" + this.currentSessionData?.sessionCode]);
-                    }
-                }
-            });
-        } else {
-            throw new Error("Cant subscribe to session!");
-        }
-
     }
 
     public get currentSession() : SessionInfo | null {
@@ -64,11 +44,10 @@ export class SessionService {
         return this.sessionState;
     }
 
-    public createSession(quizId : number) : void {
-        this.http.post<SessionInfo>(
+    public async createSession(quizId : number) : Promise<void> {
+        this.api.post(
             this.apiSession + "/create-session", quizId,
-            { headers: this.authService.AuthHeader }
-        ).subscribe(session => {
+        ).then(async session => {
             this.currentSessionData = session;
             this.sessionState.next({
                 sessionState: SessionState.WAITING,
@@ -77,39 +56,69 @@ export class SessionService {
                 participantDtoList: session.participants
             });
             this.watchSession(session.sessionCode);
-            this.router.navigate(["/lobby/" + session.sessionCode]);
+            await this.router.navigate(["/lobby/" + session.sessionCode]);
         });
     }
 
     public joinSession(sessionCode: string) : void {
-        if (this.authService.isAuthorized) {
-            this.http.post<SessionInfo>(this.apiSession + "/join-session", { name: this.authService.userSubject.getValue().username, sessionCode: sessionCode }, { headers: this.authService.AuthHeader }).subscribe(session => {
+        this.api.post(this.apiSession + "/join-session",
+            {
+                sessionCode: sessionCode
+            })
+            .then(async session => {
                 this.currentSessionData = session;
                 this.watchSession(session.sessionCode);
-                this.router.navigate(["/lobby/" + sessionCode]);
+                await this.router.navigate(["/lobby/" + sessionCode]);
             });
+    }
+
+    private watchSession(code: string): void {
+        if (this.currentSessionData?.quiz) {
+            this.rxStompService.watch("/topic/session/" + code).subscribe(async message => {
+                if (message.body) {
+
+                    const session: SessionShortInfo = JSON.parse(message.body);
+                    const currentSession = this.currentSessionState.getValue();
+
+                    this.sessionState.next(session);
+
+                    if (session.sessionState == SessionState.STARTED) {
+                        const nextQuestionId = session.currentQuestionId;
+                        if (currentSession && nextQuestionId != currentSession.currentQuestionId) {
+                            await this.router.navigate(["/question/" + this.currentSessionData?.quiz.questions[nextQuestionId].type]);
+                        }
+                    } else if (session.sessionState == SessionState.ENDED) {
+                        await this.router.navigate(["/result/" + this.currentSessionData?.sessionCode]);
+                    }
+                }
+            });
+        } else {
+            throw new Error("Cant subscribe to session!");
         }
     }
 
-    public startSession() : void {
+    public async startSession(): Promise<void> {
         if (this.currentSessionData?.sessionCode) {
-            this.http.post(this.apiSession + "/start-session", new SessionCodeDto(this.currentSessionData.sessionCode), { headers: this.authService.AuthHeader }).subscribe();
+            await this.api.post(this.apiSession + "/start-session", new SessionCodeDto(this.currentSessionData.sessionCode));
         }
     }
 
-    public answer(answers: UserAnswerDto[]): void {
+    public async getUserParticipant(): Promise<ParticipantInfo> {
+        return await this.api.get(this.apiSession + "/get-participant/" + this.currentSessionData?.sessionCode);
+    }
+
+    public async answer(answers: UserAnswerDto[]): Promise<void> {
         if (this.currentSessionData?.sessionCode) {
-            this.http.post(
+            await this.api.post(
                 this.apiSession + "/answer-question",
-                new UserAnswerSessionForm(this.currentSessionData.sessionCode, answers),
-                { headers: this.authService.AuthHeader }).subscribe();
+                new UserAnswerSessionForm(this.currentSessionData.sessionCode, answers)
+            );
         }
     }
 
-    public getResult(sessionCode : string) : Observable<SessionResultDto> {
-        return this.http.get<SessionResultDto>(
-            this.apiSession + "/participant-results/" + sessionCode,
-            { headers: this.authService.AuthHeader }
+    public getResult(sessionCode : string) : Promise<SessionResultDto | null> {
+        return this.api.get<SessionResultDto>(
+            this.apiSession + "/participant-results/" + sessionCode
         );
     }
 

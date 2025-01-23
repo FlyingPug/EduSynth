@@ -12,6 +12,7 @@ import { ActivatedRoute } from "@angular/router";
     styleUrl: "./result.component.css"
 })
 export class ResultComponent implements OnInit {
+
     public displayedColumns: string[] = ["name", "score"];
     public dataSource: ParticipantInfo[] = [];
     private code : string = "";
@@ -26,8 +27,10 @@ export class ResultComponent implements OnInit {
     }
 
     private getScore() : void {
-        this.sessionService.getResult(this.code).subscribe(sessionResult => {
-            this.dataSource = sessionResult.participantDtoList;
+        this.sessionService.getResult(this.code).then(sessionResult => {
+            if (sessionResult) {
+                this.dataSource = sessionResult?.participantDtoList;
+            }
         });
     }
 

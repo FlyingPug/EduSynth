@@ -27,16 +27,15 @@ export class QuizService {
         return this.http.get<Page<QuizTitleModel>>(this.apiQuiz + "/quizzes", { params: params });
     }
 
-    public createNewQuiz(name : string, description : string, isPublic : boolean, titleImageUrl : string) {
+    public createNewQuiz(name : string, description : string, isPublic : boolean, titleImageUrl : string): void {
         this.quizData = new Quiz(name, description, titleImageUrl, isPublic);
     }
 
-    public addQuestion(question : Question) {
+    public addQuestion(question : Question): void {
         this.quizData?.questions.push(question);
     }
 
-    finishQuizCreation() {
-        console.log(this.quizData);
+    public finishQuizCreation(): void {
         const jwtToken = localStorage.getItem("access-token"); // получаем токен из localStorage
 
         const headers = new HttpHeaders({
@@ -49,11 +48,11 @@ export class QuizService {
         this.quizData = null;
     }
 
-    startQuiz(id: number) {
+    public startQuiz(id: number): void {
 
     }
 
-    getQuiz(id: number) : Observable<Quiz> {
+    public getQuiz(id: number) : Observable<Quiz> {
         const url = `${this.apiQuiz}/${id}`;
 
         return this.http.get<Quiz>(url);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { SessionService } from "../../../service/session.service";
 import { SessionInfo } from "../../../models/session/session-info";
@@ -11,6 +11,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { AuthService } from "../../../service/auth.service";
 import { SessionShortInfo } from "../../../models/session/session-short-info";
 import { BehaviorSubject } from "rxjs";
+import { ParticipantInfo } from "../../../models/session/participant-info";
 
 @Component({
     selector: "app-lobby",
@@ -21,23 +22,28 @@ import { BehaviorSubject } from "rxjs";
 })
 export class LobbyComponent implements OnInit {
 
+    private route = inject(ActivatedRoute);
+    private sessionService = inject(SessionService);
+    private authService = inject(AuthService);
+
     public session: SessionInfo | null = null;
+    public participant: ParticipantInfo;
     public sessionState$: BehaviorSubject<SessionShortInfo | null>;
     private sub: any;
     private code: string = "";
 
-    constructor(private route: ActivatedRoute,
-        private sessionService : SessionService,
-        private authService: AuthService,
+    constructor(
     ) {
         this.sessionState$ = this.sessionService.currentSessionState;
     }
 
-    public GetLink() : string {
+    public GetLink(): string {
         return window.location.href;
     }
 
-    public ngOnInit() : void {
+    public async ngOnInit(): Promise<void> {
+        this.participant = await this.sessionService.getUserParticipant();
+
         this.sub = this.route.params.subscribe(params => {
             this.code = params["code"];
             this.session = this.sessionService.currentSession;
@@ -57,8 +63,7 @@ export class LobbyComponent implements OnInit {
     }
 
     public isLeader(): boolean | undefined {
-        const name = this.authService.userSubject.getValue().username;
-        return this.session?.participants?.find(participant => participant.name == name)?.leader;
+        return this.participant.leader;
     }
 
 }

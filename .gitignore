@@ -45,3 +45,6 @@ bin/
 /EduSynth-UI/.gradle/
 /EduSynth-UI/build/
 /EduSynth-UI/node_modules/
+/.idea
+.idea/workspace.xml
+/EduSynthServer/src/main/resources/static

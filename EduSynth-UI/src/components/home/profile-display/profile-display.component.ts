@@ -3,6 +3,7 @@ import { IUserInfo } from "../../../models/user-info";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Router } from "@angular/router";
 import { AuthService } from "../../../service/auth.service";
+import {UserService} from "../../../service/user.service";
 
 @Component({
     selector: "app-profile-display",
@@ -13,7 +14,7 @@ import { AuthService } from "../../../service/auth.service";
 })
 export class ProfileDisplayComponent {
 
-    public myUser : BehaviorSubject<IUserInfo>;
+    public myUser : Promise<IUserInfo>;
 
     private profilePictureUrl : string = "/assets/images/profile_pic.png";
     public name : string = "User";
@@ -24,10 +25,9 @@ export class ProfileDisplayComponent {
         return "/assets/images/profile_pic.png";
     }
 
-    constructor(private authService: AuthService) {
-        this.myUser = this.authService.userSubject;
-        this.myUser.subscribe(newUser => {
-            console.log("changeing", newUser);
+    constructor(private userService: UserService) {
+        this.myUser = this.userService.getCurrentUserInfo();
+        this.myUser.then(newUser => {
             this.profilePictureUrl = newUser.profilePictureUrl;
             this.name = newUser.username;
             this.balance = newUser.balance;

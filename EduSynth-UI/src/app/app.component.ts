@@ -1,7 +1,9 @@
-import { Component } from "@angular/core";
+import {Component, inject} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterOutlet } from "@angular/router";
-import { AuthService } from "../service/auth.service";
+import {UserService} from "../service/user.service";
+import {IUserInfo} from "../models/user-info";
+import {BaseComponent } from "../components/base.component";
 
 @Component({
     selector: "app-root",
@@ -10,10 +12,13 @@ import { AuthService } from "../service/auth.service";
     templateUrl: "./app.component.html",
     styleUrl: "./app.component.css",
 })
-export class AppComponent {
+export class AppComponent extends BaseComponent {
 
-    constructor(public readonly authService: AuthService) {
+    private currentUserInfo: IUserInfo | null;
 
+    constructor(public readonly userService: UserService) {
+        super();
+        userService.getCurrentUserInfo().then(user => this.currentUserInfo = user);
     }
 
 }

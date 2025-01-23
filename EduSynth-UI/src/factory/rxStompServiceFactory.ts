@@ -13,7 +13,7 @@ export function rxStompServiceFactory() {
     const port = location.port !== "80" ? `:${location.port}` : "";
     const wsUrl = `${protocol}${host}${port}/ws`;
 
-    const headers = authService.StompHeader;
+    const headers = authService.stompHeader;
     console.log("rxStompServiceFactory начинаю соединение с сервером ws");
     const myRxStompConfig: RxStompConfig = {
         brokerURL: wsUrl,
@@ -24,9 +24,8 @@ export function rxStompServiceFactory() {
             console.log(new Date(), msg);
         },
     };
-    console.log("всё");
+
     rxStomp.configure(myRxStompConfig);
     rxStomp.activate();
-    console.log("получилось");
     return rxStomp;
 }
