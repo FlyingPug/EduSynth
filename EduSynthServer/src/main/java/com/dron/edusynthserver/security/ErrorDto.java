@@ -3,8 +3,8 @@ package com.dron.edusynthserver.security;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data
-@AllArgsConstructor
-public class ErrorDto {
-    private String codeError;
-}
+public record ErrorDto(
+        int statusCode,
+        String codeError,
+        String description
+) {}

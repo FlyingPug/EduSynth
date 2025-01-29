@@ -1,5 +1,6 @@
 package com.dron.edusynthserver.exceptions.handler;
 
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.dron.edusynthserver.exceptions.*;
 import com.dron.edusynthserver.exceptions.model.ErrorModel;
 import com.dron.edusynthserver.session.model.Session;
@@ -19,6 +20,11 @@ public class BaseExceptionHandler {
 
     @ExceptionHandler(IncorrectCredentials.class)
     public ResponseEntity<ErrorModel> WrongCredentials(IncorrectCredentials ex) {
+        return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.UNAUTHORIZED.value()), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(JWTDecodeException.class)
+    public ResponseEntity<ErrorModel> IncorrectJWT(JWTDecodeException ex) {
         return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.UNAUTHORIZED.value()), HttpStatus.UNAUTHORIZED);
     }
 

@@ -2,7 +2,9 @@ package com.dron.edusynthserver.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.dron.edusynthserver.exceptions.Unauthorized;
 import com.dron.edusynthserver.user.mapper.UserMapper;
 import com.dron.edusynthserver.user.model.Role;
 import com.dron.edusynthserver.user.model.User;
@@ -80,6 +82,8 @@ public class JwtTokenProvider {
         JWTVerifier verifier = JWT.require(algorithm)
                 .build();
 
+        try {
+
         DecodedJWT decoded = verifier.verify(token);
 
         User user = User.builder()
@@ -89,6 +93,10 @@ public class JwtTokenProvider {
                 .build();
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+
+        } catch(JWTDecodeException ex) {
+            throw new Unauthorized();
+        }
     }
 
     public Authentication validateTokenStrongly(String token) {
@@ -97,11 +105,16 @@ public class JwtTokenProvider {
         JWTVerifier verifier = JWT.require(algorithm)
                 .build();
 
-        DecodedJWT decoded = verifier.verify(token);
+        try {
+            DecodedJWT decoded = verifier.verify(token);
 
         User user = userRepository.findByEmail(decoded.getSubject());
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+
+        } catch(JWTDecodeException ex) {
+            throw new Unauthorized();
+        }
     }
 
 }

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Observable, Subscription } from "rxjs";
 import { Router } from "@angular/router";
 import { environment } from "../enviroment/enviroment.development";
+import {AuthService} from "./auth.service";
 
 @Injectable({ providedIn: "root" })
 export class ApiClient {
@@ -88,6 +89,7 @@ export class ApiClient {
                         reject(r);
                     }
                     if (r.status === 401) {
+                        AuthService.logout();
                         await this.router.navigate(["auth/login"]);
                         reject(r);
                         return;

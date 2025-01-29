@@ -5,87 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="добавлен показ текущего профиля">
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/base.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/logs/application.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/.eslintrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/animations/slide-to-left.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/animations/slide-to-left.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app.interceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.initializer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.initializer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/choose-question/choose-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/choose-question/choose-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-multiplie-options-question/create-choose-multiplie-options-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-choose-option-question/create-choose-option-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-input-text-question/create-input-text-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/create-quiz.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/question-creator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/create-quiz/question-creator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/display-quiz-details/display-quiz-details.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/profile-display/profile-display.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/profile-display/profile-display.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/image-upload/image-upload.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/image-upload/image-upload.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/join-game/join-game.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/register-user/register-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/register-user/register-user.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/search-quiz/search-quiz.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/lobby/lobby.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-option-question/choose-multiple-option-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-option-question/choose-multiple-option-question.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-option-question/choose-multiple-option-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-multiple-option-question/choose-multiple-option-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/choose-singe-option-question/choose-singe-option-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/input-text-question/input-text-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/question-template.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/questions/question-template.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/session/result/result.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/session/result/result.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/user-profile/user-profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/directives/scroll-directive.directive.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/directives/scroll-directive.directive.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/enviroment.development.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/enviroment.development.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/router-reuse-strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/router-reuse-strategy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/factory/rxStompServiceFactory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/factory/rxStompServiceFactory.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/guards/anonimous.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/guards/anonimous.guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/guards/auth.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/guards/auth.guard.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/interceptors/auth.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/interceptors/auth.interceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/auth.info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/auth.info.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/enums/question-type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/enums/question-type.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/enums/session-state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/enums/session-state.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/login-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/login-model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-question-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/quiz/quiz-question-model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/register-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/register-model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-code-dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-code-dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-info.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-result-dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-result-dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-short-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/session-short-info.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/user-answer-dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/user-answer-dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/session/user-answer-session-form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/session/user-answer-session-form.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/token-result.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/token-result.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/user-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/user-info.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/models/user/UserCredentials.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/models/user/UserCredentials.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/quiz.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/rx-stomp-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/rx-stomp-service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/shared/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/shared/shared.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/api.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/3rdpartylicenses.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/answer_input.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/mult_choice.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/only_option.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/assets/images/profile_pic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-6LHHHYYM.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-YHBZPPDV.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main-QT33MPPS.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/polyfills-RX4V3J3S.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/styles-TP3XXCS4.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/RequestLoggingFilterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/RequestLoggingFilterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/handler/BaseExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/handler/BaseExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/ErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/ErrorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/UserAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/UserAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-BTW6427D.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-BTW6427D.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-SAFSYC56.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-SAFSYC56.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/polyfills.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/polyfills.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/styles.css.map" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +111,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.Build EduSynth.executor": "Run",
     "Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun].executor": "Run",
+    "Gradle.EduSynthJustBuild.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelOrder2": "2",
@@ -179,6 +124,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.EduSynthServerApplication (1).executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "17",
@@ -192,6 +138,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.lint:fix.executor": "Run",
+    "npm.ng build --watch.executor": "Run",
+    "npm.ng build watch.executor": "Run",
     "npm.watch.executor": "Run",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -234,7 +182,7 @@
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynth-UI\src\service" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.watch">
+  <component name="RunManager" selected="Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun]">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dron.edusynthserver.EduSynthServerApplication" />
       <module name="EduSynth.EduSynthServer.main" />
@@ -286,12 +234,34 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="EduSynthJustBuild" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="EduSynthServer:build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="EduSynthServer [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/EduSynthServer" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -368,6 +338,18 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="ng build --watch" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/EduSynth-UI/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="ng" />
+        <script value="build" />
+      </scripts>
+      <arguments value="--watch" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="ng" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/EduSynth-UI/package.json" />
       <command value="run" />
@@ -390,11 +372,13 @@
     </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Gradle.EduSynthJustBuild" />
       <item itemvalue="Gradle.EduSynth [EduSynth-UI:build]" />
       <item itemvalue="Gradle.EduSynth [bootRun]" />
       <item itemvalue="Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun]" />
       <item itemvalue="Gradle.EduSynthServer [dependencies]" />
       <item itemvalue="JavaScript Debug.Angular Application (EduSynth-UI)" />
+      <item itemvalue="npm.ng build --watch" />
       <item itemvalue="npm.Angular CLI Server (EduSynth-UI)" />
       <item itemvalue="npm.watch" />
       <item itemvalue="npm.lint:fix" />
@@ -535,7 +519,11 @@
       <workItem from="1737376121555" duration="3000" />
       <workItem from="1737534585449" duration="1188000" />
       <workItem from="1737536538279" duration="24000" />
-      <workItem from="1737537944574" duration="12634000" />
+      <workItem from="1737537944574" duration="12883000" />
+      <workItem from="1737600559200" duration="22637000" />
+      <workItem from="1738055654948" duration="7756000" />
+      <workItem from="1738119873139" duration="2235000" />
+      <workItem from="1738139764181" duration="6131000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>
