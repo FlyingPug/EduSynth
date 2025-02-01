@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { MatTabsModule } from "@angular/material/tabs";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
@@ -7,6 +7,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { AuthService } from "../../../service/auth.service";
 import { LoginModel } from "../../../models/login-model";
 import { MatButtonModule } from "@angular/material/button";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-login-user",
@@ -36,22 +37,28 @@ export class LoginUserComponent {
 
     public get email() : FormControl<string> { return this.formGroup.get("email") as FormControl<string>; }
     public get password() : FormControl<string> { return this.formGroup.get("password") as FormControl<string>; }
+
     public errorMessage : string = "";
-    authService : AuthService;
 
-    constructor(authService: AuthService) {
-        this.authService = authService;
-    }
+    private authService = inject(AuthService);
+    private router = inject(Router);
 
-    onLoginClicked() {
+    public onLoginClicked(): void {
         const model = new LoginModel();
         model.populateFromFormGroup(this.formGroup);
         this.errorMessage = "";
-        this.authService.login(model).subscribe( () => {}, // Обработчик успешного выполнения подписки
-            error => { // Обработчик ошибки
-                console.log("not catching");
-                this.errorMessage = error.message || "Произошла ошибка при входе в систему";
-            });
+        this.authService.login(model).subscribe({
+            next: () => {
+                this.router.navigate(["/game"]);
+            },
+            error: error => {
+                if (error.status === 401) {
+                    this.errorMessage = "Неправильный логин или пароль";
+                } else {
+                    this.errorMessage = error.message || "Произошла ошибка при входе в систему";
+                }
+            }
+        });
     }
 
 }

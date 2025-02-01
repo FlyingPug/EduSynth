@@ -1,12 +1,4 @@
-<style>
-  .formGroup
-  {
-    margin-top: 15px;
-  }
-</style>
-
 <div class="formGroup" [formGroup]="formGroup">
-  <div class="error">{{this.errorMessage}}</div>
   <mat-form-field>
     <mat-label>Email</mat-label>
     <input matInput [formControl]="email">
@@ -15,6 +7,7 @@
     <mat-label>Пароль</mat-label>
     <input  matInput [formControl]="password">
   </mat-form-field>
+  <div class="error">{{this.errorMessage}}</div>
   <div class="actions">
     <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onLoginClicked()">Войти</button>
   </div>

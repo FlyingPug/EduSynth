@@ -1,8 +1,16 @@
-.container
-{
-  width: 50rem;;
-  height: 35rem;
+:host {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
+
+.content-box {
+  max-width: 70%;
+  flex: 1 1;
+  border-radius: 10px;
+}
+
 .example-container {
   height: 100%;
 }

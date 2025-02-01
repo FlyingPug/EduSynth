@@ -5,30 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="добавлен показ текущего профиля">
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/logs/application.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/assets/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/files/upload/ff04d451-43e6-4728-a7e7-62c97c66415f.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/enviroment.development.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/enviroment/enviroment.development.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/interceptors/auth.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/interceptors/auth.interceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/service/api.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/service/api.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/RequestLoggingFilterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/RequestLoggingFilterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/handler/BaseExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/handler/BaseExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/ErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/ErrorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtTokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/UserAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/UserAuthenticationEntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-BTW6427D.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-BTW6427D.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-SAFSYC56.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/chunk-SAFSYC56.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/logs/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/main.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/polyfills.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/polyfills.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/styles.css.map" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +118,7 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Dron/IdeaProjects/EduSynth/EduSynth-UI",
+    "last_opened_file_path": "D:/projects/EduSynth/EduSynth/EduSynth-UI/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -168,11 +157,11 @@
       <recent name="com.dron.edusynthserver.session.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projects\EduSynth\EduSynth\EduSynth-UI\src" />
+      <recent name="D:\projects\EduSynth\EduSynth\EduSynth-UI\src\assets" />
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\resources" />
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main" />
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\browser" />
-      <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\resources\static" />
-      <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynthServer\src\main\resources\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynth-UI\src\assets\images" />
@@ -523,7 +512,9 @@
       <workItem from="1737600559200" duration="22637000" />
       <workItem from="1738055654948" duration="7756000" />
       <workItem from="1738119873139" duration="2235000" />
-      <workItem from="1738139764181" duration="6131000" />
+      <workItem from="1738139764181" duration="6398000" />
+      <workItem from="1738309984548" duration="10394000" />
+      <workItem from="1738415006980" duration="2758000" />
     </task>
     <task id="LOCAL-00001" summary="c">
       <created>1705409792974</created>
