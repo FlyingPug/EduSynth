@@ -1,7 +1,7 @@
 package com.dron.edusynthserver.user.service.impl;
 
-import com.dron.edusynthserver.exceptions.IncorrectCredentials;
-import com.dron.edusynthserver.exceptions.UserAlreadyExistsException;
+import com.dron.edusynthserver.Exceptions.IncorrectCredentials;
+import com.dron.edusynthserver.Exceptions.UserAlreadyExistsException;
 import com.dron.edusynthserver.user.dto.CredentialsDto;
 import com.dron.edusynthserver.user.dto.SignUpDto;
 import com.dron.edusynthserver.user.model.Role;
@@ -11,8 +11,6 @@ import com.dron.edusynthserver.user.service.PasswordEncoderService;
 import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {

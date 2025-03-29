@@ -1,7 +1,7 @@
 package com.dron.edusynthserver.quiz.Mapper;
 
 import com.dron.edusynthserver.quiz.dto.AnswerDto;
-import com.dron.edusynthserver.quiz.model.Answer;
+import com.dron.edusynthserver.quiz.Model.Answer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -1,22 +1,21 @@
 package com.dron.edusynthserver.session.service.impl;
 
-import com.dron.edusynthserver.exceptions.*;
+import com.dron.edusynthserver.Exceptions.*;
 import com.dron.edusynthserver.session.dto.*;
 import com.dron.edusynthserver.session.mapper.ParticipantMapper;
-import com.dron.edusynthserver.quiz.model.*;
-import com.dron.edusynthserver.quiz.repository.AnswersRepository;
+import com.dron.edusynthserver.quiz.Model.*;
+import com.dron.edusynthserver.quiz.Repository.AnswersRepository;
 import com.dron.edusynthserver.session.mapper.SessionMapper;
 import com.dron.edusynthserver.session.model.SessionState;
 import com.dron.edusynthserver.session.repository.ParticipantRepository;
 import com.dron.edusynthserver.session.repository.SessionRepository;
-import com.dron.edusynthserver.quiz.service.QuizService;
+import com.dron.edusynthserver.quiz.Service.QuizService;
 import com.dron.edusynthserver.session.service.QuestionHandler;
 import com.dron.edusynthserver.session.service.SessionService;
-import com.dron.edusynthserver.security.JwtTokenProvider;
+import com.dron.edusynthserver.Security.JwtTokenProvider;
 import com.dron.edusynthserver.session.model.CurrentQuestionState;
 import com.dron.edusynthserver.session.model.Participant;
 import com.dron.edusynthserver.session.model.Session;
-import com.dron.edusynthserver.user.dto.ParticipantResultDto;
 import com.dron.edusynthserver.user.model.User;
 import com.dron.edusynthserver.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

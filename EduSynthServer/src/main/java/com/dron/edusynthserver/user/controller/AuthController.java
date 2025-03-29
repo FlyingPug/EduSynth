@@ -1,9 +1,7 @@
 package com.dron.edusynthserver.user.controller;
 
-import com.dron.edusynthserver.config.EduSynthUrl;
-import com.dron.edusynthserver.security.JwtTokenProvider;
-import com.dron.edusynthserver.session.dto.ParticipantDto;
-import com.dron.edusynthserver.session.dto.SessionResultDto;
+import com.dron.edusynthserver.Common.Controller.Config.EduSynthUrl;
+import com.dron.edusynthserver.Security.JwtTokenProvider;
 import com.dron.edusynthserver.user.dto.CredentialsDto;
 import com.dron.edusynthserver.user.dto.SignUpDto;
 import com.dron.edusynthserver.user.dto.UserDto;

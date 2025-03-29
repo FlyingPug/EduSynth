@@ -5,19 +5,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="151309e1-b4d4-4eb0-840a-f5a98764537e" name="Changes" comment="добавлен показ текущего профиля">
-      <change afterPath="$PROJECT_DIR$/EduSynth-UI/src/assets/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EduSynthServer/files/upload/ff04d451-43e6-4728-a7e7-62c97c66415f.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Common/Annotations/CheckQuizOwnership.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Common/Annotations/CheckQuizOwnershipOrAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Common/Config/EduSynthUrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Common/Config/RequestLoggingFilterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Common/Config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Common/Config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Common/Model/OwnedEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Common/Service/PermissionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/components/login/login-user/login-user.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynth-UI/src/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynth-UI/src/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EduSynthServer/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/logs/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/resources/static/browser/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/admin/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Admin/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/EduSynthUrl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/RequestLoggingFilterConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Common/Controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/BadAnswerFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/BadAnswerFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/BadNameException.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/BadNameException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/Forbidden.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/Forbidden.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/IncorrectCredentials.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/IncorrectCredentials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/IncorrectSessionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/IncorrectSessionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/SessionNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/SessionNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/Unauthorized.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/Unauthorized.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/UnsupportedQuestionTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/UnsupportedQuestionTypeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/UserAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/UserAlreadyExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/handler/BaseExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/handler/BaseExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/exceptions/model/ErrorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Exceptions/model/ErrorModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/AnswersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/AnswersMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/QuestionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/QuestionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/QuizMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/QuizMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/QuizMapperResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Mapper/QuizMapperResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Controller/QuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuestionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuestionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuestionForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuestionForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuizTitleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/dto/QuizTitleDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Model/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/QuestionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Model/QuestionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/model/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Model/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/repository/AnswersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Repository/AnswersRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/repository/QuizRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Repository/QuizRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/QuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Service/QuizService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/impl/QuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/Service/QuizServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/ErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Security/ErrorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Security/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/security/UserAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/Security/UserAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/dto/SessionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/dto/SessionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/model/Participant.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/model/Participant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/model/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/model/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/QuestionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/QuestionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/SessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/QuestionHandleMultipleOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/QuestionHandleMultipleOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/QuestionHandlerInputOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/QuestionHandlerInputOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/QuestionHandlerSingleOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/QuestionHandlerSingleOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/SessionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/SessionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/controller/UploadedFilesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/controller/UploadedFilesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/service/UploadedFilesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/service/UploadedFilesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/user/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +112,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="TypeScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -97,57 +149,57 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Gradle.Build EduSynth.executor": "Run",
-    "Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun].executor": "Run",
-    "Gradle.EduSynthJustBuild.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelOrder2": "2",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RequestMappingsPanelWidth2": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.EduSynthServerApplication (1).executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "jdk.selected.JAVA_MODULE": "17",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/projects/EduSynth/EduSynth/EduSynth-UI/src",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.lint:fix.executor": "Run",
-    "npm.ng build --watch.executor": "Run",
-    "npm.ng build watch.executor": "Run",
-    "npm.watch.executor": "Run",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
-    "spring.configuration.checksum": "aa4d91864b594f17266e753e199ab10a",
-    "ts.external.directory.path": "D:\\projects\\EduSynth\\EduSynth\\EduSynth-UI\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.Build EduSynth.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EduSynthJustBuild.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth2&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.EduSynthServerApplication (1).executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/projects/EduSynth/EduSynth/EduSynth-UI/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.lint:fix.executor&quot;: &quot;Run&quot;,
+    &quot;npm.ng build --watch.executor&quot;: &quot;Run&quot;,
+    &quot;npm.ng build watch.executor&quot;: &quot;Run&quot;,
+    &quot;npm.watch.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;aa4d91864b594f17266e753e199ab10a&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\projects\\EduSynth\\EduSynth\\EduSynth-UI\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "PostgreSQL"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;PostgreSQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.dron.edusynthserver.session.dto" />
@@ -171,7 +223,7 @@
       <recent name="C:\Users\Dron\IdeaProjects\EduSynth\EduSynth-UI\src\service" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.EduSynth:EduSynthServer [:EduSynthServer:bootRun]">
+  <component name="RunManager" selected="Gradle.EduSynthJustBuild">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dron.edusynthserver.EduSynthServerApplication" />
       <module name="EduSynth.EduSynthServer.main" />
@@ -796,33 +848,23 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/service/impl/QuizServiceImpl.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java</url>
-          <line>46</line>
+          <line>45</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/controller/UploadedFilesController.java</url>
-          <line>33</line>
+          <line>28</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/uploadedFiles/service/UploadedFilesService.java</url>
-          <line>32</line>
+          <line>31</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/quiz/controller/QuizController.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/SessionServiceImpl.java</url>
-          <line>135</line>
+          <line>134</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -832,12 +874,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/controller/SessionController.java</url>
-          <line>68</line>
+          <line>67</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/EduSynthServer/src/main/java/com/dron/edusynthserver/session/service/impl/SessionServiceImpl.java</url>
-          <line>129</line>
+          <line>128</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>

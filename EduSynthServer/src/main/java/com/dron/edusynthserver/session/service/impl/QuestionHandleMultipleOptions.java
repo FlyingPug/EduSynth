@@ -1,6 +1,6 @@
 package com.dron.edusynthserver.session.service.impl;
 
-import com.dron.edusynthserver.quiz.model.Answer;
+import com.dron.edusynthserver.quiz.Model.Answer;
 import com.dron.edusynthserver.session.dto.UserAnswerDto;
 import com.dron.edusynthserver.session.service.QuestionHandler;
 

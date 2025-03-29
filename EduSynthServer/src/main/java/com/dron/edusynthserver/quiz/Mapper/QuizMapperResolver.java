@@ -1,9 +1,8 @@
 package com.dron.edusynthserver.quiz.Mapper;
 
 import com.dron.edusynthserver.quiz.dto.QuizDto;
-import com.dron.edusynthserver.quiz.model.Quiz;
-import com.dron.edusynthserver.quiz.repository.QuizRepository;
-import com.dron.edusynthserver.user.repository.UserRepository;
+import com.dron.edusynthserver.quiz.Model.Quiz;
+import com.dron.edusynthserver.quiz.Repository.QuizRepository;
 import org.mapstruct.ObjectFactory;
 import org.mapstruct.TargetType;
 import org.springframework.beans.factory.annotation.Autowired;

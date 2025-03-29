@@ -11,6 +11,6 @@ public class QuizTitleDto
 {
     private int id;
     private String title;
-    private String title_media_url;
+    private String titleMediaUrl;
     private String description;
 }

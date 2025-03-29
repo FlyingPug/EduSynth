@@ -1,7 +1,6 @@
 package com.dron.edusynthserver.session.model;
 
-import com.dron.edusynthserver.quiz.model.Quiz;
-import com.dron.edusynthserver.user.model.Role;
+import com.dron.edusynthserver.quiz.Model.Quiz;
 import jakarta.persistence.*;
 import lombok.*;
 

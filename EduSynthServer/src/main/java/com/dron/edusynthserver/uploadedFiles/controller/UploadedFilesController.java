@@ -1,6 +1,6 @@
 package com.dron.edusynthserver.uploadedFiles.controller;
 
-import com.dron.edusynthserver.config.EduSynthUrl;
+import com.dron.edusynthserver.Common.Controller.Config.EduSynthUrl;
 import com.dron.edusynthserver.uploadedFiles.dto.UploadedFileDto;
 import com.dron.edusynthserver.uploadedFiles.service.UploadedFilesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +8,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @RestController
 @RequestMapping(EduSynthUrl.UPLOAD)

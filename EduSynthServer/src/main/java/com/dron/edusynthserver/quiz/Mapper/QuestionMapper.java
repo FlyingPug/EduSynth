@@ -1,11 +1,9 @@
 package com.dron.edusynthserver.quiz.Mapper;
 
 import com.dron.edusynthserver.quiz.dto.QuestionDto;
-import com.dron.edusynthserver.quiz.model.Question;
+import com.dron.edusynthserver.quiz.Model.Question;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {AnswersMapper.class})
 public interface QuestionMapper

@@ -1,6 +1,6 @@
 package com.dron.edusynthserver.session.service;
 
-import com.dron.edusynthserver.exceptions.BadNameException;
+import com.dron.edusynthserver.Exceptions.BadNameException;
 import com.dron.edusynthserver.session.dto.*;
 import com.dron.edusynthserver.user.model.User;
 

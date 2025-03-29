@@ -1,15 +1,11 @@
 package com.dron.edusynthserver.session.dto;
 
 import com.dron.edusynthserver.quiz.dto.QuizDto;
-import com.dron.edusynthserver.quiz.model.Quiz;
-import com.dron.edusynthserver.session.model.Participant;
 import com.dron.edusynthserver.session.model.SessionState;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
 
 @Data

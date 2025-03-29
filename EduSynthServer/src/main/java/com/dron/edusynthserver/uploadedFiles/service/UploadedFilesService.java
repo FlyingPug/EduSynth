@@ -1,12 +1,11 @@
 package com.dron.edusynthserver.uploadedFiles.service;
 
-import com.dron.edusynthserver.config.EduSynthUrl;
+import com.dron.edusynthserver.Common.Controller.Config.EduSynthUrl;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
