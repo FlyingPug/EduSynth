@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.Common.Controller.Config;
+package com.dron.edusynthserver.Common.Config;
 
 public class EduSynthUrl
 {

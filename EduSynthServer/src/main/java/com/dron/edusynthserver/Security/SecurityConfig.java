@@ -1,7 +1,7 @@
 package com.dron.edusynthserver.Security;
 
-import com.dron.edusynthserver.Common.Controller.Config.EduSynthUrl;
-import com.dron.edusynthserver.user.repository.UserRepository;
+import com.dron.edusynthserver.Common.Config.EduSynthUrl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,19 +15,10 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class SecurityConfig {
-
     private final UserAuthenticationEntryPoint userAuthenticationEntryPoint;
     private final JwtTokenProvider userAuthenticationProvider;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    public SecurityConfig(UserAuthenticationEntryPoint userAuthenticationEntryPoint, JwtTokenProvider userAuthenticationProvider) {
-        this.userAuthenticationEntryPoint = userAuthenticationEntryPoint;
-        this.userAuthenticationProvider = userAuthenticationProvider;
-    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

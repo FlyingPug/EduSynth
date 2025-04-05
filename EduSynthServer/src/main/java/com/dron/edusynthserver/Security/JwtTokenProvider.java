@@ -3,15 +3,16 @@ package com.dron.edusynthserver.Security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.dron.edusynthserver.user.model.Role;
-import com.dron.edusynthserver.user.model.User;
-import com.dron.edusynthserver.user.repository.UserRepository;
+import com.dron.edusynthserver.User.Model.Role;
+import com.dron.edusynthserver.User.Model.User;
+import com.dron.edusynthserver.User.Repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.algorithms.Algorithm;
@@ -89,7 +90,7 @@ public class JwtTokenProvider {
 
         DecodedJWT decoded = verifier.verify(token);
 
-        User user = userRepository.findByEmail(decoded.getSubject());
+        User user = userRepository.findByEmail(decoded.getSubject()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         List<SimpleGrantedAuthority> authorities = Collections.singletonList(
                 new SimpleGrantedAuthority("ROLE_" + user.getRole().name())

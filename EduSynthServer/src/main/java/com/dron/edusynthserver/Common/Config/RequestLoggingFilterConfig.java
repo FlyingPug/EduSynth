@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.Common.Controller.Config;
+package com.dron.edusynthserver.Common.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

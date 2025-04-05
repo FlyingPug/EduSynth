@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.Common.Controller.Config;
+package com.dron.edusynthserver.Common.Config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
