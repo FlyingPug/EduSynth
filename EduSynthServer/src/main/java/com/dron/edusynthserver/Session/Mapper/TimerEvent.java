@@ -13,5 +13,5 @@ import java.time.Instant;
 @NoArgsConstructor
 public class TimerEvent implements Serializable {
     private String sessionId;
-    private Instant expirationTime;
+    private Integer currentQuestionIndex;
 }

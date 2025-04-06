@@ -1,4 +1,0 @@
-ALTER TABLE users
-    DROP COLUMN password,
-    ADD COLUMN password_hash VARCHAR(255) NOT NULL,
-    ADD COLUMN salt VARCHAR(255) NOT NULL;

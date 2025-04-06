@@ -142,13 +142,19 @@ public class SessionServiceImpl implements SessionService {
     private void scheduleQuestionTimer(Session session) {
         TimerEvent event = new TimerEvent(
                 session.getId(),
-                Instant.now().plus(session.getQuestionTimeLimit())
+                session.getCurrentQuestionIndex()
         );
+
+        long ttlMillis = session.getCurrentQuestion().getTimeLimitSeconds() * 1000;
 
         rabbitTemplate.convertAndSend(
                 "session.exchange",
-                "timer.events." + session.getId(),
-                event
+                "session.timer.wait",
+                event,
+                message -> {
+                    message.getMessageProperties().setExpiration(String.valueOf(ttlMillis));
+                    return message;
+                }
         );
     }
 
@@ -156,7 +162,6 @@ public class SessionServiceImpl implements SessionService {
     private void broadcastSessionState(Session session) {
         SessionStateDto state = sessionMapper.toSessionStateDto(session);
 
-        // Сохраняем в Redis
         redisTemplate.opsForValue().set(
                 SESSION_CACHE_PREFIX + session.getId(),
                 state.getStatus(),
@@ -174,7 +179,7 @@ public class SessionServiceImpl implements SessionService {
         Session session = sessionRepository.findSessionById(event.getSessionId())
                 .orElseThrow(() -> new NotFoundException("Session not found"));
 
-        if (session.isTimeExpired()) {
+        if (event.getCurrentQuestionIndex() == session.getCurrentQuestionIndex()) {
             session.moveToNextQuestion();
             sessionRepository.save(session);
 
