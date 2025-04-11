@@ -1,0 +1,36 @@
+<mat-card class="question-card">
+  <div class="timer-container">
+    <ng-circle-countdown 
+      #timer 
+      [duration]="timeLimitSeconds"
+      [colors]="[ '#004777', '#F7B801', '#A30000', '#A30000' ]"
+    >
+    </ng-circle-countdown>
+  </div>
+
+  <mat-card-header>
+    <mat-card-title>{{ question.text }}</mat-card-title>
+  </mat-card-header>
+
+  <img *ngIf="question.mediaUrl" mat-card-image [src]="question.mediaUrl" alt="Question media">
+
+  <mat-card-content>
+    <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="events-list">
+      <div *ngFor="let event of events; let i = index" 
+           cdkDrag
+           class="event-item">
+        <span class="event-index">{{ i + 1 }}</span>
+        <span class="event-text">{{ event.text }}</span>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" 
+            (click)="submit()" 
+            [disabled]="isSubmitting">
+      <span *ngIf="!isSubmitting">Подтвердить порядок</span>
+      <mat-spinner *ngIf="isSubmitting" diameter="24"></mat-spinner>
+    </button>
+  </mat-card-actions>
+</mat-card>

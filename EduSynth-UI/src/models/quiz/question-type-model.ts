@@ -1,0 +1,7 @@
+export enum QuestionTypeDto {
+    INPUT_TEXT = "INPUT_TEXT",
+    CHRONO = "CHRONO",
+    CHOOSE_MULTIPLE_OPTIONS = "MULTIPLE",
+    CROSSWORD = "CROSSWORD",
+    CHOOSE_OPTION = "CHOOSE_OPTION",
+}

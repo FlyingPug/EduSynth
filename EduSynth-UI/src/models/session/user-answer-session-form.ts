@@ -1,12 +1,13 @@
-import { Answer } from "../quiz/quiz-answer-model";
-import { UserAnswerDto } from "./user-answer-dto";
+import { BaseModel } from "../base-model";
+import { IUserAnswerDto } from "./user-answer-model";
 
-export class UserAnswerSessionForm {
+export class UserAnswerFormDto extends BaseModel {
 
-    sessionCode: string;
-    answers: UserAnswerDto[];
+    public sessionCode: string;
+    public answers: IUserAnswerDto[];
 
-    constructor(sessionCode: string, answers: UserAnswerDto[]) {
+    constructor(sessionCode: string, answers: IUserAnswerDto[]) {
+        super();
         this.sessionCode = sessionCode;
         this.answers = answers;
     }

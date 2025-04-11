@@ -4,7 +4,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { ChooseQuestionComponent } from "../create-quiz/choose-question/choose-question.component";
 import { ImageUploadComponent } from "../image-upload/image-upload.component";
 import { AuthService } from "../../service/auth.service";
 import { UserCredentials } from "../../models/user/UserCredentials";

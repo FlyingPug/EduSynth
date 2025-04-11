@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { MatTableModule } from "@angular/material/table";
-import { ParticipantInfo } from "../../../models/session/participant-info";
-import { SessionService } from "../../../service/session.service";
-import { ActivatedRoute } from "@angular/router";
+import { ParticipantDto } from "../../../models/session/participant-model";
+import { SessionStateDto } from "../../../models/session/session-state-model";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
     selector: "app-result",
@@ -13,25 +13,14 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ResultComponent implements OnInit {
 
+    @Input() public sessionState$ : BehaviorSubject<SessionStateDto | null>;
     public displayedColumns: string[] = ["name", "score"];
-    public dataSource: ParticipantInfo[] = [];
-    private code : string = "";
-
-    constructor(private route: ActivatedRoute, private sessionService : SessionService) {}
+    public participants: ParticipantDto[] = [];
 
     public ngOnInit() : void {
-        this.route.params.subscribe(params => {
-            this.code = params["code"];
-            this.getScore();
-        });
-    }
-
-    private getScore() : void {
-        this.sessionService.getResult(this.code).then(sessionResult => {
-            if (sessionResult) {
-                this.dataSource = sessionResult?.participantDtoList;
-            }
-        });
+        if(this.sessionState$.value) {
+            this.participants = this.sessionState$.value?.participants;
+        }
     }
 
 }

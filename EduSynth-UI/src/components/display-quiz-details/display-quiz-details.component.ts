@@ -1,38 +1,40 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, inject, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { MatCardModule } from "@angular/material/card";
-import { Quiz } from "../../models/quiz/quiz-model";
 import { QuizService } from "../../service/quiz.service";
 import { CommonModule } from "@angular/common";
+import { QuizResponseDto } from "../../models/quiz/response/quiz-response-model";
+import { SessionService } from "../../service/session.service";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @Component({
     selector: "app-display-quiz-details",
     standalone: true,
-    imports: [MatCardModule, CommonModule],
+    imports: [MatCardModule, CommonModule, MatTooltipModule],
     templateUrl: "./display-quiz-details.component.html",
     styleUrl: "./display-quiz-details.component.css"
 })
-export class DisplayQuizDetailsComponent implements OnInit, OnDestroy {
+export class DisplayQuizDetailsComponent implements OnInit {
 
-    id: number = 0;
-    quiz: Quiz | null = null;
-    private sub: any;
+    private quizService = inject(QuizService);
+    private sessionService = inject(SessionService);
+    private router = inject(Router);
 
-    constructor(private route: ActivatedRoute, private quizService : QuizService) {}
+    public quiz: QuizResponseDto | null = null;
+    private id: number = 0;
 
-    ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
-            this.id = +params["id"];
-            this.quizService.getQuiz(this.id).subscribe(quiz => this.quiz = quiz);
-        });
+    public async ngOnInit(): Promise<void> {
+        this.quiz = await this.quizService.getQuiz(this.id);
     }
 
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-    }
+    public async launchTest(): Promise<void> {
+        if (this.quiz?.id) {
+            const session = await this.sessionService.createSession(this.quiz?.id);
+            this.router.navigate(["session/" + session.id], {
+                state:{ session: session }
+            });
+        }
 
-    launchTest(id: number) {
-        this.quizService.startQuiz(id);
     }
 
 }

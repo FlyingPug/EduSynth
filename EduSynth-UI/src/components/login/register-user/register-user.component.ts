@@ -9,8 +9,7 @@ import {
     Validators
 } from "@angular/forms";
 import { ErrorStateMatcher, MatOptionModule } from "@angular/material/core";
-import { LoginModel } from "../../../models/login-model";
-import { RegisterModel } from "../../../models/register-model";
+import { RegisterModel } from "../../../models/user/register-model";
 import { AuthService } from "../../../service/auth.service";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -21,7 +20,7 @@ import { MatButtonModule } from "@angular/material/button";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 
-    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    public isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
         const isSubmitted = form && form.submitted;
         return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
     }
@@ -69,12 +68,20 @@ export class RegisterUserComponent {
     constructor(private readonly authService: AuthService ) {
     }
 
-    matcher = new MyErrorStateMatcher();
+    public matcher = new MyErrorStateMatcher();
 
-    onRegisterClicked() {
-        const model = new RegisterModel();
-        model.populateFromFormGroup(this.formGroup);
+    public onRegisterClicked(): void {
+        const model = this.createRegisterModel();
         this.authService.register(model).subscribe();
+    }
+
+    private createRegisterModel(): RegisterModel {
+        const model = new RegisterModel();
+        model.email = this.formGroup.get("email")?.value;
+        model.password = this.formGroup.get("password")?.value;
+        model.role = this.formGroup.get("role")?.value;
+        model.name = this.formGroup.get("name")?.value;
+        return model;
     }
 
 }

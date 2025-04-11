@@ -3,6 +3,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { FormsModule } from "@angular/forms";
+import { QuestionTypeDto } from "../../../models/quiz/question-type-model";
 
 @Component({
     selector: "app-choose-question",
@@ -22,5 +23,7 @@ export class ChooseQuestionComponent {
     public onChooseClick(): void {
         this.dialogRef.close(this.selectedValue);
     }
+
+    protected QuestionTypeDto = QuestionTypeDto;
 
 }

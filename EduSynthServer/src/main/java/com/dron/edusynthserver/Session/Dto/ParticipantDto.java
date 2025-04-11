@@ -6,6 +6,6 @@ import lombok.Data;
 public class ParticipantDto
 {
     private String name;
-    private int Score;
+    private int score;
     private boolean isLeader;
 }

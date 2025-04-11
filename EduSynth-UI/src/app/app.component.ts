@@ -1,9 +1,9 @@
-import {Component, inject} from "@angular/core";
+import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterOutlet } from "@angular/router";
-import {UserService} from "../service/user.service";
-import {IUserInfo} from "../models/user-info";
-import {BaseComponent } from "../components/base.component";
+import { UserService } from "../service/user.service";
+import { BaseComponent } from "../components/base.component";
+import { IUser } from "../models/user/user-model";
 
 @Component({
     selector: "app-root",
@@ -14,7 +14,7 @@ import {BaseComponent } from "../components/base.component";
 })
 export class AppComponent extends BaseComponent {
 
-    private currentUserInfo: IUserInfo | null;
+    private currentUserInfo: IUser | null;
 
     constructor(public readonly userService: UserService) {
         super();

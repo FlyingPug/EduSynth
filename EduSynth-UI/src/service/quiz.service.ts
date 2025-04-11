@@ -1,61 +1,42 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { environment } from "../enviroment/enviroment.development";
-import { Query } from "../models/query";
-import { Observable } from "rxjs";
+import { inject, Injectable } from "@angular/core";
+import { Query } from "../models/common/query";
 import { QuizTitleModel } from "../models/quiz/quiz-title-model";
-import { Page } from "../models/page";
-import { Quiz } from "../models/quiz/quiz-model";
-import { Question } from "../models/quiz/quiz-question-model";
-import { Router } from "@angular/router";
+import { Page } from "../models/common/page";
+import { ApiClient } from "./api.service";
+import { QuizResponseDto } from "../models/quiz/response/quiz-response-model";
+import { QuizRequestDto } from "../models/quiz/request/quiz-request-model";
 
 @Injectable({
     providedIn: "root"
 })
 export class QuizService {
 
-    private apiQuiz: string = environment.apiUrl + "/public/quiz";
-    constructor(private http: HttpClient, private router: Router) { }
+    private apiQuiz: string = "/public/quiz";
+    private api = inject(ApiClient);
 
-    private quizData : Quiz | null = null;
+    public async getQuizTitles(query: Query) : Promise<Page<QuizTitleModel>> {
+        const result = await this.api.get<Page<QuizTitleModel>>(
+            this.apiQuiz + "/quizzes",
+            false,
+            null,
+            query
+        );
 
-    public getQuizTitles(query: Query) : Observable<Page<QuizTitleModel>> {
-        let params = new HttpParams();
-        params = params.append("page", query.pageNumber);
-        params = params.append("size", query.pageSize);
-
-        return this.http.get<Page<QuizTitleModel>>(this.apiQuiz + "/quizzes", { params: params });
+        return result;
     }
 
-    public createNewQuiz(name : string, description : string, isPublic : boolean, titleImageUrl : string): void {
-        this.quizData = new Quiz(name, description, titleImageUrl, isPublic);
+    public async createQuiz(quiz: QuizRequestDto): Promise<QuizResponseDto> {
+        const quizResponse = await this.api.post(this.apiQuiz, quiz);
+        return new QuizResponseDto(quizResponse);
     }
 
-    public addQuestion(question : Question): void {
-        this.quizData?.questions.push(question);
+    public async getQuiz(id: number) : Promise<QuizResponseDto> {
+        const quiz = await this.api.get(this.apiQuiz + `/${id}`);
+        return new QuizResponseDto(quiz);
     }
 
-    public finishQuizCreation(): void {
-        const jwtToken = localStorage.getItem("access-token"); // получаем токен из localStorage
-
-        const headers = new HttpHeaders({
-            "Authorization": `Bearer ${jwtToken}`
-        });
-
-        this.http.post<Quiz>(this.apiQuiz, this.quizData, { headers: headers }).subscribe(quiz => {
-            this.router.navigate(["/quiz/" + quiz.id]);
-        });
-        this.quizData = null;
-    }
-
-    public startQuiz(id: number): void {
-
-    }
-
-    public getQuiz(id: number) : Observable<Quiz> {
-        const url = `${this.apiQuiz}/${id}`;
-
-        return this.http.get<Quiz>(url);
+    public async deleteQuiz(id: number) : Promise<void> {
+        await this.api.delete(this.apiQuiz + `/${id}`);
     }
 
 }

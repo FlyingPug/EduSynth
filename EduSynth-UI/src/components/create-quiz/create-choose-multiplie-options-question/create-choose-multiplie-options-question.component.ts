@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { slideToLeftAnimation } from "../../../animations/slide-to-left";
 import { ImageUploadComponent } from "../../image-upload/image-upload.component";
 import { MatButtonModule } from "@angular/material/button";
@@ -13,7 +13,10 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
 import { QuestionCreator } from "../question-creator";
-import { QuestionType } from "../../../models/enums/question-type";
+import { QuizRequestDto } from "../../../models/quiz/request/quiz-request-model";
+import { ChooseQuestionComponent } from "../choose-question/choose-question.component";
+import { QuestionTypeDto } from "../../../models/quiz/question-type-model";
+import { MultipleChoiceQuestionRequestDto } from "../../../models/quiz/request/multiple-choice-question-request-model";
 
 @Component({
     selector: "app-create-choose-multiplie-options-question",
@@ -27,73 +30,100 @@ import { QuestionType } from "../../../models/enums/question-type";
 })
 export class CreateChooseMultiplieOptionsQuestionComponent extends QuestionCreator implements OnInit {
 
-  @Output() public questionCreated = new EventEmitter<any>();
+    public form = this.fb.group({
+        "questionText": new FormControl<string>("",
+            [Validators.required, Validators.maxLength(364), Validators.minLength(1)]),
+        "timeLimit": new FormControl<number>(60, [Validators.min(5)]),
+        answers: this.fb.array([])
+    });
 
-  public form = this.fb.group({
-      "questionText": new FormControl<string>("",
-          [Validators.required, Validators.maxLength(364), Validators.minLength(1)]),
-      "timeLimit": new FormControl<number>(60, [Validators.min(5)]),
-      answers: this.fb.array([])
-  });
+    public questionImageUrl: string = "";
 
-  public questionImageUrl: string = "";
+    public get answers(): FormArray {
+        return this.form.controls.answers as FormArray;
+    }
 
-  constructor(fb: FormBuilder, quizService: QuizService, router: Router, dialog: MatDialog, route: ActivatedRoute) {
-      super(fb, quizService, router, dialog, route);
-  }
+    public get questionText(): FormControl<string> {
+        return this.getFormControl(this.form, "questionText");
+    }
 
-  public override addQuestion(): void {
-      const answersArray = this.answers.controls.map(control => {
-          return { id: 0, mediaUrl: "", text: control.get("text")?.value, correct: control.get("isTrue")?.value };
-      });
+    public get timeLimit(): FormControl<number> {
+        return this.getFormControl(this.form, "timeLimit");
+    }
 
-      this.quizService.addQuestion(
-          {
-              id: 0,
-              text: this.questionText?.value,
-              mediaUrl: this.questionImageUrl,
-              type: QuestionType.MultipleOptions,
-              timeLimitSeconds: this.timeLimit?.value,
-              answers: answersArray,
-          }
-      );
-  }
+    private quizRequest: QuizRequestDto;
 
-  public addAnswer(): void {
-      if (this.answers.length < 6) {
-          const answerForm = this.fb.group({
-              text: ["", [ Validators.required, Validators.minLength(1)]],
-              isTrue: [false]
-          });
+    constructor(fb: FormBuilder, quizService: QuizService, router: Router, dialog: MatDialog, route: ActivatedRoute) {
+        super(fb, quizService, router, dialog, route);
+    }
 
-          this.answers.push(answerForm);
-      }
-  }
+    public ngOnInit(): void {
+        this.quizRequest = history.state?.data;
 
-  public removeAnswer(index: number): void {
-      if (this.answers.length > 1) {
-          this.answers.removeAt(index);
-      }
-  }
+        if (!this.quizRequest) {
+            this.router.navigate(["../"], {
+                relativeTo: this.route
+            });
+        }
 
-  public onTitleImageUrlGet($event: string): void {
-      this.questionImageUrl = $event;
-  }
+        this.addAnswer();
+    }
 
-  public get answers(): FormArray {
-      return this.form.controls.answers as FormArray;
-  }
+    public override addQuestion(): void {
+        const answersArray = this.answers.controls.map(control => {
+            return { mediaUrl: "", text: control.get("text")?.value, isCorrect: control.get("isTrue")?.value };
+        });
 
-  public get questionText(): FormControl<string> {
-      return this.form.get("questionText") as FormControl<string>;
-  }
+        const dialogRef = this.dialog.open(ChooseQuestionComponent);
 
-  public get timeLimit(): FormControl<number> {
-      return this.form.get("timeLimit") as FormControl<number>;
-  }
+        dialogRef.afterClosed().subscribe(result => {
 
-  public ngOnInit(): void {
-      this.addAnswer();
-  }
+            this.quizRequest.questions.push(new MultipleChoiceQuestionRequestDto({
+                text: this.questionText?.value,
+                mediaUrl: this.questionImageUrl,
+                questionType: QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS,
+                timeLimitSeconds: this.timeLimit?.value,
+                answers: answersArray,
+            }));
+
+            if (result in QuestionTypeDto){
+                this.router.navigate(["../" + result], {
+                    relativeTo: this.route,
+                    state:{ quizRequest: this.quizRequest }
+                });
+            }
+        });
+
+    }
+
+    public override async onCreateQuizClick(): Promise<void> {
+        const quiz = await this.quizService.createQuiz(this.quizRequest);
+
+        this.router.navigate(["quiz/" + quiz.id], {
+            relativeTo: this.route,
+            state:{ quizRequest: this.quizRequest }
+        });
+    }
+
+    public addAnswer(): void {
+        if (this.answers.length < 6) {
+            const answerForm = this.fb.group({
+                text: ["", [ Validators.required, Validators.minLength(1)]],
+                isTrue: [false]
+            });
+
+            this.answers.push(answerForm);
+        }
+    }
+
+    public removeAnswer(index: number): void {
+        if (this.answers.length > 1) {
+            this.answers.removeAt(index);
+        }
+    }
+
+    public onTitleImageUrlGet($event: string): void {
+        this.questionImageUrl = $event;
+    }
 
 }

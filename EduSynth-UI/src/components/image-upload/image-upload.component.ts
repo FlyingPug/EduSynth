@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { MatIcon, MatIconModule } from "@angular/material/icon";
+import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule, MatLabel } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
 import { UploadedFileModel } from "../../models/uploaded-file-model";
 import { environment } from "../../enviroment/enviroment.development";
 
@@ -19,13 +18,12 @@ export class ImageUploadComponent {
     @Input()
     public label = "Выберите иконку изображения:";
 
-    @Output()
-        onFileUploaded = new EventEmitter<string>();
+    @Output() public onFileUploaded = new EventEmitter<string>();
 
-    fileName: string = "";
+    public fileName: string = "";
     constructor(private http: HttpClient) {}
 
-    onFileSelected(event: Event) {
+    public onFileSelected(event: Event): void {
         const fileInput = event.target as HTMLInputElement;
         if (fileInput.files && fileInput.files.length > 0) {
             const file: File = fileInput?.files[0];

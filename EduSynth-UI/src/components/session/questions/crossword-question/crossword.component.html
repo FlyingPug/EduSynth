@@ -1,0 +1,54 @@
+<mat-card class="question-card crossword-card">
+  <div class="timer-container">
+    <ng-circle-countdown 
+      #timer 
+      [duration]="timeLimitSeconds"
+      [colors]="[ '#004777', '#F7B801', '#A30000', '#A30000' ]"
+    >
+    </ng-circle-countdown>
+  </div>
+
+  <mat-card-header>
+    <mat-card-title>{{ question.text }}</mat-card-title>
+  </mat-card-header>
+
+  <img *ngIf="question.mediaUrl" mat-card-image [src]="question.mediaUrl" alt="Question media">
+
+  <mat-card-content>
+    <div class="mobile-instruction" *ngIf="isMobile">
+      <mat-icon>touch_app</mat-icon>
+      <span>Нажимайте на клетки для ввода</span>
+    </div>
+
+    <div class="crossword-grid" [style.--cols]="maxX + 1" [style.--rows]="maxY + 1">
+      <ng-container *ngFor="let row of grid; let y = index">
+        <ng-container *ngFor="let cell of row; let x = index">
+          <div *ngIf="cell" 
+               class="crossword-cell"
+               [class.focused]="currentFocus?.x === x && currentFocus?.y === y"
+               [class.highlighted]="cell.isHighlighted">
+            <input matInput
+                   [id]="'cell-' + x + '-' + y"
+                   type="text"
+                   [formControl]="cell.control"
+                   [maxLength]="cell.length"
+                   (click)="focusCell(x, y)"
+                   (touchstart)="focusCell(x, y)"
+                   (keydown)="onCellKeydown($event, cell)"
+                   [style.width.px]="!isMobile ? cell.length * 32 + 16 : null">
+          </div>
+          <div *ngIf="!cell" class="empty-cell"></div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" 
+            (click)="submit()" 
+            [disabled]="isSubmitting">
+      <span *ngIf="!isSubmitting">Отправить ответ</span>
+      <mat-spinner *ngIf="isSubmitting" diameter="24"></mat-spinner>
+    </button>
+  </mat-card-actions>
+</mat-card>

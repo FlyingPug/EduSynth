@@ -1,0 +1,35 @@
+<mat-card class="question-card">
+  <div class="timer-container">
+    <ng-circle-countdown 
+      #timer 
+      [duration]="timeLimitSeconds"
+      [colors]="[ '#004777', '#F7B801', '#A30000', '#A30000' ]"
+    >
+    </ng-circle-countdown>
+  </div>
+
+  <mat-card-header>
+    <mat-card-title>{{ question.text }}</mat-card-title>
+  </mat-card-header>
+
+  <img *ngIf="question.mediaUrl" mat-card-image [src]="question.mediaUrl" alt="Question media">
+
+  <mat-card-content>
+    <mat-radio-group [formControl]="selectedAnswer" class="options">
+      <mat-radio-button *ngFor="let a of question.answers" 
+                       [value]="a.id"
+                       class="option">
+        {{ a.text }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" 
+            (click)="submit()" 
+            [disabled]="!selectedAnswer.value || isSubmitting">
+      <span *ngIf="!isSubmitting">Отправить</span>
+      <mat-spinner *ngIf="isSubmitting" diameter="24"></mat-spinner>
+    </button>
+  </mat-card-actions>
+</mat-card>

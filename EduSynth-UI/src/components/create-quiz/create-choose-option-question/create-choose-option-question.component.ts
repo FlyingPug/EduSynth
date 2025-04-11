@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { slideToLeftAnimation } from "../../../animations/slide-to-left";
 import { FormArray, FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CommonModule } from "@angular/common";
@@ -12,7 +12,10 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
 import { QuestionCreator } from "../question-creator";
-import { QuestionType } from "../../../models/enums/question-type";
+import { SingleChoiceQuestionRequestDto } from "../../../models/quiz/request/single-choise-question-request-model";
+import { QuestionTypeDto } from "../../../models/quiz/question-type-model";
+import { ChooseQuestionComponent } from "../choose-question/choose-question.component";
+import { QuizRequestDto } from "../../../models/quiz/request/quiz-request-model";
 
 @Component({
     selector: "app-create-choose-option-question",
@@ -25,8 +28,6 @@ import { QuestionType } from "../../../models/enums/question-type";
     animations: [slideToLeftAnimation],
 })
 export class CreateChooseOptionQuestionComponent extends QuestionCreator implements OnInit {
-
-    @Output() public questionCreated: EventEmitter<any> = new EventEmitter<any>();
 
     public form = this.fb.group({
         "questionText": new FormControl<string>("",
@@ -43,41 +44,69 @@ export class CreateChooseOptionQuestionComponent extends QuestionCreator impleme
     }
 
     public get questionText(): FormControl<string> {
-        return this.form.get("questionText") as FormControl<string>;
+        return this.getFormControl(this.form, "questionText");
     }
 
     public get timeLimit(): FormControl<number> {
-        return this.form.get("timeLimit") as FormControl<number>;
+        return this.getFormControl(this.form, "timeLimit");
     }
 
     public get trueIndex(): FormControl<number> {
-        return this.form.get("trueIndex") as FormControl<number>;
+        return this.getFormControl(this.form, "trueIndex");
     }
 
+    private quizRequest: QuizRequestDto;
+
     constructor(fb: FormBuilder, quizService: QuizService, router: Router, dialog: MatDialog, route: ActivatedRoute) {
-        super(fb, quizService, router, dialog, route); // Вызов конструктора родительского класса с помощью super
+        super(fb, quizService, router, dialog, route);
     }
 
     public ngOnInit(): void {
+        this.quizRequest = history.state?.data;
+
+        if (!this.quizRequest) {
+            this.router.navigate(["../"], {
+                relativeTo: this.route
+            });
+        }
+
         this.addAnswer();
     }
 
     public override addQuestion(): void {
         const trueIndex = this.trueIndex?.value;
         const answersArray = this.answers.controls.map((control, index) => {
-            return { id: 0, mediaUrl: "", text: control.get("text")?.value, correct: index == trueIndex };
+            return { mediaUrl: "", text: control.get("text")?.value, isCorrect: index == trueIndex };
         });
 
-        this.quizService.addQuestion(
-            {
-                id: 0,
+        const dialogRef = this.dialog.open(ChooseQuestionComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+
+            this.quizRequest.questions.push(new SingleChoiceQuestionRequestDto({
                 text: this.questionText?.value,
                 mediaUrl: this.questionImageUrl,
-                type: QuestionType.SingleOption,
+                questionType: QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS,
                 timeLimitSeconds: this.timeLimit?.value,
                 answers: answersArray,
+            }));
+
+            if (result in QuestionTypeDto){
+                this.router.navigate(["../" + result], {
+                    relativeTo: this.route,
+                    state:{ quizRequest: this.quizRequest }
+                });
             }
-        );
+        });
+    }
+
+    public override async onCreateQuizClick(): Promise<void> {
+        const quiz = await this.quizService.createQuiz(this.quizRequest);
+
+        this.router.navigate(["quiz/" + quiz.id], {
+            relativeTo: this.route,
+            state:{ quizRequest: this.quizRequest }
+        });
     }
 
     public addAnswer(): void {

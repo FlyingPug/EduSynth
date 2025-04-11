@@ -1,0 +1,66 @@
+<div class="container">
+  <ng-container [ngSwitch]="sessionState$ | async">>
+    <div *ngSwitchCase="SessionStatus.WAITING">
+      <app-lobby [sessionState$]="sessionState$"></app-lobby>
+    </div>
+
+    <div *ngSwitchCase="SessionStatus.STARTED">
+      <ng-container *ngIf="(sessionState$ | async) as sessionState">
+        <ng-container [ngSwitch]="session.quiz.questions[sessionState.currentQuestionIndex].questionType">
+          
+          <div *ngSwitchCase="QuestionTypeDto.INPUT_TEXT">
+            <app-text-input-question 
+              [question]="textInputQuestion"
+              [sessionCode]="session.id"
+            >
+            </app-text-input-question>
+          </div>
+
+          <div *ngSwitchCase="QuestionTypeDto.CHRONO">
+            <app-chrono-question 
+              [question]="chronoQuestion"
+              [sessionCode]="session.id"
+            >
+            </app-chrono-question>
+          </div>
+
+          <div *ngSwitchCase="QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS">
+            <app-multiple-choice-question 
+              [question]="multipleChoiceQuestion"
+              [sessionCode]="session.id"
+            >
+            </app-multiple-choice-question>
+          </div>
+
+          <div *ngSwitchCase="QuestionTypeDto.CROSSWORD">
+            <app-crossword-question 
+              [question]="crosswordQuestion"
+              [sessionCode]="session.id"
+            >
+            </app-crossword-question>
+          </div>
+
+          <div *ngSwitchCase="QuestionTypeDto.CHOOSE_OPTION">
+            <app-single-choice-question 
+              [question]="singleChoiceQuestion"
+              [sessionCode]="session.id"
+            >
+            </app-single-choice-question>
+          </div>
+
+          <div *ngSwitchDefault>
+            <p>Unknown question type</p>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <div *ngSwitchCase="SessionStatus.ENDED">
+      <app-result [sessionState$]="sessionState$"></app-result>
+    </div>
+
+    <div *ngSwitchDefault>
+      <p>Session is not available</p>
+    </div>
+  </ng-container>
+</div>

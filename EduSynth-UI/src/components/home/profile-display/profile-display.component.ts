@@ -1,9 +1,6 @@
-import { Component, Input } from "@angular/core";
-import { IUserInfo } from "../../../models/user-info";
-import { BehaviorSubject, Observable } from "rxjs";
-import { Router } from "@angular/router";
-import { AuthService } from "../../../service/auth.service";
-import {UserService} from "../../../service/user.service";
+import { Component } from "@angular/core";
+import { UserService } from "../../../service/user.service";
+import { IUser } from "../../../models/user/user-model";
 
 @Component({
     selector: "app-profile-display",
@@ -14,7 +11,7 @@ import {UserService} from "../../../service/user.service";
 })
 export class ProfileDisplayComponent {
 
-    public myUser : Promise<IUserInfo>;
+    public myUser : Promise<IUser>;
 
     private profilePictureUrl : string = "/assets/images/profile_pic.png";
     public name : string = "User";

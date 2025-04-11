@@ -42,7 +42,7 @@ public class AuthController
     }
 
     @GetMapping(path = EduSynthUrl.CURRENT_USER_PROFILE)
-    public UserDto GetCurrentUserProfile() {
+    public UserDto getCurrentUserProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userMapper.toDTO((User)authentication.getPrincipal());
     }

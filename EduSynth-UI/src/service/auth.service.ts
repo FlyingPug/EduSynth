@@ -1,16 +1,13 @@
 import { inject, Injectable } from "@angular/core";
-import { AuthInfo } from "../models/auth.info";
+import { AuthInfo } from "../models/user/auth.info";
 import { environment } from "../enviroment/enviroment.development";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Router } from "@angular/router";
-import { ITokenResult, TokenResult } from "../models/token-result";
-import { BehaviorSubject, EMPTY, map, Observable } from "rxjs";
-import { LoginModel } from "../models/login-model";
-import { RegisterModel } from "../models/register-model";
-import { IUserInfo, UserInfo } from "../models/user-info";
-import { Location } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { map, Observable } from "rxjs";
+import { LoginModel } from "../models/user/login-model";
+import { RegisterModel } from "../models/user/register-model";
 import { StompHeaders } from "@stomp/stompjs";
 import { UserCredentials } from "../models/user/UserCredentials";
+import { IUser } from "../models/user/user-model";
 
 @Injectable({
     providedIn: "root"
@@ -41,19 +38,19 @@ export class AuthService {
     }
 
     public login(model: LoginModel): Observable<void> {
-        return this.http.post<IUserInfo>(this.apiAuth + "login", model).pipe(map((result: IUserInfo) => {
+        return this.http.post<IUser>(this.apiAuth + "login", model).pipe(map((result: IUser) => {
             AuthService.auth(result.token);
         }));
     }
 
     public register(model: RegisterModel): Observable<void> {
-        return this.http.post<IUserInfo>(this.apiAuth + "register", model).pipe(map((result: IUserInfo) => {
+        return this.http.post<IUser>(this.apiAuth + "register", model).pipe(map((result: IUser) => {
             AuthService.auth(result.token);
         }));
     }
 
     public changeCredentials(newCredentials : UserCredentials): Observable<void> {
-        return this.http.put<IUserInfo>(this.apiAuth + "user", newCredentials).pipe(map((result: IUserInfo) => {
+        return this.http.put<IUser>(this.apiAuth + "user", newCredentials).pipe(map((result: IUser) => {
             AuthService.auth(result.token);
         }));
     }

@@ -1,17 +1,17 @@
-import { Component, inject, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, inject, Input, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { SessionService } from "../../../service/session.service";
-import { SessionInfo } from "../../../models/session/session-info";
 import { MatDividerModule } from "@angular/material/divider";
 import { CommonModule } from "@angular/common";
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
 import { QrCodeModule } from "ng-qrcode";
 import { MatButtonModule } from "@angular/material/button";
-import { AuthService } from "../../../service/auth.service";
-import { SessionShortInfo } from "../../../models/session/session-short-info";
 import { BehaviorSubject } from "rxjs";
-import { ParticipantInfo } from "../../../models/session/participant-info";
+import { ParticipantDto } from "../../../models/session/participant-model";
+import { UserService } from "../../../service/user.service";
+import { BaseComponent } from "../../base.component";
+import { SessionStateDto } from "../../../models/session/session-state-model";
 
 @Component({
     selector: "app-lobby",
@@ -20,50 +20,57 @@ import { ParticipantInfo } from "../../../models/session/participant-info";
     templateUrl: "./lobby.component.html",
     styleUrl: "./lobby.component.css"
 })
-export class LobbyComponent implements OnInit {
+export class LobbyComponent extends BaseComponent implements OnInit {
 
     private route = inject(ActivatedRoute);
     private sessionService = inject(SessionService);
-    private authService = inject(AuthService);
+    private userService = inject(UserService);
+    private router = inject(Router);
 
-    public session: SessionInfo | null = null;
-    public participant: ParticipantInfo;
-    public sessionState$: BehaviorSubject<SessionShortInfo | null>;
-    private sub: any;
+    @Input() public sessionState$ : BehaviorSubject<SessionStateDto | null>;
+
+    public participant: ParticipantDto;
+
     private code: string = "";
+    public loading = false;
 
-    constructor(
-    ) {
-        this.sessionState$ = this.sessionService.currentSessionState;
-    }
-
-    public GetLink(): string {
+    public get sessionLink(): string {
         return window.location.href;
     }
 
+    public get isLeader(): boolean | undefined {
+        return this.participant.leader;
+    }
+
     public async ngOnInit(): Promise<void> {
-        this.participant = await this.sessionService.getUserParticipant();
 
-        this.sub = this.route.params.subscribe(params => {
-            this.code = params["code"];
-            this.session = this.sessionService.currentSession;
+        const participantDto = await this.getSessionParticipant();
 
-            this.sessionState$.subscribe(session => {
-                console.log("updating", session);
-            });
-        });
+        if (participantDto) {
+            this.participant = participantDto;
+        } else {
+            this.goBack();
+        }
     }
 
     public async copyLink(): Promise<void> {
-        await navigator.clipboard.writeText(this.GetLink());
+        await navigator.clipboard.writeText(this.sessionLink);
     }
 
     public startSession(): void {
-        this.sessionService.startSession();
+        this.sessionService.startSession(this.code);
     }
 
-    public isLeader(): boolean | undefined {
-        return this.participant.leader;
+    private goBack(): void {
+        this.router.navigate(["../"], {
+            relativeTo: this.route
+        });
+    }
+
+    private async getSessionParticipant(): Promise<ParticipantDto | undefined> {
+        const user = await this.userService.getCurrentUserInfo();
+
+        return this.sessionState$.value?.participants.find(participant => participant.name == user.username);
     }
 
 }

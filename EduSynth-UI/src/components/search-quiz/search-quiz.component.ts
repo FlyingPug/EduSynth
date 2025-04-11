@@ -1,13 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { QuizService } from "../../service/quiz.service";
-import { Query } from "../../models/query";
+import { Query } from "../../models/common/query";
 import { QuizTitleModel } from "../../models/quiz/quiz-title-model";
 import { ScrollDirectiveDirective } from "../../directives/scroll-directive.directive";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { CommonModule } from "@angular/common";
-import { Page } from "../../models/page";
+import { Page } from "../../models/common/page";
 import { SessionService } from "../../service/session.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-search-quiz",
@@ -17,6 +18,8 @@ import { SessionService } from "../../service/session.service";
     styleUrl: "./search-quiz.component.css"
 })
 export class SearchQuizComponent implements OnInit {
+
+    private readonly router = inject(Router);
 
     public query: Query = {
         pageNumber: 0,
@@ -28,30 +31,32 @@ export class SearchQuizComponent implements OnInit {
     public currentPage: Page<QuizTitleModel> | null = null;
     constructor(private readonly quizService: QuizService, private readonly sessionService: SessionService) {}
 
-    ngOnInit(): void {
-        this.loadQuizes();
+    public ngOnInit(): void {
+        this.loadQuizzes();
     }
 
-    public scrolledToEndHandler() {
+    public scrolledToEndHandler(): void {
         if (!this.isLoading) {
             this.query.pageNumber++;
         } else {
             return;
         }
-        this.loadQuizes();
+        this.loadQuizzes();
     }
 
-    private loadQuizes() {
+    private async loadQuizzes(): Promise<void> {
         this.isLoading = true;
-        this.quizService.getQuizTitles(this.query).subscribe((value: Page<QuizTitleModel>) => {
-            this.currentPage = value;
-            this.quizArray.push(...value.content);
+        try {
+            this.currentPage = await this.quizService.getQuizTitles(this.query);
+            this.quizArray.push(...this.currentPage.content);
+        } finally {
             this.isLoading = false;
-        });
+        }
     }
 
-    public launchTest(id : number) {
-        this.sessionService.createSession(id);
+    public async launchTest(id : number): Promise<void> {
+        const session = await this.sessionService.createSession(id);
+        this.router.navigate(["/session", session.id]);
     }
 
 }

@@ -9,7 +9,10 @@ import { QuizService } from "../../../service/quiz.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { QuestionCreator } from "../question-creator";
-import { QuestionType } from "../../../models/enums/question-type";
+import { QuestionTypeDto } from "../../../models/quiz/question-type-model";
+import { TextInputQuestionRequestDto } from "../../../models/quiz/request/text-input-question-request-model";
+import { QuizRequestDto } from "../../../models/quiz/request/quiz-request-model";
+import { ChooseQuestionComponent } from "../choose-question/choose-question.component";
 
 @Component({
     selector: "app-create-input-text-question",
@@ -49,8 +52,20 @@ export class CreateInputTextQuestionComponent extends QuestionCreator {
         return this.form.get("answer") as FormControl<string>;
     }
 
+    private quizRequest: QuizRequestDto;
+
     constructor(fb: FormBuilder, quizService: QuizService, router: Router, dialog: MatDialog, route: ActivatedRoute) {
         super(fb, quizService, router, dialog, route);
+    }
+
+    public ngOnInit(): void {
+        this.quizRequest = history.state?.data;
+
+        if (!this.quizRequest) {
+            this.router.navigate(["../"], {
+                relativeTo: this.route
+            });
+        }
     }
 
     public onTitleImageUrlGet($event: string): void {
@@ -59,16 +74,35 @@ export class CreateInputTextQuestionComponent extends QuestionCreator {
 
     public override addQuestion(): void {
         const answer = this.answer?.value;
-        this.quizService.addQuestion(
-            {
-                id: 0,
+
+        const dialogRef = this.dialog.open(ChooseQuestionComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+
+            this.quizRequest.questions.push(new TextInputQuestionRequestDto({
                 text: this.questionText?.value,
                 mediaUrl: this.questionImageUrl,
-                type: QuestionType.InputAnswer,
+                questionType: QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS,
                 timeLimitSeconds: this.timeLimit?.value,
-                answers: [{ id: 0, text: answer, mediaUrl:"", correct: true }],
+                correctAnswer: answer,
+            }));
+
+            if (result in QuestionTypeDto){
+                this.router.navigate(["../" + result], {
+                    relativeTo: this.route,
+                    state:{ quizRequest: this.quizRequest }
+                });
             }
-        );
+        });
+    }
+
+    public override async onCreateQuizClick(): Promise<void> {
+        const quiz = await this.quizService.createQuiz(this.quizRequest);
+
+        this.router.navigate(["quiz/" + quiz.id], {
+            relativeTo: this.route,
+            state:{ quizRequest: this.quizRequest }
+        });
     }
 
 }

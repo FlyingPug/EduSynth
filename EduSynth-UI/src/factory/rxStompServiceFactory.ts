@@ -1,20 +1,15 @@
 import { RxStompConfig } from "@stomp/rx-stomp";
 import { RxStompService } from "../service/rx-stomp-service";
-import { AuthService } from "../service/auth.service";
-import { inject } from "@angular/core";
 
-export function rxStompServiceFactory() {
+export function rxStompServiceFactory(): RxStompService {
     const rxStomp = new RxStompService();
 
-    const authService = inject(AuthService);
     const location = window.location;
     const protocol = location.protocol === "https:" ? "wss://" : "ws://";
     const host = location.hostname;
     const port = location.port !== "80" ? `:${location.port}` : "";
     const wsUrl = `${protocol}${host}${port}/ws`;
 
-    const headers = authService.stompHeader;
-    console.log("rxStompServiceFactory начинаю соединение с сервером ws");
     const myRxStompConfig: RxStompConfig = {
         brokerURL: wsUrl,
         heartbeatIncoming: 0,

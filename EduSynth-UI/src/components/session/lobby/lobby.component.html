@@ -1,12 +1,12 @@
-<div class="lobby-content"  *ngIf="this.session && this.session.quiz && this.sessionState$ | async as sessionState">
+<div class="lobby-content"  *ngIf="!loading">
   <div class="quiz-header">
-  <h2>{{session!.quiz!.title}}</h2>
+  <h2>Ожидаем участников...</h2>
   </div>
   <mat-divider></mat-divider>
   <div class="info-container">
-    <mat-list>
+    <mat-list *ngIf="sessionState$.value">
       <div mat-subheader>Участники</div>
-      <div *ngFor="let participant of sessionState.participantDtoList">
+      <div *ngFor="let participant of sessionState$.value.participants">
         <mat-list-item>
           <mat-icon matListItemIcon>person</mat-icon>
           <div matListItemTitle>{{participant.name}}</div>
@@ -15,21 +15,19 @@
     </mat-list>
     <div class="qr-code">
       <qr-code
-        [value]="GetLink()"
+        [value]="sessionLink"
         errorCorrectionLevel="L">
       </qr-code>
       <button mat-button (click)="copyLink()"><mat-icon>link</mat-icon>Копировать</button>
     </div>
   </div>
   <div class="bottom-content">
-    <div *ngIf="session">
-    <div *ngIf="!isLeader(); else notLeader">
+    <div *ngIf="!isLeader; else notLeader">
       <p>Ожидаем начала тестирования...</p>
     </div>
     <ng-template #notLeader>
       <button mat-raised-button #button color="primary"  (click)="startSession()">Начать игру</button>
     </ng-template>
-  </div>
   </div>
 </div>
 <ng-template #elseBlock>Что-то пошло не так</ng-template>

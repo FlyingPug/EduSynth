@@ -1,5 +1,7 @@
 export enum QuestionType {
-    MultipleOptions = "choose_mult_options",
-    SingleOption = "choose_option",
-    InputAnswer = "input_text",
+    INPUT_TEXT = "INPUT_TEXT",
+    CHRONO = "CHRONO",
+    CHOOSE_MULTIPLE_OPTIONS = "MULTIPLE",
+    CROSSWORD = "CROSSWORD",
+    CHOOSE_OPTION = "CHOOSE_OPTION",
 }

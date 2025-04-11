@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
-import { IUserInfo } from "../models/user-info";
 import { ApiClient } from "./api.service";
+import { User } from "../models/user/user-model";
 
 @Injectable({ providedIn: "root" })
 export class UserService {
@@ -9,8 +9,8 @@ export class UserService {
 
     private userAPI: string = "/public/user";
 
-    public async getCurrentUserInfo(): Promise<IUserInfo> {
-        return await this.apiClient.get<IUserInfo>(this.userAPI);
+    public async getCurrentUserInfo(): Promise<User> {
+        return await this.apiClient.get<User>(this.userAPI);
     }
 
 }

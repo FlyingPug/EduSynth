@@ -1,9 +1,10 @@
 import { EventEmitter, inject, Injectable, NgZone } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from "@angular/common/http";
 import { Observable, Subscription } from "rxjs";
 import { Router } from "@angular/router";
 import { environment } from "../enviroment/enviroment.development";
 import {AuthService} from "./auth.service";
+import { Query } from "../models/common/query";
 
 @Injectable({ providedIn: "root" })
 export class ApiClient {
@@ -18,22 +19,40 @@ export class ApiClient {
         this.apiRoot = environment.apiUrl;
     }
 
-    public get<TResult = any>(url: string, full: boolean = false, cancellationToken: EventEmitter<void> | null = null): Promise<TResult> {
-        const observable = this.http.get(
+    public get<TResult = any>(
+        url: string,
+        full: boolean = false,
+        cancellationToken: EventEmitter<void> | null = null,
+        query?: Query
+    ): Promise<TResult> {
+        let params = new HttpParams();
+
+        if (query) {
+            if (query.pageNumber !== undefined) {
+                params = params.append("page", query.pageNumber.toString());
+            }
+            if (query.pageSize !== undefined) {
+                params = params.append("size", query.pageSize.toString());
+            }
+        }
+
+        const observable = this.http.get<TResult>(
             this.getUrl(url),
             {
                 headers: this.getHeaders(),
                 observe: "response",
-            }) as any as Observable<HttpResponse<TResult>>;
+                params, // Передаём параметры в запрос
+            }
+        ) as Observable<HttpResponse<TResult>>;
+
         return this.subscribe<TResult>(observable, full, cancellationToken);
     }
 
-    public delete(url: string, body: unknown): Promise<any> {
+    public delete(url: string): Promise<any> {
         const observable = this.http.delete(
             this.getUrl(url),
             {
                 headers: this.getHeaders(),
-                body: JSON.stringify(body),
                 observe: "response"
             });
         return this.subscribe(observable);

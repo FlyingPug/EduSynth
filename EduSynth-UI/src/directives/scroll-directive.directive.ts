@@ -1,10 +1,11 @@
-import {Directive, ElementRef, EventEmitter, HostListener, inject, Input, Output} from "@angular/core";
+import { Directive, ElementRef, EventEmitter, HostListener, inject, Input, Output } from "@angular/core";
 
 @Directive({
     selector: "[appScrollDirective]",
     standalone: true
 })
 export class ScrollDirectiveDirective {
+
     @Input() public pixelLimit: number = 200;
     @Output() public scrolledToEnd: EventEmitter<void> = new EventEmitter();
 

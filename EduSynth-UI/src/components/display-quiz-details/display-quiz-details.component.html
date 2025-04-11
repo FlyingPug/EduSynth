@@ -13,7 +13,16 @@
       </p>
     </mat-card-content>
     <mat-card-actions class="card-actions">
-      <button color="primary" mat-button (click)="launchTest(quiz ? quiz.id : 0)">Играть</button>
+      <button 
+        color="primary" 
+        mat-button 
+        (click)="launchTest()"
+        [disabled]="!quiz.id"
+        matTooltip="{{ !quiz.id ? 'Не выбран квиз для запуска' : '' }}"
+      >
+        Играть
+      </button>
+      <span *ngIf="!quiz?.id" class="error-message">Ошибка: не выбран квиз для запуска</span>
     </mat-card-actions>
   </mat-card>
 </div>

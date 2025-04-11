@@ -1,17 +1,16 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { MatCheckbox } from "@angular/material/checkbox";
-import { Quiz } from "../../models/quiz/quiz-model";
-import { QuizService } from "../../service/quiz.service";
-import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { ChooseQuestionComponent } from "./choose-question/choose-question.component";
 import { ImageUploadComponent } from "../image-upload/image-upload.component";
 import { slideToLeftAnimation } from "../../animations/slide-to-left";
-import { environment } from "../../enviroment/enviroment.development";
+import { IQuizRequestDto } from "../../models/quiz/request/quiz-request-model";
+import { QuestionTypeDto } from "../../models/quiz/question-type-model";
+import { MatCheckbox } from "@angular/material/checkbox";
 
 @Component({
     selector: "app-create-quiz",
@@ -23,7 +22,9 @@ import { environment } from "../../enviroment/enviroment.development";
 })
 export class CreateQuizComponent {
 
-    private imageUrl: string = "";
+    private dialog: MatDialog = inject(MatDialog);
+    private router: Router = inject(Router);
+    private route: ActivatedRoute = inject(ActivatedRoute);
 
     public formGroup: FormGroup = new FormGroup(
         {
@@ -38,27 +39,34 @@ export class CreateQuizComponent {
     public get description() : FormControl<string> { return this.formGroup.get("description") as FormControl<string>; }
     public get isPublic() : FormControl<boolean> { return this.formGroup.get("isPublic") as FormControl<boolean>; }
 
-    onTitleImageUrlGet(imageUrl : string) {
+    public onTitleImageUrlGet(imageUrl : string): void {
         this.imageUrl = imageUrl;
     }
 
-    constructor(private quizService : QuizService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
-    }
+    private imageUrl: string = "";
 
-    onCreateQuizClick() {
-        this.quizService.createNewQuiz(this.formGroup.get("name")?.value,
-            this.formGroup.get("description")?.value,
-            this.formGroup.get("isPublic")?.value,
-            this.imageUrl
-        );
-
+    public onCreateQuizClick(): void {
+        const quizRequest = this.createQuizRequest();
         const dialogRef = this.dialog.open(ChooseQuestionComponent);
 
         dialogRef.afterClosed().subscribe(result => {
-            if (result === environment.choose_option || result === environment.choose_mult_options || result === environment.input_text) {
-                this.router.navigate(["../" + result], { relativeTo: this.route });
+            if (result in QuestionTypeDto){
+                this.router.navigate(["../" + result], {
+                    relativeTo: this.route,
+                    state:{ quizRequest: quizRequest }
+                });
             }
         });
+    }
+
+    private createQuizRequest(): IQuizRequestDto {
+        return {
+            title: this.formGroup.get("name")?.value,
+            description: this.formGroup.get("description")?.value,
+            isPublic: this.formGroup.get("isPublic")?.value,
+            titleMediaUrl: this.imageUrl,
+            questions: []
+        };
     }
 
 }

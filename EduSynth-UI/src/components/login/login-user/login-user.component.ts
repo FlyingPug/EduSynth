@@ -5,7 +5,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { AuthService } from "../../../service/auth.service";
-import { LoginModel } from "../../../models/login-model";
+import { LoginModel } from "../../../models/user/login-model";
 import { MatButtonModule } from "@angular/material/button";
 import { Router } from "@angular/router";
 
@@ -44,8 +44,7 @@ export class LoginUserComponent {
     private router = inject(Router);
 
     public onLoginClicked(): void {
-        const model = new LoginModel();
-        model.populateFromFormGroup(this.formGroup);
+        const model = this.createLoginModel();
         this.errorMessage = "";
         this.authService.login(model).subscribe({
             next: () => {
@@ -59,6 +58,13 @@ export class LoginUserComponent {
                 }
             }
         });
+    }
+
+    private createLoginModel(): LoginModel {
+        const model = new LoginModel();
+        model.email = this.formGroup.get("email")?.value;
+        model.password = this.formGroup.get("password")?.value;
+        return model;
     }
 
 }
