@@ -12,15 +12,14 @@
 {
   vertical-align: middle;
 }
+
 .file-upload {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
 
-.file-upload .upload-btn {
 }
 
 .file-upload mat-label {

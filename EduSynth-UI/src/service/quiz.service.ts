@@ -11,7 +11,7 @@ import { QuizRequestDto } from "../models/quiz/request/quiz-request-model";
 })
 export class QuizService {
 
-    private apiQuiz: string = "/public/quiz";
+    private apiQuiz: string = "/private/quiz";
     private api = inject(ApiClient);
 
     public async getQuizTitles(query: Query) : Promise<Page<QuizTitleModel>> {

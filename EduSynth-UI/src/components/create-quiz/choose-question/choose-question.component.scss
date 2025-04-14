@@ -1,10 +1,19 @@
-.container
-{
-  width: auto;
-  height:30rem;
+
+.container {
   display: flex;
   align-content: center;
   flex-direction: column;
+  max-height: 40rem;
+  overflow-y: auto; 
+  padding: 16px;
+  gap: 16px;
+}
+
+.toggle-group {
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .center button {

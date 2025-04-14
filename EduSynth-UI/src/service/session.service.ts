@@ -16,7 +16,7 @@ export class SessionService {
     private api = inject(ApiClient);
     private rxStompService = inject(RxStompService);
 
-    private apiSession: string = "/public/session";
+    private apiSession: string = "/private/session";
 
     public async createSession(quizId : number) : Promise<SessionDto> {
         const data = await this.api.post(this.apiSession + "/create", quizId);

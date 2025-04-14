@@ -1,4 +1,4 @@
-package com.dron.edusynthserver.Exceptions.Model;
+package com.dron.edusynthserver.Exceptions.Handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

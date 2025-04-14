@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, ApplicationConfig } from "@angular/core";
-import { provideRouter, RouteReuseStrategy } from "@angular/router";
+import { provideRouter, RouteReuseStrategy, withHashLocation } from "@angular/router";
 
 import { routes } from "./app.routes";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
@@ -12,7 +12,7 @@ import { SessionService } from "../service/session.service";
 import { authInterceptor } from "../interceptors/auth.interceptor";
 
 export const appConfig: ApplicationConfig = {
-    providers: [SessionService, provideRouter(routes), provideAnimationsAsync(), provideHttpClient(withInterceptors([authInterceptor])), provideAnimationsAsync(), {
+    providers: [SessionService, provideRouter(routes, withHashLocation()), provideAnimationsAsync(), provideHttpClient(withInterceptors([authInterceptor])), provideAnimationsAsync(), {
         provide: APP_INITIALIZER,
         useFactory: initializeAppFactory,
         multi: true,

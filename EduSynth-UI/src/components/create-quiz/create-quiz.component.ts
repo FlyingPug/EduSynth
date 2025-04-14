@@ -17,7 +17,7 @@ import { MatCheckbox } from "@angular/material/checkbox";
     standalone: true,
     imports: [ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, MatCheckbox, ImageUploadComponent],
     templateUrl: "./create-quiz.component.html",
-    styleUrl: "./create-quiz.component.css",
+    styleUrl: "./create-quiz.component.scss",
     animations: [slideToLeftAnimation]
 })
 export class CreateQuizComponent {
@@ -49,10 +49,9 @@ export class CreateQuizComponent {
         const quizRequest = this.createQuizRequest();
         const dialogRef = this.dialog.open(ChooseQuestionComponent);
 
-        dialogRef.afterClosed().subscribe(result => {
-            if (result in QuestionTypeDto){
-                this.router.navigate(["../" + result], {
-                    relativeTo: this.route,
+        dialogRef.afterClosed().subscribe(async result => {
+            if (Object.values(QuestionTypeDto).includes(result as QuestionTypeDto)){
+                await this.router.navigate([result], {
                     state:{ quizRequest: quizRequest }
                 });
             }

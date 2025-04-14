@@ -7,7 +7,7 @@ export class UserService {
 
     private apiClient = inject(ApiClient);
 
-    private userAPI: string = "/public/user";
+    private userAPI: string = "/private/user";
 
     public async getCurrentUserInfo(): Promise<User> {
         return await this.apiClient.get<User>(this.userAPI);

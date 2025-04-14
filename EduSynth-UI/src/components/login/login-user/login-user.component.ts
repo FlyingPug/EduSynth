@@ -43,21 +43,19 @@ export class LoginUserComponent {
     private authService = inject(AuthService);
     private router = inject(Router);
 
-    public onLoginClicked(): void {
+    public async onLoginClicked(): Promise<void> {
         const model = this.createLoginModel();
         this.errorMessage = "";
-        this.authService.login(model).subscribe({
-            next: () => {
-                this.router.navigate(["/game"]);
-            },
-            error: error => {
-                if (error.status === 401) {
-                    this.errorMessage = "Неправильный логин или пароль";
-                } else {
-                    this.errorMessage = error.message || "Произошла ошибка при входе в систему";
-                }
+        try {
+            await this.authService.login(model);
+            this.router.navigate(["/game"]);
+        } catch(error: any) {
+            if (error.status === 401) {
+                this.errorMessage = "Неправильный логин или пароль";
+            } else {
+                this.errorMessage = error.message || "Произошла ошибка при входе в систему";
             }
-        });
+        }
     }
 
     private createLoginModel(): LoginModel {

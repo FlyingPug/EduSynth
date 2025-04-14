@@ -1,23 +1,21 @@
 import { inject, Injectable } from "@angular/core";
 import { AuthInfo } from "../models/user/auth.info";
-import { environment } from "../enviroment/enviroment.development";
-import { HttpClient } from "@angular/common/http";
-import { map, Observable } from "rxjs";
 import { LoginModel } from "../models/user/login-model";
 import { RegisterModel } from "../models/user/register-model";
 import { StompHeaders } from "@stomp/stompjs";
 import { UserCredentials } from "../models/user/UserCredentials";
 import { IUser } from "../models/user/user-model";
+import { ApiClient } from "./api.service";
 
 @Injectable({
     providedIn: "root"
 })
 export class AuthService {
 
-    private http = inject(HttpClient);
+    private api = inject(ApiClient);
 
     private static authenticated = true;
-    private apiAuth: string = environment.apiUrl + "/public/auth/";
+    private apiAuth: string = "/public/auth/";
 
     public static isAuthorized(): boolean {
         return AuthService.authenticated;
@@ -37,22 +35,20 @@ export class AuthService {
         return token;
     }
 
-    public login(model: LoginModel): Observable<void> {
-        return this.http.post<IUser>(this.apiAuth + "login", model).pipe(map((result: IUser) => {
-            AuthService.auth(result.token);
-        }));
+    public async login(model: LoginModel): Promise<void> {
+        const result = await this.api.post(this.apiAuth + "login", model);
+        AuthService.auth(result.token);
     }
 
-    public register(model: RegisterModel): Observable<void> {
-        return this.http.post<IUser>(this.apiAuth + "register", model).pipe(map((result: IUser) => {
-            AuthService.auth(result.token);
-        }));
+    public async register(model: RegisterModel): Promise<IUser> {
+        const user = await this.api.post(this.apiAuth + "register", model);
+        AuthService.auth(user.token);
+        return user;
     }
 
-    public changeCredentials(newCredentials : UserCredentials): Observable<void> {
-        return this.http.put<IUser>(this.apiAuth + "user", newCredentials).pipe(map((result: IUser) => {
-            AuthService.auth(result.token);
-        }));
+    public async changeCredentials(newCredentials : UserCredentials): Promise<void> {
+        const result = await this.api.put(this.apiAuth + "user", newCredentials);
+        AuthService.auth(result.token);
     }
 
     private static auth(token: string): void {
@@ -67,7 +63,6 @@ export class AuthService {
     }
 
     private static updateTokens(authInfo: AuthInfo | null): void {
-        // localStorage - хранилище в браузере хранящее информацию до 5мб
         if (!authInfo) {
             localStorage.removeItem("access-token");
             localStorage.removeItem("refresh-token");

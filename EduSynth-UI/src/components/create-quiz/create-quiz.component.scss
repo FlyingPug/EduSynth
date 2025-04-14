@@ -4,4 +4,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .action {
+    width: 100%;
+  }
 }

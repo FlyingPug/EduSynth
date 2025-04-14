@@ -59,7 +59,7 @@ export class CreateInputTextQuestionComponent extends QuestionCreator {
     }
 
     public ngOnInit(): void {
-        this.quizRequest = history.state?.data;
+        this.quizRequest = history.state?.quizRequest;
 
         if (!this.quizRequest) {
             this.router.navigate(["../"], {

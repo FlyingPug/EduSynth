@@ -1,6 +1,6 @@
 package com.dron.edusynthserver.User.Service.impl;
 
-import com.dron.edusynthserver.Exceptions.IncorrectCredentials;
+import com.dron.edusynthserver.Exceptions.IncorrectCredentialsException;
 import com.dron.edusynthserver.Exceptions.NotFoundException;
 import com.dron.edusynthserver.Exceptions.UserAlreadyExistsException;
 import com.dron.edusynthserver.User.Dto.CredentialsDto;
@@ -12,8 +12,6 @@ import com.dron.edusynthserver.User.Service.PasswordEncoderService;
 import com.dron.edusynthserver.User.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
         if (user.isEmpty() || !passwordEncoderService.VerifyHash(credentialsDto.password(), user.get().getSalt(), user.get().getPasswordHash()))
         {
-            throw new IncorrectCredentials();
+            throw new IncorrectCredentialsException();
         }
 
         return user.get();
@@ -62,6 +60,7 @@ public class UserServiceImpl implements UserService {
                 .passwordHash(passwordEncoderService.CalculateHash(userDto.password(), salt))
                 .username(userDto.name())
                 .role(userDto.role())
+                .profilePictureUrl("")
                 .build();
 
         return userRepository.save(user);
@@ -75,6 +74,7 @@ public class UserServiceImpl implements UserService {
                 .email("")
                 .salt("")
                 .passwordHash("")
+                .profilePictureUrl("")
                 .build();
 
         return userRepository.save(mockUser);

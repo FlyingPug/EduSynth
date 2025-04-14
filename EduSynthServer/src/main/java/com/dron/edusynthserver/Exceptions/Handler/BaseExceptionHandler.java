@@ -2,7 +2,6 @@ package com.dron.edusynthserver.Exceptions.Handler;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.dron.edusynthserver.Exceptions.*;
-import com.dron.edusynthserver.Exceptions.Model.ErrorModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,8 +15,8 @@ public class BaseExceptionHandler {
         return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(IncorrectCredentials.class)
-    public ResponseEntity<ErrorModel> WrongCredentials(IncorrectCredentials ex) {
+    @ExceptionHandler(IncorrectCredentialsException.class)
+    public ResponseEntity<ErrorModel> WrongCredentials(IncorrectCredentialsException ex) {
         return new ResponseEntity<>(new ErrorModel(ex.getLocalizedMessage(), HttpStatus.UNAUTHORIZED.value()), HttpStatus.UNAUTHORIZED);
     }
 

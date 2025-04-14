@@ -1,36 +1,31 @@
 <div class="container">
-  INPUT_TEXT = "INPUT_TEXT",
-  CHRONO = "CHRONO",
-  CHOOSE_MULTIPLE_OPTIONS = "MULTIPLE",
-  CROSSWORD = "CROSSWORD",
-  CHOOSE_OPTION = "CHOOSE_OPTION",
-  <mat-button-toggle-group value="QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS" [(ngModel)]="selectedValue">
+  <mat-button-toggle-group class="toggle-group" value="QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS" [(ngModel)]="selectedValue">
     <div class="chooseQuestionType">
-      <mat-button-toggle value="choose_mult_options" class="custom-toggle">
+      <mat-button-toggle [value]="QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS" class="custom-toggle">
         <img src="../../../assets/images/mult_choice.png" alt="MULTIPLE" width="150" height="150">
       </mat-button-toggle>
       <span>Вопрос с выбором множества ответов</span>
     </div>
     <div class="chooseQuestionType">
-      <mat-button-toggle value="QuestionTypeDto.CHOOSE_OPTION" class="custom-toggle">
+      <mat-button-toggle [value]="QuestionTypeDto.CHOOSE_OPTION" class="custom-toggle">
         <img src="../../../assets/images/only_option.png" alt="OPTION" width="150" height="150">
       </mat-button-toggle>
       <span>Вопрос с выбором одного ответа</span>
     </div>
     <div class="chooseQuestionType">
-      <mat-button-toggle value="QuestionTypeDto.INPUT_TEXT" class="custom-toggle">
+      <mat-button-toggle [value]="QuestionTypeDto.INPUT_TEXT" class="custom-toggle">
         <img src="assets/images/answer_input.png" alt="INPUT" width="150" height="150">
       </mat-button-toggle>
       <span>Вопрос с вводом ответа</span>
     </div>
     <div class="crossword">
-      <mat-button-toggle value="QuestionTypeDto.CROSSWORD" class="custom-toggle">
+      <mat-button-toggle [value]="QuestionTypeDto.CROSSWORD" class="custom-toggle">
         <img src="assets/images/answer_input.png" alt="CROSSWORD" width="150" height="150">
       </mat-button-toggle>
       <span>Кроссворд</span>
     </div>
     <div class="chrono">
-      <mat-button-toggle value="QuestionTypeDto.CHRONO" class="custom-toggle">
+      <mat-button-toggle [value]="QuestionTypeDto.CHRONO" class="custom-toggle">
         <img src="assets/images/answer_input.png" alt="CHRONO" width="150" height="150">
       </mat-button-toggle>
       <span>Порядковый вопрос</span>

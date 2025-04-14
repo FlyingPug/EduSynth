@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import {
     FormControl,
     FormGroup,
@@ -17,6 +17,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
+import { Router } from "@angular/router";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 
@@ -45,6 +46,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterUserComponent {
 
+    private readonly authService = inject(AuthService);
+    private readonly router = inject(Router);
+
     public formGroup: FormGroup = new FormGroup(
         {
             "name": new FormControl<string>("",
@@ -65,14 +69,12 @@ export class RegisterUserComponent {
     public get email() : FormControl<string> { return this.formGroup.get("email") as FormControl<string>; }
     public get password() : FormControl<string> { return this.formGroup.get("password") as FormControl<string>; }
 
-    constructor(private readonly authService: AuthService ) {
-    }
-
     public matcher = new MyErrorStateMatcher();
 
-    public onRegisterClicked(): void {
+    public async onRegisterClicked(): Promise<void> {
         const model = this.createRegisterModel();
-        this.authService.register(model).subscribe();
+        await this.authService.register(model);
+        this.router.navigate(["/game"]);
     }
 
     private createRegisterModel(): RegisterModel {

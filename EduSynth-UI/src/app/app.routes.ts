@@ -20,6 +20,7 @@ import {
 import { DisplayQuizDetailsComponent } from "../components/display-quiz-details/display-quiz-details.component";
 import { ResultComponent } from "../components/session/result/result.component";
 import { SessionComponent } from "../components/session/session.component";
+import { QuestionTypeDto } from "../models/quiz/question-type-model";
 
 const testRoutes: Routes = [
     { path: "", component: CreateChooseMultiplieOptionsQuestionComponent },
@@ -36,9 +37,11 @@ const homeRoutes: Routes = [
     { path: "question/choose_mult_options", component: CreateChooseMultiplieOptionsQuestionComponent },
     { path: "question/input_text", component: CreateInputTextQuestionComponent },
     { path: "result/:code", component: ResultComponent },
-    { path: environment.input_text, component: CreateInputTextQuestionComponent },
-    { path: environment.choose_mult_options, component: CreateChooseMultiplieOptionsQuestionComponent },
-    { path: environment.choose_option, component: CreateChooseOptionQuestionComponent },
+    { path: QuestionTypeDto.INPUT_TEXT, component: CreateInputTextQuestionComponent },
+    { path: QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS, component: CreateChooseMultiplieOptionsQuestionComponent },
+    { path: QuestionTypeDto.CHOOSE_OPTION, component: CreateChooseOptionQuestionComponent },
+    { path: QuestionTypeDto.CROSSWORD, component: CreateChooseMultiplieOptionsQuestionComponent },
+    { path: QuestionTypeDto.CHRONO, component: CreateChooseOptionQuestionComponent },
     { path: "search", component: SearchQuizComponent },
     { path: "", redirectTo: "game", pathMatch: "full", },
 ];

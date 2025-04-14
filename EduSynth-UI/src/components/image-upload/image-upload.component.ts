@@ -11,7 +11,7 @@ import { environment } from "../../enviroment/enviroment.development";
     standalone: true,
     imports: [MatIconModule, MatInputModule, MatButtonModule, MatLabel],
     templateUrl: "./image-upload.component.html",
-    styleUrl: "./image-upload.component.css"
+    styleUrl: "./image-upload.component.scss"
 })
 export class ImageUploadComponent {
 

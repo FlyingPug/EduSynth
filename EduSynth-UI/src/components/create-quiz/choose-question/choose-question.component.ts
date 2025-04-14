@@ -10,7 +10,7 @@ import { QuestionTypeDto } from "../../../models/quiz/question-type-model";
     standalone: true,
     imports: [MatButtonModule, MatButtonToggleModule, MatButtonModule, FormsModule],
     templateUrl: "./choose-question.component.html",
-    styleUrl: "./choose-question.component.css"
+    styleUrl: "./choose-question.component.scss"
 })
 export class ChooseQuestionComponent {
 
