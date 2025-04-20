@@ -28,7 +28,7 @@ public class UploadedFilesController
             String uniqueFileName = uploadedFilesService.generateUniqueFileName(file.getOriginalFilename());
             uploadedFilesService.saveFile(file, uniqueFileName);
 
-            String fileUrl = EduSynthUrl.UPLOAD_PUBLIC + uniqueFileName;
+            String fileUrl = EduSynthUrl.UPLOAD_PUBLIC + "/" + uniqueFileName;
             return ResponseEntity.status(HttpStatus.OK).body(new UploadedFileDto(fileUrl));
         } catch (IOException e) {
             throw new InternalError(e.getMessage());

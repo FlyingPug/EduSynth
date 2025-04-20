@@ -1,0 +1,91 @@
+.word-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.add-word-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.add-word-form h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row mat-form-field {
+  flex: 1;
+}
+
+.word-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.word-list-items h3 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.word-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.word-item:hover {
+  background-color: #e6e6e6;
+}
+
+.word-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.word-text {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.word-position {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.empty-list {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

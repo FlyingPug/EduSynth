@@ -1,0 +1,61 @@
+<div class="question-form-container">
+  <div class="form-header">
+    <h2>Создание вопроса с хронологическим порядком</h2>
+    <p class="form-subtitle">Расположите события в правильном хронологическом порядке</p>
+  </div>
+
+  <div class="form-content" [formGroup]="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Текст вопроса:</mat-label>
+      <textarea [formControl]="questionText" matInput placeholder="Введите текст вопроса" rows="3"></textarea>
+      <mat-error *ngIf="questionText.hasError('required')">Текст вопроса обязателен</mat-error>
+      <mat-error *ngIf="questionText.hasError('minlength')">Минимум 1 символ</mat-error>
+      <mat-error *ngIf="questionText.hasError('maxlength')">Максимум 364 символа</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Ограничение по времени (сек):</mat-label>
+      <input type="number" [formControl]="timeLimit" matInput min="5">
+      <mat-error *ngIf="timeLimit.hasError('min')">Минимум 5 секунд</mat-error>
+    </mat-form-field>
+
+    <div class="image-upload-section">
+      <app-image-upload [label]="'Выберите изображение вопроса'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
+    </div>
+
+    <div class="events-section">
+      <h3>События в хронологическом порядке</h3>
+      <p class="hint-text">Перетащите события, чтобы установить правильный хронологический порядок. Первое событие будет считаться самым ранним.</p>
+      
+      <div class="events-container" formArrayName="events" cdkDropList (cdkDropListDropped)="dropEvent($event)">
+        <div *ngFor="let eventForm of events.controls; let i = index" cdkDrag class="event-item">
+          <app-chrono-event 
+            [formGroup]="eventForm" 
+            [index]="i" 
+            [canRemove]="events.length > 3"
+            (remove)="removeEvent(i)">
+          </app-chrono-event>
+          
+          <div class="drag-handle" cdkDragHandle>
+            <mat-icon>drag_indicator</mat-icon>
+          </div>
+        </div>
+      </div>
+      
+      <div class="add-event-btn" *ngIf="events.length < 10">
+        <button mat-stroked-button color="primary" (click)="addEvent()">
+          <mat-icon>add</mat-icon> Добавить событие
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button mat-stroked-button (click)="onCreateQuizClick()" [disabled]="!form.valid">
+      Закончить создание теста
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="addQuestion()">
+      Добавить вопрос
+    </button>
+  </div>
+</div>

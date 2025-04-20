@@ -1,0 +1,62 @@
+<div class="word-list">
+  <div class="add-word-form" [formGroup]="newWordForm">
+    <h3>Добавить новое слово</h3>
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Слово</mat-label>
+      <input matInput formControlName="word" placeholder="Введите слово">
+      <mat-error *ngIf="newWordForm.get('word')?.hasError('required')">Слово обязательно</mat-error>
+      <mat-error *ngIf="newWordForm.get('word')?.hasError('pattern')">Только буквы</mat-error>
+    </mat-form-field>
+    
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Начальная позиция X</mat-label>
+        <mat-select formControlName="startX">
+          <mat-option *ngFor="let pos of getPositionOptions()" [value]="pos">{{ pos }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Начальная позиция Y</mat-label>
+        <mat-select formControlName="startY">
+          <mat-option *ngFor="let pos of getPositionOptions()" [value]="pos">{{ pos }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Направление</mat-label>
+        <mat-select formControlName="direction">
+          <mat-option value="horizontal">Горизонтально</mat-option>
+          <mat-option value="vertical">Вертикально</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+    <button mat-raised-button color="primary" [disabled]="!newWordForm.valid" (click)="onAddWord()">
+      <mat-icon>add</mat-icon> Добавить слово
+    </button>
+  </div>
+  
+  <div class="word-list-items" *ngIf="words.length > 0">
+    <h3>Добавленные слова</h3>
+    
+    <div class="word-item" *ngFor="let wordForm of words.controls; let i = index">
+      <div class="word-info">
+        <span class="word-text">{{ wordForm.get('word')?.value }}</span>
+        <span class="word-position">
+          ({{ wordForm.get('startX')?.value }}, {{ wordForm.get('startY')?.value }})
+          {{ wordForm.get('direction')?.value === 'horizontal' ? 'горизонтально' : 'вертикально' }}
+        </span>
+      </div>
+      
+      <button mat-icon-button color="warn" (click)="onRemoveWord(i)" aria-label="Удалить слово">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  
+  <div class="empty-list" *ngIf="words.length === 0">
+    <p>Список слов пуст. Добавьте слова для создания кроссворда.</p>
+  </div>
+</div>

@@ -21,6 +21,8 @@ import { DisplayQuizDetailsComponent } from "../components/display-quiz-details/
 import { ResultComponent } from "../components/session/result/result.component";
 import { SessionComponent } from "../components/session/session.component";
 import { QuestionTypeDto } from "../models/quiz/question-type-model";
+import { CreateCrosswordQuestionComponent } from "../components/create-quiz/create-crossword-question/create-crossword-question.component";
+import { CreateChronoQuestionComponent } from "../components/create-quiz/create-chrono-question/create-chrono-question.component";
 
 const testRoutes: Routes = [
     { path: "", component: CreateChooseMultiplieOptionsQuestionComponent },
@@ -33,15 +35,12 @@ const homeRoutes: Routes = [
     { path: "create", component: CreateQuizComponent },
     { path: "quiz/:id", component: DisplayQuizDetailsComponent },
     { path: "session/:code", component: SessionComponent },
-    { path: "question/choose_option", component: CreateChooseOptionQuestionComponent },
-    { path: "question/choose_mult_options", component: CreateChooseMultiplieOptionsQuestionComponent },
-    { path: "question/input_text", component: CreateInputTextQuestionComponent },
     { path: "result/:code", component: ResultComponent },
     { path: QuestionTypeDto.INPUT_TEXT, component: CreateInputTextQuestionComponent },
     { path: QuestionTypeDto.MULTIPLE, component: CreateChooseMultiplieOptionsQuestionComponent },
     { path: QuestionTypeDto.CHOOSE_OPTION, component: CreateChooseOptionQuestionComponent },
-    { path: QuestionTypeDto.CROSSWORD, component: CreateChooseMultiplieOptionsQuestionComponent },
-    { path: QuestionTypeDto.CHRONO, component: CreateChooseOptionQuestionComponent },
+    { path: QuestionTypeDto.CROSSWORD, component: CreateCrosswordQuestionComponent },
+    { path: QuestionTypeDto.CHRONO, component: CreateChronoQuestionComponent },
     { path: "search", component: SearchQuizComponent },
     { path: "", redirectTo: "game", pathMatch: "full", },
 ];

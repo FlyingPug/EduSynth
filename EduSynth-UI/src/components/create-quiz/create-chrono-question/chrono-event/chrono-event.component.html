@@ -1,0 +1,20 @@
+<div class="event-form" [formGroup]="formGroup">
+  <div class="event-number">{{index + 1}}</div>
+  
+  <mat-form-field appearance="outline" class="event-input">
+    <mat-label>Событие</mat-label>
+    <input matInput placeholder="Введите текст события" formControlName="text">
+    <mat-error *ngIf="formGroup.get('text')?.hasError('required')">Текст события обязателен</mat-error>
+    <mat-error *ngIf="formGroup.get('text')?.hasError('maxlength')">Максимум 200 символов</mat-error>
+  </mat-form-field>
+  
+  <button 
+    mat-mini-fab 
+    color="warn" 
+    class="remove-btn" 
+    [disabled]="!canRemove" 
+    (click)="onRemove()" 
+    aria-label="Удалить событие">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

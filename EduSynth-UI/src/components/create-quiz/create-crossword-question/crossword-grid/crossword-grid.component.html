@@ -1,0 +1,28 @@
+<div class="crossword-grid">
+  <div class="grid-row" *ngFor="let row of cells; let y = index">
+    <div 
+      *ngFor="let cell of row; let x = index" 
+      class="grid-cell" 
+      [class.active]="cell.isActive"
+      [class.selected]="isCellInSelectedWord(x, y)"
+      (click)="onCellClick(x, y)"
+    >
+      <span class="cell-letter" *ngIf="cell.letter">{{ cell.letter }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="grid-legend">
+  <div class="legend-item">
+    <div class="legend-cell"></div>
+    <span>Пустая ячейка</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-cell active"></div>
+    <span>Активная ячейка</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-cell selected"></div>
+    <span>Выбранное слово</span>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="question-form-container">
+  <div class="form-header">
+    <h2>Создание вопроса с кроссвордом</h2>
+    <p class="form-subtitle">Создайте кроссворд, добавляя слова в сетку</p>
+  </div>
+
+  <div class="form-content" [formGroup]="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Текст вопроса:</mat-label>
+      <textarea [formControl]="questionText" matInput placeholder="Введите текст вопроса" rows="3"></textarea>
+      <mat-error *ngIf="questionText.hasError('required')">Текст вопроса обязателен</mat-error>
+      <mat-error *ngIf="questionText.hasError('minlength')">Минимум 1 символ</mat-error>
+      <mat-error *ngIf="questionText.hasError('maxlength')">Максимум 364 символа</mat-error>
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Ограничение по времени (сек):</mat-label>
+        <input type="number" [formControl]="timeLimit" matInput min="5">
+        <mat-error *ngIf="timeLimit.hasError('min')">Минимум 5 секунд</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Размер сетки:</mat-label>
+        <input type="number" [formControl]="gridSize" matInput min="3" max="10">
+        <mat-error *ngIf="gridSize.hasError('min')">Минимум 3x3</mat-error>
+        <mat-error *ngIf="gridSize.hasError('max')">Максимум 10x10</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="image-upload-section">
+      <app-image-upload [label]="'Выберите изображение вопроса'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
+    </div>
+
+    <mat-tab-group class="crossword-tabs" [(selectedIndex)]="activeTabIndex">
+      <mat-tab label="Сетка кроссворда">
+        <div class="crossword-grid-container">
+          <app-crossword-grid 
+            [cells]="crosswordCells" 
+            [selectedWord]="selectedWord"
+            (cellClick)="onCellClick($event)">
+          </app-crossword-grid>
+        </div>
+      </mat-tab>
+      <mat-tab label="Список слов">
+        <div class="word-list-container">
+          <app-crossword-word-list 
+            [words]="words" 
+            [gridSize]="gridSize.value"
+            (addWord)="addWord($event.word, $event.startX, $event.startY, $event.direction)"
+            (removeWord)="removeWord($event)">
+          </app-crossword-word-list>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+  <div class="form-actions">
+    <button mat-stroked-button (click)="onCreateQuizClick()" [disabled]="!form.valid || words.length === 0">
+      Закончить создание теста
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid || words.length === 0" (click)="addQuestion()">
+      Добавить вопрос
+    </button>
+  </div>
+</div>

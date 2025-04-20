@@ -8,11 +8,20 @@ import { ImageUploadComponent } from "../image-upload/image-upload.component";
 import { AuthService } from "../../service/auth.service";
 import { UserCredentials } from "../../models/user/UserCredentials";
 import { UserService } from "../../service/user.service";
+import { CommonModule } from "@angular/common";
 
 @Component({
     selector: "app-user-profile",
     standalone: true,
-    imports: [MatCardModule, MatButtonModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, ImageUploadComponent],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ImageUploadComponent
+    ],
     templateUrl: "./user-profile.component.html",
     styleUrl: "./user-profile.component.scss"
 })
