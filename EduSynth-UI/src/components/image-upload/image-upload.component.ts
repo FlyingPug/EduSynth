@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule, MatLabel } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
-import { HttpClient } from "@angular/common/http";
 import { UploadedFileModel } from "../../models/uploaded-file-model";
 import { environment } from "../../enviroment/enviroment.development";
+import { ApiClient } from "../../service/api.service";
 
 @Component({
     selector: "app-image-upload",
@@ -15,38 +15,34 @@ import { environment } from "../../enviroment/enviroment.development";
 })
 export class ImageUploadComponent {
 
-    @Input()
-    public label = "Выберите иконку изображения:";
+    @Input() public label = "Выберите иконку изображения:";
 
     @Output() public onFileUploaded = new EventEmitter<string>();
 
-    public fileName: string = "";
-    constructor(private http: HttpClient) {}
+    private readonly api = inject(ApiClient);
 
-    public onFileSelected(event: Event): void {
+    public fileName: string = "";
+
+    public async onFileSelected(event: Event): Promise<void> {
         const fileInput = event.target as HTMLInputElement;
         if (fileInput.files && fileInput.files.length > 0) {
             const file: File = fileInput?.files[0];
 
-            if (file) {
-
-                if (file.size > 10485760) { // ограничение до 10 Мб (в байтах)
-                    alert("Файл слишком большой. Максимальный размер: 10 Мб");
-                    return;
-                }
-
-                this.fileName = file.name;
-
-                const formData = new FormData();
-
-                formData.append("image", file);
-
-                const upload = this.http.post<UploadedFileModel>(environment.apiUrl + "/public/upload/image", formData);
-
-                upload.subscribe((result: UploadedFileModel) => {
-                    this.onFileUploaded.emit(result.uploadedFileURL);
-                });
+            if (!file) {
+                return;
             }
+
+            if (file.size > 10485760) { // ограничение до 10 Мб (в байтах)
+                alert("Файл слишком большой. Максимальный размер: 10 Мб");
+                return;
+            }
+
+            this.fileName = file.name;
+
+            const upload = await this.api.postFile("/private/upload/image", file, "image");
+
+            this.onFileUploaded.emit(upload.uploadedFileURL);
+
         }
     }
 

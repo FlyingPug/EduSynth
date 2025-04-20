@@ -26,10 +26,12 @@ export class QuizRequestDto extends BaseModel {
     public constructor(quiz: IQuizRequestDto) {
         super();
         this.mapFromJson(quiz);
+        console.log(quiz);
         this.questions = quiz.questions?.map(q => this.createQuestion(q)) || [];
     }
 
     private createQuestion(question: IQuestionRequestDto): QuestionRequestDto {
+        console.log(question);
         switch (question.questionType) {
             case QuestionTypeDto.CHOOSE_OPTION:
                 return new SingleChoiceQuestionRequestDto(question as ISingleChoiceQuestionRequestDto);
@@ -37,7 +39,7 @@ export class QuizRequestDto extends BaseModel {
                 return new TextInputQuestionRequestDto(question as ITextInputQuestionRequestDto);
             case QuestionTypeDto.CHRONO:
                 return new ChronoOrderQuestionRequestDto(question as IChronoOrderQuestionRequestDto);
-            case QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS:
+            case QuestionTypeDto.MULTIPLE:
                 return new MultipleChoiceQuestionRequestDto(question as IMultipleChoiceQuestionRequestDto);
             case QuestionTypeDto.CROSSWORD:
                 return new CrosswordQuestionRequestDto(question as ICrosswordQuestionRequestDto);

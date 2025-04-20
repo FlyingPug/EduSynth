@@ -39,9 +39,13 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Quiz createQuiz(QuizRequestDto quizDto, Integer creatorId) {
-        Quiz quiz = new Quiz();
-        quiz.setTitle(quizDto.getTitle());
-        quiz.setCreator(userService.requireUserById(creatorId));
+        Quiz quiz = Quiz.builder()
+                .isPublic(quizDto.isPublic())
+                .title(quizDto.getTitle())
+                .titleMediaUrl(quizDto.getTitleMediaUrl())
+                .creator(userService.requireUserById(creatorId))
+                .description(quizDto.getDescription())
+                .build();
 
         List<Question> questions = quizDto.getQuestions().stream()
                 .map(dto -> questionFactory.createQuestion(dto, quiz))

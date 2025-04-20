@@ -15,16 +15,18 @@ import { QuestionCreator } from "../question-creator";
 import { SingleChoiceQuestionRequestDto } from "../../../models/quiz/request/single-choise-question-request-model";
 import { QuestionTypeDto } from "../../../models/quiz/question-type-model";
 import { ChooseQuestionComponent } from "../choose-question/choose-question.component";
-import { QuizRequestDto } from "../../../models/quiz/request/quiz-request-model";
+import { IQuizRequestDto, QuizRequestDto } from "../../../models/quiz/request/quiz-request-model";
 
 @Component({
     selector: "app-create-choose-option-question",
     standalone: true,
-    imports: [FormsModule, CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule,
+    imports: [
+        CommonModule,
+        FormsModule, CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule,
         ImageUploadComponent, MatIconModule,
         MatRadioModule],
     templateUrl: "./create-choose-option-question.component.html",
-    styleUrl: "./create-choose-option-question.component.css",
+    styleUrl: "./create-choose-option-question.component.scss",
     animations: [slideToLeftAnimation],
 })
 export class CreateChooseOptionQuestionComponent extends QuestionCreator implements OnInit {
@@ -55,7 +57,7 @@ export class CreateChooseOptionQuestionComponent extends QuestionCreator impleme
         return this.getFormControl(this.form, "trueIndex");
     }
 
-    private quizRequest: QuizRequestDto;
+    private quizRequest: IQuizRequestDto;
 
     constructor(fb: FormBuilder, quizService: QuizService, router: Router, dialog: MatDialog, route: ActivatedRoute) {
         super(fb, quizService, router, dialog, route);
@@ -74,22 +76,10 @@ export class CreateChooseOptionQuestionComponent extends QuestionCreator impleme
     }
 
     public override addQuestion(): void {
-        const trueIndex = this.trueIndex?.value;
-        const answersArray = this.answers.controls.map((control, index) => {
-            return { mediaUrl: "", text: control.get("text")?.value, isCorrect: index == trueIndex };
-        });
-
         const dialogRef = this.dialog.open(ChooseQuestionComponent);
 
         dialogRef.afterClosed().subscribe(result => {
-
-            this.quizRequest.questions.push(new SingleChoiceQuestionRequestDto({
-                text: this.questionText?.value,
-                mediaUrl: this.questionImageUrl,
-                questionType: QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS,
-                timeLimitSeconds: this.timeLimit?.value,
-                answers: answersArray,
-            }));
+            this.addQuestionToQuiz();
 
             if (result in QuestionTypeDto){
                 this.router.navigate(["../" + result], {
@@ -101,12 +91,28 @@ export class CreateChooseOptionQuestionComponent extends QuestionCreator impleme
     }
 
     public override async onCreateQuizClick(): Promise<void> {
-        const quiz = await this.quizService.createQuiz(this.quizRequest);
+        this.addQuestionToQuiz();
+        const quiz = new QuizRequestDto(this.quizRequest);
+        const quizResponse = await this.quizService.createQuiz(quiz);
 
-        this.router.navigate(["quiz/" + quiz.id], {
-            relativeTo: this.route,
+        this.router.navigate(["quiz/" + quizResponse.id], {
             state:{ quizRequest: this.quizRequest }
         });
+    }
+
+    private addQuestionToQuiz(): void {
+        const trueIndex = this.trueIndex?.value;
+        const answersArray = this.answers.controls.map((control, index) => {
+            return { mediaUrl: "", text: control.get("text")?.value, isCorrect: index == trueIndex };
+        });
+
+        this.quizRequest.questions.push(new SingleChoiceQuestionRequestDto({
+            text: this.questionText?.value,
+            mediaUrl: this.questionImageUrl,
+            questionType: QuestionTypeDto.CHOOSE_OPTION,
+            timeLimitSeconds: this.timeLimit?.value,
+            answers: answersArray,
+        }));
     }
 
     public addAnswer(): void {

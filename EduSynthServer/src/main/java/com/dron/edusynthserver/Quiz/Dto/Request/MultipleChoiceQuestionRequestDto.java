@@ -13,6 +13,6 @@ public class MultipleChoiceQuestionRequestDto extends QuestionRequestDto {
 
     @Override
     public QuestionTypeDto getQuestionType() {
-        return QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS;
+        return QuestionTypeDto.MULTIPLE;
     }
 }

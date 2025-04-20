@@ -28,17 +28,5 @@ export abstract class QuestionCreator extends BaseComponent {
         });
     }
 
-    protected submitQuestion() : void {
-        this.addQuestion();
-        const dialogRef = this.dialog.open(ChooseQuestionComponent);
-
-        dialogRef.afterClosed().subscribe(result => {
-            if (result === environment.choose_option || result === environment.choose_mult_options || result === environment.input_text) {
-                // this.router.navigate(["../" + result], { relativeTo: this.route });
-                this.redirectTo("../" + result);
-            }
-        });
-    }
-
 }
 

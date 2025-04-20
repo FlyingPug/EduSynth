@@ -16,7 +16,7 @@ export class MultipleChoiceQuestionRequestDto extends QuestionRequestDto {
     }
 
     public getQuestionType(): QuestionTypeDto {
-        return QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS;
+        return QuestionTypeDto.MULTIPLE;
     }
 
 }

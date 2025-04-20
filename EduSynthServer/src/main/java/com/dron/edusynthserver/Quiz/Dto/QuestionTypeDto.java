@@ -2,7 +2,7 @@ package com.dron.edusynthserver.Quiz.Dto;
 
 public enum QuestionTypeDto {
     CHOOSE_OPTION,
-    CHOOSE_MULTIPLE_OPTIONS,
+    MULTIPLE,
     INPUT_TEXT,
     CROSSWORD,
     CHRONO

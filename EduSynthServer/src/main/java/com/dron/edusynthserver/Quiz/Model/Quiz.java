@@ -4,10 +4,7 @@ import com.dron.edusynthserver.Common.Model.OwnedEntity;
 import com.dron.edusynthserver.Quiz.Model.Question.Question;
 import com.dron.edusynthserver.User.Model.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,7 @@ import java.util.List;
 @Table(name = "quizzes")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Quiz implements OwnedEntity {

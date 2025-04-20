@@ -38,7 +38,7 @@ const homeRoutes: Routes = [
     { path: "question/input_text", component: CreateInputTextQuestionComponent },
     { path: "result/:code", component: ResultComponent },
     { path: QuestionTypeDto.INPUT_TEXT, component: CreateInputTextQuestionComponent },
-    { path: QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS, component: CreateChooseMultiplieOptionsQuestionComponent },
+    { path: QuestionTypeDto.MULTIPLE, component: CreateChooseMultiplieOptionsQuestionComponent },
     { path: QuestionTypeDto.CHOOSE_OPTION, component: CreateChooseOptionQuestionComponent },
     { path: QuestionTypeDto.CROSSWORD, component: CreateChooseMultiplieOptionsQuestionComponent },
     { path: QuestionTypeDto.CHRONO, component: CreateChooseOptionQuestionComponent },

@@ -55,7 +55,7 @@ public class JwtTokenProvider {
                 .withExpiresAt(validity)
                 .withClaim("id", user.getId())
                 .withClaim("name", user.getUsername())
-                .withClaim("role", user.getRole().toString())
+                .withClaim("role", user.getRole().name())
                 .sign(algorithm);
     }
 
@@ -72,6 +72,7 @@ public class JwtTokenProvider {
 
         User user = User.builder()
                 .email(decoded.getSubject())
+                .id(decoded.getClaim("id").asInt())
                 .username(decoded.getClaim("name").asString())
                 .role(Role.valueOf(decoded.getClaim("role").asString()))
                 .build();

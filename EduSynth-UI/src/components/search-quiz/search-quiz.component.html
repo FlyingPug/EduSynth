@@ -1,22 +1,50 @@
-<div class="page">
-  <div appScroll (scrolledToEnd)="scrolledToEndHandler()" class="contents">
-    <!-- <mat-card class="card" *ngFor="let sale of salesPage?.items"> FOR PAGINATOR-->
-    <span *ngIf="quizArray.length === 0">Не найдено публичных тестов!</span>
-    <mat-card class="card" *ngFor="let quiz of quizArray">
-      <mat-card-header class="card-header">
-        <mat-card-title>{{quiz.title}}</mat-card-title>
-      </mat-card-header>
-      <div class="card-image-container" *ngIf="quiz.titleMediaUrl != '' && quiz.titleMediaUrl != null">
-        <img class="card-image" mat-card-image [src]="quiz.titleMediaUrl" alt="Тут могло быть ваше фото">
+<div class="quiz-search-container">
+  <!-- Заголовок и информация -->
+  <div class="search-header">
+    <h1 class="search-title">Публичные квизы</h1>
+    <p class="search-subtitle">Выберите квиз и начните играть</p>
+  </div>
+
+  <!-- Контейнер для карточек с бесконечной прокруткой -->
+  <div appScroll (scrolledToEnd)="scrolledToEndHandler()" class="quiz-grid-container">
+    <!-- Сообщение, если квизов нет -->
+    <div *ngIf="quizArray.length === 0 && !isLoading" class="no-quizzes-message">
+      <div class="no-quizzes-icon">&#128269;</div>
+      <h3>Не найдено публичных тестов!</h3>
+      <p>Попробуйте зайти позже или создайте свой собственный квиз</p>
+    </div>
+
+    <!-- Таблица карточек квизов (3 в строке) -->
+    <div class="quiz-table">
+      <div class="quiz-row" *ngFor="let row of getQuizRows()">
+        <mat-card class="quiz-card" *ngFor="let quiz of row; let i = index">
+          <mat-card-header>
+            <mat-card-title>{{quiz.title}}</mat-card-title>
+          </mat-card-header>
+          
+          <!-- Изображение или градиент -->
+          <div class="card-image-container">
+            <img *ngIf="quiz.titleMediaUrl" mat-card-image class="card-image" [src]="quiz.titleMediaUrl" alt="Изображение квиза">
+            <div *ngIf="!quiz.titleMediaUrl" class="gradient-placeholder" [style.background]="getRandomGradient(quiz.id)"></div>
+          </div>
+          
+          <mat-card-content>
+            <p class="card-description">{{quiz.description}}</p>
+          </mat-card-content>
+          
+          <mat-card-actions>
+            <button mat-button color="primary" class="play-button" (click)="launchTest(quiz.id)">
+              <span class="play-icon">&#9658;</span> Играть
+            </button>
+          </mat-card-actions>
+        </mat-card>
       </div>
-      <mat-card-content>
-        <p>
-          {{quiz.description}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions class="card-actions">
-        <button color="primary" mat-button (click)="launchTest(quiz.id)">Играть</button>
-      </mat-card-actions>
-    </mat-card>
+    </div>
+
+    <!-- Индикатор загрузки -->
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Загрузка квизов...</p>
+    </div>
   </div>
 </div>

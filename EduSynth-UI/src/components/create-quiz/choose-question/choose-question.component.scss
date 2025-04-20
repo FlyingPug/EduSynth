@@ -31,8 +31,11 @@
   margin-bottom: 1rem;
 }
 
+.title-text {
+  text-align: center;
+}
 
-mat-button-toggle-group
+.mat-button-toggle-group
 {
   grid-template-columns: auto auto;
   display: grid;

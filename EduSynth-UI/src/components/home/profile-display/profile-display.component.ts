@@ -13,7 +13,7 @@ export class ProfileDisplayComponent {
 
     public myUser : Promise<IUser>;
 
-    private profilePictureUrl : string = "/assets/images/profile_pic.png";
+    private profilePictureUrl: string = "/assets/images/profile_pic.png";
     public name : string = "User";
     public balance : number = 0;
 

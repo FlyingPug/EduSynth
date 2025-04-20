@@ -31,7 +31,7 @@ public class AuthController
         Вернул id пользователя да инфу о токене, а он если нужно обратится за инфой о юзере к юзере к другому контроллеру
         TODO: Сделать возвращения AuthInfo
      */
-    @PostMapping( path = EduSynthUrl.AUTH_SIGN, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping( path = EduSynthUrl.AUTH_SIGN)
     public UserDto login(@RequestBody CredentialsDto credentialsDto) {
         User user = userService.login(credentialsDto);
         UserDto userDto = userMapper.toDTO(user);

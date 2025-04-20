@@ -1,28 +1,58 @@
-<div class="content">
-  <!-- <mat-card class="card" *ngFor="let sale of salesPage?.items"> FOR PAGINATOR-->
-  <mat-card class="card" *ngIf="quiz != null">
-    <mat-card-header class="card-header">
-      <mat-card-title>{{quiz!.title}}</mat-card-title>
-    </mat-card-header>
-    <div class="card-image-container"  *ngIf="quiz.titleMediaUrl != ''">
-      <img class="card-image" mat-card-image [src]="quiz!.titleMediaUrl" alt="Тут могло быть ваше фото">
+<div class="quiz-card-container">
+  <div class="quiz-card" *ngIf="quiz != null">
+    <!-- Фоновое изображение с градиентом -->
+    <div class="card-background" *ngIf="quiz.titleMediaUrl" [style.background-image]="'url(' + quiz.titleMediaUrl + ')'">
+      <div class="gradient-overlay"></div>
     </div>
-    <mat-card-content>
-      <p>
-        {{quiz!.description}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="card-actions">
-      <button 
-        color="primary" 
-        mat-button 
-        (click)="launchTest()"
-        [disabled]="!quiz.id"
-        matTooltip="{{ !quiz.id ? 'Не выбран квиз для запуска' : '' }}"
-      >
-        Играть
-      </button>
-      <span *ngIf="!quiz?.id" class="error-message">Ошибка: не выбран квиз для запуска</span>
-    </mat-card-actions>
-  </mat-card>
+    
+    <!-- Содержимое карточки -->
+    <div class="card-content">
+      <div class="card-header">
+        <h2 class="card-title">{{quiz!.title}}</h2>
+        <div class="card-badge" *ngIf="quiz.isPublic">Публичный</div>
+      </div>
+      
+      <!-- Изображение квиза (если есть) -->
+      <div class="card-image-container" *ngIf="quiz.titleMediaUrl">
+        <img class="card-image" [src]="quiz!.titleMediaUrl" alt="Изображение квиза">
+      </div>
+      
+      <!-- Описание квиза -->
+      <div class="card-description">
+        <p>{{quiz!.description}}</p>
+      </div>
+      
+      <!-- Информация о квизе -->
+      <div class="quiz-info">
+        <div class="info-item">
+          <span class="material-symbols-outlined">
+            info
+            </span>
+          <span>{{quiz.questions.length || 0}} вопросов</span>
+        </div>
+        <div class="info-item">
+          <span class="material-symbols-outlined">
+            schedule
+            </span>
+          <span>{{getEstimatedTime()}} мин</span>
+        </div>
+      </div>
+      
+      <!-- Кнопки действий -->
+      <div class="card-actions">
+        <button 
+          class="play-button"
+          [class.disabled]="!quiz.id"
+          (click)="launchTest()"
+          [disabled]="!quiz.id"
+          matTooltip="{{ !quiz.id ? 'Не выбран квиз для запуска' : '' }}"
+        >
+          <span class="play-icon">&#9658;</span>
+          Играть
+        </button>
+        
+        <span *ngIf="!quiz?.id" class="error-message">Ошибка: не выбран квиз для запуска</span>
+      </div>
+    </div>
+  </div>
 </div>

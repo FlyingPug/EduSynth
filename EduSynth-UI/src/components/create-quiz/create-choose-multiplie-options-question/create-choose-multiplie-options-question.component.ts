@@ -21,11 +21,11 @@ import { MultipleChoiceQuestionRequestDto } from "../../../models/quiz/request/m
 @Component({
     selector: "app-create-choose-multiplie-options-question",
     standalone: true,
-    imports: [FormsModule, CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule,
+    imports: [CommonModule, FormsModule, CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule,
         ImageUploadComponent, MatCheckbox, MatIconModule,
         MatRadioModule],
     templateUrl: "./create-choose-multiplie-options-question.component.html",
-    styleUrl: "./create-choose-multiplie-options-question.component.css",
+    styleUrl: "./create-choose-multiplie-options-question.component.scss",
     animations: [slideToLeftAnimation]
 })
 export class CreateChooseMultiplieOptionsQuestionComponent extends QuestionCreator implements OnInit {
@@ -70,21 +70,10 @@ export class CreateChooseMultiplieOptionsQuestionComponent extends QuestionCreat
     }
 
     public override addQuestion(): void {
-        const answersArray = this.answers.controls.map(control => {
-            return { mediaUrl: "", text: control.get("text")?.value, isCorrect: control.get("isTrue")?.value };
-        });
-
         const dialogRef = this.dialog.open(ChooseQuestionComponent);
 
         dialogRef.afterClosed().subscribe(result => {
-
-            this.quizRequest.questions.push(new MultipleChoiceQuestionRequestDto({
-                text: this.questionText?.value,
-                mediaUrl: this.questionImageUrl,
-                questionType: QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS,
-                timeLimitSeconds: this.timeLimit?.value,
-                answers: answersArray,
-            }));
+            this.addQuestionToRequest();
 
             if (result in QuestionTypeDto){
                 this.router.navigate(["../" + result], {
@@ -97,12 +86,27 @@ export class CreateChooseMultiplieOptionsQuestionComponent extends QuestionCreat
     }
 
     public override async onCreateQuizClick(): Promise<void> {
-        const quiz = await this.quizService.createQuiz(this.quizRequest);
+        this.addQuestionToRequest();
+        const quiz = new QuizRequestDto(this.quizRequest);
+        const quizResponse = await this.quizService.createQuiz(quiz);
 
-        this.router.navigate(["quiz/" + quiz.id], {
-            relativeTo: this.route,
+        this.router.navigate(["quiz/" + quizResponse.id], {
             state:{ quizRequest: this.quizRequest }
         });
+    }
+
+    private addQuestionToRequest(): void {
+        const answersArray = this.answers.controls.map(control => {
+            return { mediaUrl: "", text: control.get("text")?.value, isCorrect: control.get("isTrue")?.value };
+        });
+
+        this.quizRequest.questions.push(new MultipleChoiceQuestionRequestDto({
+            text: this.questionText?.value,
+            mediaUrl: this.questionImageUrl,
+            questionType: QuestionTypeDto.MULTIPLE,
+            timeLimitSeconds: this.timeLimit?.value,
+            answers: answersArray,
+        }));
     }
 
     public addAnswer(): void {

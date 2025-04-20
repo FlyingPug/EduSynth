@@ -41,7 +41,7 @@ export class QuizResponseDto extends BaseModel {
                 return new TextInputQuestionResponseDto(question as ITextInputQuestionResponseDto);
             case QuestionTypeDto.CHRONO:
                 return new ChronoOrderQuestionResponseDto(question as IChronoOrderQuestionResponseDto);
-            case QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS:
+            case QuestionTypeDto.MULTIPLE:
                 return new MultipleChoiceQuestionResponseDto(question as IMultipleChoiceQuestionResponseDto);
             case QuestionTypeDto.CROSSWORD:
                 return new CrosswordQuestionResponseDto(question as ICrosswordQuestionResponseDto);

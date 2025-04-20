@@ -1,22 +1,57 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <h1 class="profile-title">Профиль пользователя</h1>
+    <p class="profile-subtitle">Управление личной информацией</p>
+  </div>
 
-<div class="card-conatiner">
-  <mat-card class="personal-info-card">
+  <div class="profile-content">
+    <!-- Карточка с информацией пользователя -->
+    <mat-card class="profile-card">
+      <div class="profile-sections">
+        <!-- Секция с аватаром -->
+        <div class="avatar-section">
+          <div class="avatar-container">
+            <div class="avatar-preview">
+              <img [src]="imageSrc" alt="Аватар пользователя" class="user-avatar">
+            </div>
+          </div>
+          <div class="avatar-upload">
+            <app-image-upload [label]="'Изменить фото профиля'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
+          </div>
+        </div>
 
-      <div class="formGroup" [formGroup]="formGroup">
-
-        <mat-form-field>
-          <mat-label>Старый пароль</mat-label>
-          <input  matInput [formControl]="oldPassword">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Новый пароль</mat-label>
-          <input  matInput [formControl]="newPassword">
-        </mat-form-field>
-        <mat-card-actions>
-          <app-image-upload [label]="'PC'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
-          <button mat-button (click)="saveInfo()">Сохранить</button>
-        </mat-card-actions>
+        <!-- Секция с формой изменения пароля -->
+        <div class="password-section" [formGroup]="formGroup">
+          <h2 class="section-title">Изменение пароля</h2>
+          
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Старый пароль</mat-label>
+            <input type="password" matInput [formControl]="oldPassword">
+            <mat-error *ngIf="oldPassword.hasError('required')">Старый пароль обязателен</mat-error>
+            <mat-error *ngIf="oldPassword.hasError('minlength')">Минимум 3 символа</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Новый пароль</mat-label>
+            <input type="password" matInput [formControl]="newPassword">
+            <mat-error *ngIf="newPassword.hasError('required')">Новый пароль обязателен</mat-error>
+            <mat-error *ngIf="newPassword.hasError('minlength')">Минимум 3 символа</mat-error>
+          </mat-form-field>
+          
+          <div class="form-actions">
+            <button 
+              mat-raised-button 
+              color="primary" 
+              [disabled]="!formGroup.valid" 
+              (click)="saveInfo()"
+              class="save-button"
+            >
+              Сохранить изменения
+            </button>
+          </div>
+        </div>
       </div>
-  </mat-card>
+    </mat-card>
+  </div>
 </div>
 

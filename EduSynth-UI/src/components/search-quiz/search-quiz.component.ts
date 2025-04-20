@@ -15,11 +15,13 @@ import { Router } from "@angular/router";
     standalone: true,
     imports: [CommonModule, MatButtonModule, MatCardModule, ScrollDirectiveDirective],
     templateUrl: "./search-quiz.component.html",
-    styleUrl: "./search-quiz.component.css"
+    styleUrl: "./search-quiz.component.scss"
 })
 export class SearchQuizComponent implements OnInit {
 
     private readonly router = inject(Router);
+    private readonly quizService = inject(QuizService);
+    private readonly sessionService = inject(SessionService);
 
     public query: Query = {
         pageNumber: 0,
@@ -29,7 +31,15 @@ export class SearchQuizComponent implements OnInit {
     public quizArray: QuizTitleModel[] = [];
     public isLoading: boolean = false;
     public currentPage: Page<QuizTitleModel> | null = null;
-    constructor(private readonly quizService: QuizService, private readonly sessionService: SessionService) {}
+
+    private gradients = [
+        "linear-gradient(135deg, #6366F1, #8B5CF6)",
+        "linear-gradient(135deg, #10B981, #3B82F6)",
+        "linear-gradient(135deg, #F59E0B, #EF4444)",
+        "linear-gradient(135deg, #EC4899, #8B5CF6)",
+        "linear-gradient(135deg, #06B6D4, #3B82F6)",
+        "linear-gradient(135deg, #F97316, #F59E0B)"
+    ];
 
     public ngOnInit(): void {
         this.loadQuizzes();
@@ -57,6 +67,19 @@ export class SearchQuizComponent implements OnInit {
     public async launchTest(id : number): Promise<void> {
         const session = await this.sessionService.createSession(id);
         this.router.navigate(["/session", session.id]);
+    }
+
+    public getQuizRows(): QuizTitleModel[][] {
+        const rows: QuizTitleModel[][] = [];
+        for (let i = 0; i < this.quizArray.length; i += 3) {
+            rows.push(this.quizArray.slice(i, i + 3));
+        }
+        return rows;
+    }
+
+    public getRandomGradient(id: number): string {
+        const index = id % this.gradients.length;
+        return this.gradients[index];
     }
 
 }

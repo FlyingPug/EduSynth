@@ -1,25 +1,41 @@
-<div class="container">
-  <div class="formGroup" [formGroup]="form">
-    <mat-form-field>
+<div class="question-form-container">
+  <div class="form-header">
+    <h2>Создание вопроса с текстовым ответом</h2>
+    <p class="form-subtitle">Введите вопрос и правильный ответ</p>
+  </div>
+
+  <div class="form-content" [formGroup]="form">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Текст вопроса:</mat-label>
-      <textarea  [formControl]="questionText" matInput placeholder="Текст вопроса"  class="textview"></textarea>
+      <textarea [formControl]="questionText" matInput placeholder="Введите текст вопроса" rows="3"></textarea>
+      <mat-error *ngIf="questionText.hasError('required')">Текст вопроса обязателен</mat-error>
+      <mat-error *ngIf="questionText.hasError('minlength')">Минимум 1 символ</mat-error>
+      <mat-error *ngIf="questionText.hasError('maxlength')">Максимум 364 символа</mat-error>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Ограничение по времени:</mat-label>
-      <input type="number" [formControl]="timeLimit" matInput>
+    <mat-form-field appearance="outline">
+      <mat-label>Ограничение по времени (сек):</mat-label>
+      <input type="number" [formControl]="timeLimit" matInput min="5">
+      <mat-error *ngIf="timeLimit.hasError('min')">Минимум 5 секунд</mat-error>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Ответ:</mat-label>
-      <textarea  [formControl]="answer" matInput placeholder="Ответ вопроса"  class="textview"></textarea>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Правильный ответ:</mat-label>
+      <textarea [formControl]="answer" matInput placeholder="Введите правильный ответ" rows="2"></textarea>
+      <mat-error *ngIf="answer.hasError('required')">Ответ обязателен</mat-error>
+      <mat-error *ngIf="answer.hasError('minlength')">Минимум 1 символ</mat-error>
+      <mat-error *ngIf="answer.hasError('maxlength')">Максимум 100 символов</mat-error>
     </mat-form-field>
 
-    <app-image-upload [label]="'Выберите изображения вопроса'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
+    <app-image-upload [label]="'Выберите изображение вопроса'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
+  </div>
 
-    <div class="actions">
-      <button mat-raised-button  [disabled]="!form.valid" (click)="onCreateQuizClick()">Закончить</button>
-      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submitQuestion()">Добавить вопрос</button>
-    </div>
+  <div class="form-actions">
+    <button mat-stroked-button (click)="onCreateQuizClick()" [disabled]="!form.valid">
+      Закончить создание теста
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="addQuestion()">
+      Добавить вопрос
+    </button>
   </div>
 </div>

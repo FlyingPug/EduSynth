@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TextInputQuestion extends Question {
-    @Column(name = "correct_answer", nullable = false)
+    @Column(name = "correct_answer")
     private String correctAnswer;
 
     @Override

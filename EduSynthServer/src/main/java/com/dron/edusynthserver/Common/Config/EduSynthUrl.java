@@ -14,7 +14,8 @@ public class EduSynthUrl
     public static final String SWAGGER = API_PRIVATE + "/api-docs";
     public static final String SESSION = API_PRIVATE + "/session";
     public static final String QUIZ = API_PRIVATE + "/quiz";
-    public static final String UPLOAD = API_PRIVATE + "/upload/";
+    public static final String UPLOAD_PRIVATE = API_PRIVATE + "/upload";
+    public static final String UPLOAD_PUBLIC = API_PUBLIC + "/upload";
 
     public static final String UPLOAD_FILE = "./files/upload/";
     public static final String UPLOAD_FILE_IMAGE = UPLOAD_FILE + "/image";

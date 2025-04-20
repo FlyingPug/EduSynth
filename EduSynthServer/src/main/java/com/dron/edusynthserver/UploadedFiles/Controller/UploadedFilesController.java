@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping(EduSynthUrl.UPLOAD)
 public class UploadedFilesController
 {
     private final UploadedFilesService uploadedFilesService;
@@ -23,20 +22,20 @@ public class UploadedFilesController
         this.uploadedFilesService = uploadedFilesService;
     }
 
-    @PostMapping("/image")
+    @PostMapping(EduSynthUrl.UPLOAD_PRIVATE + "/image")
     public ResponseEntity<UploadedFileDto> uploadFile(@RequestParam("image") MultipartFile file) {
         try {
             String uniqueFileName = uploadedFilesService.generateUniqueFileName(file.getOriginalFilename());
             uploadedFilesService.saveFile(file, uniqueFileName);
 
-            String fileUrl = EduSynthUrl.UPLOAD + uniqueFileName;
+            String fileUrl = EduSynthUrl.UPLOAD_PUBLIC + uniqueFileName;
             return ResponseEntity.status(HttpStatus.OK).body(new UploadedFileDto(fileUrl));
         } catch (IOException e) {
             throw new InternalError(e.getMessage());
         }
     }
 
-    @GetMapping("/{fileName}")
+    @GetMapping(EduSynthUrl.UPLOAD_PUBLIC + "/{fileName}")
     public ResponseEntity<Resource> getResource(@PathVariable String fileName) {
         try {
             Resource file = uploadedFilesService.loadFile(fileName);

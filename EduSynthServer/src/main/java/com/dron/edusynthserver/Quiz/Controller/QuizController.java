@@ -34,7 +34,7 @@ public class QuizController
 
     @PreAuthorize("hasAnyRole('STUDENT', 'TEACHER')")
     @PostMapping
-    public QuizResponseDto createQuiz(@RequestBody QuizRequestDto quizDTO, Authentication authentication) {
+    public QuizResponseDto createQuiz(@RequestBody QuizRequestDto quizDTO) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Quiz createdQuiz = quizService.createQuiz(quizDTO, user.getId());
 

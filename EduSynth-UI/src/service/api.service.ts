@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { EventEmitter, inject, Injectable, NgZone } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from "@angular/common/http";
 import { Observable, Subscription } from "rxjs";
@@ -61,12 +62,37 @@ export class ApiClient {
     public post(url: string, data: unknown): Promise<any> {
         const observable =
           this.http.post(this.getUrl(url),
-              JSON.stringify(data),
+              data,
               {
                   headers: this.getHeaders(),
                   observe: "response"
               });
         return this.subscribe(observable);
+    }
+
+    public postFile(url: string, file: File, fileName: string = "file"): Promise<any> {
+        const formData = new FormData();
+        formData.append(fileName, file, file.name);
+
+        const observable = this.http.post(
+            this.getUrl(url),
+            formData,
+            {
+                headers: this.getFileUploadHeaders(),
+                observe: "response"
+            }
+        );
+
+        return this.subscribe(observable);
+    }
+
+    private getFileUploadHeaders(): HttpHeaders {
+        const jwtToken = localStorage.getItem("access-token");
+
+        return new HttpHeaders({
+            "Authorization": `Bearer ${jwtToken}`,
+            "cache-control": "no-cache"
+        });
     }
 
     public put(url: string, data?: unknown): Promise<any> {

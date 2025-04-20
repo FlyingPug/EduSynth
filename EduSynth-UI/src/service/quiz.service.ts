@@ -16,7 +16,7 @@ export class QuizService {
 
     public async getQuizTitles(query: Query) : Promise<Page<QuizTitleModel>> {
         const result = await this.api.get<Page<QuizTitleModel>>(
-            this.apiQuiz + "/quizzes",
+            this.apiQuiz + "/query",
             false,
             null,
             query

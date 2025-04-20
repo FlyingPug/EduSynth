@@ -11,11 +11,20 @@ import { slideToLeftAnimation } from "../../animations/slide-to-left";
 import { IQuizRequestDto } from "../../models/quiz/request/quiz-request-model";
 import { QuestionTypeDto } from "../../models/quiz/question-type-model";
 import { MatCheckbox } from "@angular/material/checkbox";
+import { CommonModule } from "@angular/common";
 
 @Component({
     selector: "app-create-quiz",
     standalone: true,
-    imports: [ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, MatCheckbox, ImageUploadComponent],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatCheckbox,
+        ImageUploadComponent],
     templateUrl: "./create-quiz.component.html",
     styleUrl: "./create-quiz.component.scss",
     animations: [slideToLeftAnimation]

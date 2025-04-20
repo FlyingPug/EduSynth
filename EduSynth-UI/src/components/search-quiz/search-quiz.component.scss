@@ -1,0 +1,220 @@
+/* Основной контейнер */
+.quiz-search-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* Заголовок и подзаголовок */
+.search-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.search-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Контейнер для бесконечной прокрутки */
+.quiz-grid-container {
+  height: calc(100vh - 180px);
+  overflow-y: auto;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+/* Таблица карточек (3 в строке) */
+.quiz-table {
+  width: 100%;
+}
+
+.quiz-row {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+/* Карточка квиза */
+.quiz-card {
+  flex: 0 0 calc(33.333% - 1rem);
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quiz-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок карточки */
+.quiz-card mat-card-header {
+  padding: 1rem 1rem 0.5rem;
+}
+
+.quiz-card mat-card-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 2.5rem;
+}
+
+/* Изображение квиза или градиент - ОБНОВЛЕНО */
+.card-image-container {
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Сохраняет пропорции изображения */
+  object-position: center; /* Центрирует изображение */
+  display: block;
+}
+
+.gradient-placeholder {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Эффект при наведении */
+.card-image-container:hover .card-image {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.card-image-container:hover .gradient-placeholder {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Описание квиза */
+.quiz-card mat-card-content {
+  padding: 0.5rem 1rem;
+  flex-grow: 1;
+}
+
+.card-description {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Кнопки действий */
+.quiz-card mat-card-actions {
+  padding: 0.5rem 1rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.play-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.play-icon {
+  font-size: 1.1rem;
+}
+
+/* Сообщение об отсутствии квизов */
+.no-quizzes-message {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.no-quizzes-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.no-quizzes-message h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.no-quizzes-message p {
+  color: #666;
+}
+
+/* Индикатор загрузки */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.loading-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #3f51b5;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 0.75rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-container p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .quiz-row {
+    flex-wrap: wrap;
+  }
+  
+  .quiz-card {
+    flex: 0 0 calc(50% - 1rem);
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-card {
+    flex: 0 0 100%;
+  }
+}

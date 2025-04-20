@@ -1,15 +1,36 @@
-<div class="formGroup" [formGroup]="formGroup">
-    <mat-form-field>
+<div class="quiz-form-container" [formGroup]="formGroup">
+  <div class="form-header">
+    <h2>Создание нового теста</h2>
+    <p class="form-subtitle">Заполните информацию о вашем тесте</p>
+  </div>
+
+  <div class="form-fields">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Название теста:</mat-label>
-      <input [formControl]="name" matInput>
+      <input [formControl]="name" matInput placeholder="Введите название теста">
+      <mat-error *ngIf="name.hasError('required')">Название обязательно</mat-error>
+      <mat-error *ngIf="name.hasError('minlength')">Минимум 4 символа</mat-error>
+      <mat-error *ngIf="name.hasError('maxlength')">Максимум 100 символов</mat-error>
     </mat-form-field>
-    <mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Описание:</mat-label>
-      <textarea  [formControl]="description" matInput placeholder="Текстовое описание" style="height: 8rem"></textarea>
+      <textarea [formControl]="description" matInput placeholder="Текстовое описание" rows="5"></textarea>
+      <mat-error *ngIf="description.hasError('maxlength')">Максимум 500 символов</mat-error>
     </mat-form-field>
-    <mat-checkbox [formControl]="isPublic">Публичный</mat-checkbox>
-    <app-image-upload [label]="'Выберите изображения теста'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
-    <div class="action">
-      <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onCreateQuizClick()">Продолжить</button>
+
+    <div class="checkbox-container">
+      <mat-checkbox [formControl]="isPublic" color="primary">Публичный</mat-checkbox>
     </div>
+
+    <div class="image-upload-container">
+      <app-image-upload [label]="'Выберите изображение теста'" (onFileUploaded)="onTitleImageUrlGet($event)"></app-image-upload>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onCreateQuizClick()">
+      Продолжить
+    </button>
+  </div>
 </div>

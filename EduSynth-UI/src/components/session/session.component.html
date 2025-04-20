@@ -24,7 +24,7 @@
             </app-chrono-question>
           </div>
 
-          <div *ngSwitchCase="QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS">
+          <div *ngSwitchCase="QuestionTypeDto.MULTIPLE">
             <app-multiple-choice-question 
               [question]="multipleChoiceQuestion"
               [sessionCode]="session.id"

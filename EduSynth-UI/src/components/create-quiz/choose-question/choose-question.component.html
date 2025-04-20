@@ -1,34 +1,34 @@
 <div class="container">
   <mat-button-toggle-group class="toggle-group" value="QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS" [(ngModel)]="selectedValue">
     <div class="chooseQuestionType">
-      <mat-button-toggle [value]="QuestionTypeDto.CHOOSE_MULTIPLE_OPTIONS" class="custom-toggle">
+      <mat-button-toggle [value]="QuestionTypeDto.MULTIPLE" class="custom-toggle">
         <img src="../../../assets/images/mult_choice.png" alt="MULTIPLE" width="150" height="150">
       </mat-button-toggle>
-      <span>Вопрос с выбором множества ответов</span>
+      <span class="title-text">Вопрос с выбором множества ответов</span>
     </div>
     <div class="chooseQuestionType">
       <mat-button-toggle [value]="QuestionTypeDto.CHOOSE_OPTION" class="custom-toggle">
         <img src="../../../assets/images/only_option.png" alt="OPTION" width="150" height="150">
       </mat-button-toggle>
-      <span>Вопрос с выбором одного ответа</span>
+      <span class="title-text">Вопрос с выбором одного ответа</span>
     </div>
     <div class="chooseQuestionType">
       <mat-button-toggle [value]="QuestionTypeDto.INPUT_TEXT" class="custom-toggle">
         <img src="assets/images/answer_input.png" alt="INPUT" width="150" height="150">
       </mat-button-toggle>
-      <span>Вопрос с вводом ответа</span>
+      <span class="title-text">Вопрос с вводом ответа</span>
     </div>
     <div class="crossword">
       <mat-button-toggle [value]="QuestionTypeDto.CROSSWORD" class="custom-toggle">
         <img src="assets/images/answer_input.png" alt="CROSSWORD" width="150" height="150">
       </mat-button-toggle>
-      <span>Кроссворд</span>
+      <span class="title-text">Кроссворд</span>
     </div>
     <div class="chrono">
       <mat-button-toggle [value]="QuestionTypeDto.CHRONO" class="custom-toggle">
         <img src="assets/images/answer_input.png" alt="CHRONO" width="150" height="150">
       </mat-button-toggle>
-      <span>Порядковый вопрос</span>
+      <span class="title-text">Порядковый вопрос</span>
     </div>
   </mat-button-toggle-group>
   <div class="action">
