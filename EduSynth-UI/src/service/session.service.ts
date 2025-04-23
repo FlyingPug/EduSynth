@@ -24,10 +24,7 @@ export class SessionService {
     }
 
     public async joinSession(sessionCode: string) : Promise<SessionDto> {
-        const data = await this.api.post(this.apiSession + "/join",
-            {
-                sessionCode: sessionCode
-            });
+        const data = await this.api.post(this.apiSession + "/join", new SessionCode(sessionCode));
         return new SessionDto(data);
     }
 

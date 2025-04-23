@@ -289,8 +289,7 @@ export class CreateCrosswordQuestionComponent extends QuestionCreator implements
                     startY: y
                 });
 
-                // Переключаемся на вкладку со списком слов
-                this.activeTabIndex = 1; // Предполагаем, что вкладка со списком слов имеет индекс 1
+                this.activeTabIndex = 1;
             }
         }
     }

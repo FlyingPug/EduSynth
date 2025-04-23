@@ -20,26 +20,25 @@ import java.util.List;
 public class SessionController {
     private final SessionService sessionService;
     private final SessionMapper sessionMapper;
-    private final UserService userService;
 
     @PostMapping("/create")
-    public SessionDto createSession(@RequestParam Integer quizId) {
+    public SessionDto createSession(@RequestBody Integer quizId) {
         return sessionMapper.toSessionDto(
                 sessionService.createSession(quizId, getCurrentUserId())
         );
     }
 
     @PostMapping("/{sessionId}/join")
-    public SessionDto joinSession(@PathVariable String sessionId) {
+    public SessionDto joinSession(@RequestBody SessionCodeDto sessionId) {
         return sessionMapper.toSessionDto(
-                sessionService.joinSession(sessionId, getCurrentUserId())
+                sessionService.joinSession(sessionId.getSessionCode(), getCurrentUserId())
         );
     }
 
     @PostMapping("/{sessionId}/start")
-    public SessionDto startSession(@PathVariable String sessionId) {
+    public SessionDto startSession(@PathVariable SessionCodeDto sessionId) {
         return sessionMapper.toSessionDto(
-                sessionService.startSession(sessionId, getCurrentUserId())
+                sessionService.startSession(sessionId.getSessionCode(), getCurrentUserId())
         );
     }
 

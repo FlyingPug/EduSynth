@@ -70,6 +70,17 @@ export class ApiClient {
         return this.subscribe(observable);
     }
 
+    public simplePost(url: string): Promise<any> {
+        const observable =
+          this.http.post(this.getUrl(url),
+              null,
+              {
+                  headers: this.getHeaders(),
+                  observe: "response"
+              });
+        return this.subscribe(observable);
+    }
+
     public postFile(url: string, file: File, fileName: string = "file"): Promise<any> {
         const formData = new FormData();
         formData.append(fileName, file, file.name);

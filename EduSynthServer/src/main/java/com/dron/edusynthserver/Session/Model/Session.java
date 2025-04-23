@@ -51,6 +51,9 @@ public class Session {
     }
 
     public boolean isTimeExpired() {
+        if (SessionStatus.WAITING.equals(status) || SessionStatus.FINISHED.equals(status)) {
+            return false;
+        }
         return Duration.between(startTime, Instant.now())
                 .compareTo(questionTimeLimit) >= 0;
     }

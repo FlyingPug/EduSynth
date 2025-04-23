@@ -52,6 +52,8 @@ public class SessionServiceImpl implements SessionService {
                 .quiz(quiz)
                 .status(SessionStatus.WAITING)
                 .currentQuestionIndex(0)
+                .startTime(Instant.now())
+                .questionTimeLimit(Duration.ofMinutes(0))
                 .build();
 
         Participant leader = Participant.builder()
