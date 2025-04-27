@@ -1,16 +1,111 @@
-<section class="example-container mat-elevation-z8" tabindex="0">
-  <table mat-table [dataSource]="participants" class="result-table">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Имя </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+<div class="results-container">
+  <div class="results-header">
+    <h1 class="results-title">Результаты игры</h1>
+    <p class="results-subtitle">Поздравляем всех участников!</p>
+  </div>
+  
+  <div class="podium-section" *ngIf="topParticipants.length > 0">
+    <div class="podium-container">
+      <!-- Второе место -->
+      <div class="podium-item second-place" *ngIf="topParticipants.length > 1">
+        <div class="podium-avatar-container">
+          <div class="podium-avatar">
+            <img *ngIf="topParticipants[1].imageUrl" [src]="topParticipants[1].imageUrl" alt="Аватар">
+            <span *ngIf="!topParticipants[1].imageUrl">{{ getInitials(topParticipants[1].name) }}</span>
+          </div>
+          <div class="medal silver">2</div>
+        </div>
+        <div class="podium-name">{{ topParticipants[1].name }}</div>
+        <div class="podium-score">{{ topParticipants[1].score }} очков</div>
+        <div class="podium-platform second"></div>
+      </div>
+      
+      <!-- Первое место -->
+      <div class="podium-item first-place" *ngIf="topParticipants.length > 0">
+        <div class="winner-crown"></div>
+        <div class="podium-avatar-container">
+          <div class="podium-avatar">
+            <img *ngIf="topParticipants[0].imageUrl" [src]="topParticipants[0].imageUrl" alt="Аватар">
+            <span *ngIf="!topParticipants[0].imageUrl">{{ getInitials(topParticipants[0].name) }}</span>
+          </div>
+          <div class="medal gold">1</div>
+        </div>
+        <div class="podium-name">{{ topParticipants[0].name }}</div>
+        <div class="podium-score">{{ topParticipants[0].score }} очков</div>
+        <div class="podium-platform first"></div>
+      </div>
+      
+      <!-- Третье место -->
+      <div class="podium-item third-place" *ngIf="topParticipants.length > 2">
+        <div class="podium-avatar-container">
+          <div class="podium-avatar">
+            <img *ngIf="topParticipants[2].imageUrl" [src]="topParticipants[2].imageUrl" alt="Аватар">
+            <span *ngIf="!topParticipants[2].imageUrl">{{ getInitials(topParticipants[2].name) }}</span>
+          </div>
+          <div class="medal bronze">3</div>
+        </div>
+        <div class="podium-name">{{ topParticipants[2].name }}</div>
+        <div class="podium-score">{{ topParticipants[2].score }} очков</div>
+        <div class="podium-platform third"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="results-table-container">
+    <h2 class="table-title">Таблица результатов</h2>
+    
+    <div class="results-table">
+      <div class="table-header">
+        <div class="header-cell rank">Место</div>
+        <div class="header-cell participant">Участник</div>
+        <div class="header-cell score">Счёт</div>
+      </div>
+      
+      <div class="table-body">
+        <div class="table-row" *ngFor="let participant of sortedParticipants; let i = index" [class.highlight]="i < 3">
+          <div class="cell rank">
+            <div class="rank-badge" [ngClass]="{
+              'gold': i === 0,
+              'silver': i === 1,
+              'bronze': i === 2
+            }">{{ i + 1 }}</div>
+          </div>
+          
+          <div class="cell participant">
+            <div class="participant-avatar">
+              <img *ngIf="participant.imageUrl" [src]="participant.imageUrl" alt="Аватар">
+              <span *ngIf="!participant.imageUrl">{{ getInitials(participant.name) }}</span>
+            </div>
+            <div class="participant-name">{{ participant.name }}</div>
+          </div>
+          
+          <div class="cell score">
+            <div class="score-value">{{ participant.score }}</div>
+            <div class="score-bar-container">
+              <div class="score-bar" [style.width.%]="getScorePercentage(participant.score)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="results-actions">
+    <button mat-raised-button color="primary" class="action-button" (click)="playAgain()">
+      <mat-icon>replay</mat-icon>
+      Играть снова
+    </button>
+    <button mat-raised-button class="action-button" (click)="backToMenu()">
+      <mat-icon>home</mat-icon>
+      Вернуться в меню
+    </button>
+  </div>
+</div>
 
-    <ng-container matColumnDef="score">
-      <th mat-header-cell *matHeaderCellDef> Счёт </th>
-      <td mat-cell *matCellDef="let element"> {{element.score}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</section>
+<div class="confetti-container" *ngIf="showConfetti">
+  <div class="confetti" *ngFor="let item of confettiItems" 
+       [style.left.%]="item.left" 
+       [style.animation-delay]="item.delay + 's'"
+       [style.background-color]="item.color">
+  </div>
+</div>

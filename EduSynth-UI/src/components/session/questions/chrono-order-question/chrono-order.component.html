@@ -1,36 +1,62 @@
-<mat-card class="question-card">
-  <div class="timer-container">
-    <ng-circle-countdown 
-      #timer 
-      [duration]="timeLimitSeconds"
-      [colors]="[ '#004777', '#F7B801', '#A30000', '#A30000' ]"
-    >
-    </ng-circle-countdown>
+<div class="question-container">
+  <div class="question-header">
+    <div class="timer-wrapper">
+      <app-circle-timer
+        #timer
+        [duration]="timeLimitSeconds"
+        [colors]="['#3f51b5', '#ff9800', '#f44336']"
+        [size]="80"
+        [strokeWidth]="8"
+        (onComplete)="onTimerComplete()"
+        (onTick)="onTimerTick($event)"
+      >
+      </app-circle-timer>
+    </div>
+    
+    <div class="question-title">
+      <h2>{{ question.text }}</h2>
+    </div>
   </div>
-
-  <mat-card-header>
-    <mat-card-title>{{ question.text }}</mat-card-title>
-  </mat-card-header>
-
-  <img *ngIf="question.mediaUrl" mat-card-image [src]="question.mediaUrl" alt="Question media">
-
-  <mat-card-content>
-    <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="events-list">
-      <div *ngFor="let event of events; let i = index" 
-           cdkDrag
-           class="event-item">
-        <span class="event-index">{{ i + 1 }}</span>
-        <span class="event-text">{{ event.text }}</span>
+  
+  <div class="question-media" *ngIf="question.mediaUrl">
+    <img [src]="question.mediaUrl" alt="Изображение вопроса">
+  </div>
+  
+  <div class="chrono-container">
+    <div class="chrono-instructions">
+      <div class="instruction-icon">
+        <mat-icon>info</mat-icon>
+      </div>
+      <div class="instruction-text">
+        <p>Расположите события в правильном хронологическом порядке. Перетащите элементы, чтобы изменить их порядок.</p>
       </div>
     </div>
-  </mat-card-content>
-
-  <mat-card-actions>
-    <button mat-raised-button color="primary" 
-            (click)="submit()" 
-            [disabled]="isSubmitting">
-      <span *ngIf="!isSubmitting">Подтвердить порядок</span>
-      <mat-spinner *ngIf="isSubmitting" diameter="24"></mat-spinner>
-    </button>
-  </mat-card-actions>
-</mat-card>
+    
+    <div class="events-list" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div class="event-item" *ngFor="let event of events; let i = index" cdkDrag>
+        <span class="event-drag-handle" cdkDragHandle>
+          <mat-icon>drag_indicator</mat-icon>
+        </span>
+        <span class="event-number">{{ i + 1 }}</span>
+        <span class="event-content">
+          <p>{{ event.text }}</p>
+        </span>
+        <span class="event-drag-placeholder" *cdkDragPlaceholder></span>
+      </div>
+    </div>
+    
+    <div class="chrono-controls">
+      <button mat-stroked-button color="warn" (click)="resetOrder()">
+        <mat-icon>refresh</mat-icon>
+        Сбросить порядок
+      </button>
+      
+      <button mat-raised-button color="primary" 
+              (click)="submit()" 
+              [disabled]="isSubmitting">
+        <span *ngIf="!isSubmitting">Отправить ответ</span>
+        <mat-spinner *ngIf="isSubmitting" diameter="24"></mat-spinner>
+      </button>
+    </div>
+  </div>
+</div>

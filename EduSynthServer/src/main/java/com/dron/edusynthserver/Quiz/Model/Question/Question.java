@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -32,6 +33,18 @@ public abstract class Question {
     @ManyToOne
     @JoinColumn(name = "quiz_id")
     protected Quiz quiz;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Question question = (Question) o;
+        return id == question.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 
     public abstract boolean isAnswerCorrect(List<ParticipantAnswer> participantAnswers);
 }

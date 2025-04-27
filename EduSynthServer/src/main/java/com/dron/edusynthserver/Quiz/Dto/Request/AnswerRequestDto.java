@@ -7,5 +7,5 @@ public class AnswerRequestDto
 {
     private String text;
     private String mediaUrl;
-    private boolean isCorrect;
+    private boolean correct;
 }

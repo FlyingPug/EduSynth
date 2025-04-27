@@ -1,33 +1,90 @@
-<div class="lobby-content"  *ngIf="!loading">
-  <div class="quiz-header">
-  <h2>Ожидаем участников...</h2>
+<div class="lobby-container" *ngIf="!loading">
+  <div class="lobby-header">
+    <h1 class="lobby-title">Ожидание участников</h1>
+    <p class="lobby-subtitle">Поделитесь ссылкой или QR-кодом, чтобы пригласить участников</p>
   </div>
-  <mat-divider></mat-divider>
-  <div class="info-container">
-    <mat-list *ngIf="sessionState$.value">
-      <div mat-subheader>Участники</div>
-      <div *ngFor="let participant of sessionState$.value.participants">
-        <mat-list-item>
-          <mat-icon matListItemIcon>person</mat-icon>
-          <div matListItemTitle>{{participant.name}}</div>
-        </mat-list-item>
+  
+  <div class="lobby-content">
+    <div class="participants-card">
+      <div class="card-header">
+        <h2>Участники <span class="participant-count" *ngIf="sessionState$.value">{{ sessionState$.value.participants.length }}</span></h2>
       </div>
-    </mat-list>
-    <div class="qr-code">
-      <qr-code
-        [value]="sessionLink"
-        errorCorrectionLevel="L">
-      </qr-code>
-      <button mat-button (click)="copyLink()"><mat-icon>link</mat-icon>Копировать</button>
+      
+      <div class="participants-list" *ngIf="sessionState$.value">
+        <div class="participant-item" *ngFor="let participant of sessionState$.value.participants; let i = index" [style.animation-delay]="i * 0.1 + 's'">
+          <div class="participant-avatar" [class.leader-avatar]="participant.leader">
+            <span>{{ getInitials(participant.name) }}</span>
+          </div>
+          <div class="participant-info">
+            <span class="participant-name">{{ participant.name }}</span>
+            <span class="participant-status" *ngIf="participant.leader">Организатор</span>
+          </div>
+        </div>
+        
+        <div class="empty-list" *ngIf="sessionState$.value.participants.length === 0">
+          <mat-icon>people_outline</mat-icon>
+          <p>Пока никто не присоединился</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="join-card">
+      <div class="card-header">
+        <h2>Пригласить участников</h2>
+      </div>
+      
+      <div class="qr-container">
+        <div class="qr-code-wrapper">
+          <qr-code
+            [value]="sessionLink"
+            errorCorrectionLevel="M"
+            size="180">
+          </qr-code>
+        </div>
+        <p class="qr-instruction">Отсканируйте QR-код для присоединения к игре</p>
+      </div>
+      
+      <div class="link-container">
+        <div class="link-field">
+          <input type="text" [value]="sessionLink" readonly #linkInput>
+          <button mat-icon-button (click)="copyLink(); linkCopied = true" [class.copied]="linkCopied">
+            <mat-icon>{{ linkCopied ? 'check' : 'content_copy' }}</mat-icon>
+          </button>
+        </div>
+        <span class="copy-feedback" *ngIf="linkCopied">Ссылка скопирована!</span>
+      </div>
     </div>
   </div>
-  <div class="bottom-content">
-    <div *ngIf="!isLeader; else notLeader">
+  
+  <div class="lobby-footer">
+    <div class="waiting-message" *ngIf="!isLeader">
+      <mat-icon class="pulse-icon">hourglass_top</mat-icon>
       <p>Ожидаем начала тестирования...</p>
     </div>
-    <ng-template #notLeader>
-      <button mat-raised-button #button color="primary"  (click)="startSession()">Начать игру</button>
-    </ng-template>
+    
+    <button 
+      mat-raised-button 
+      color="primary" 
+      class="start-button" 
+      *ngIf="isLeader"
+      [disabled]="!sessionState$.value || sessionState$.value.participants.length < 1"
+      (click)="startSession()">
+      <mat-icon>play_arrow</mat-icon>
+      Начать игру
+    </button>
   </div>
 </div>
-<ng-template #elseBlock>Что-то пошло не так</ng-template>
+
+<div class="loading-container" *ngIf="loading">
+  <div class="loading-spinner"></div>
+  <p>Загрузка лобби...</p>
+</div>
+
+<ng-template #elseBlock>
+  <div class="error-container">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <h2>Что-то пошло не так</h2>
+    <p>Не удалось загрузить информацию о сессии</p>
+    <button mat-raised-button color="primary" (click)="goBack()">Вернуться назад</button>
+  </div>
+</ng-template>

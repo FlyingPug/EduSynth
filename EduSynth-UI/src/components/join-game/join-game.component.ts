@@ -28,7 +28,9 @@ export class JoinGameComponent {
 
     public async onJoinGameClicked(): Promise<void> {
         const session = await this.sessionService.joinSession(this.code.value);
-        this.router.navigate(["/session", session.id]);
+        this.router.navigate(["/session", session.id], {
+            state:{ session: session }
+        });
     }
 
 }

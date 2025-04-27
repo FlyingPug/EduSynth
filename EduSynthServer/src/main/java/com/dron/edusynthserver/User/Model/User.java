@@ -2,6 +2,7 @@ package com.dron.edusynthserver.User.Model;
 
 import com.dron.edusynthserver.Session.Model.Participant;
 import com.dron.edusynthserver.Quiz.Model.Quiz;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -40,9 +41,6 @@ public class User implements Principal {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Participant> participants;
-
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Quiz> createdQuizes;
 
@@ -64,7 +62,7 @@ public class User implements Principal {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, passwordHash, salt, email, balance, profilePictureUrl, role, participants, createdQuizes);
+        return Objects.hash(id, username, passwordHash, salt, email, balance, profilePictureUrl, role);
     }
 
     @Override
@@ -74,12 +72,7 @@ public class User implements Principal {
 
         User user = (User) o;
 
-        if (id != user.id) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (passwordHash != null ? !passwordHash.equals(user.passwordHash) : user.passwordHash != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (role != user.role) return false;
-        if (participants != null ? !participants.equals(user.participants) : user.participants != null) return false;
-        return createdQuizes != null ? createdQuizes.equals(user.createdQuizes) : user.createdQuizes == null;
+        if (id == user.id) return true;
+        return false;
     }
 }

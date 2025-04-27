@@ -16,19 +16,14 @@ export abstract class BaseQuestionComponent<T extends QuestionResponseDto> exten
     protected readonly sessionService = inject(SessionService);
     protected readonly destroyRef = inject(DestroyRef);
 
-    @ViewChild("timer") public timer!: CircleCountdownComponent;
     @Input({ required: true }) public sessionCode!: string;
     @Input({ required: true }) public question!: T;
 
-    public isSubmitting = false;
+    public isSubmitting: boolean = false;
     public form!: FormGroup;
-    public timeLimitSeconds = 30;
+    public timeLimitSeconds: number = 30;
 
     protected abstract initializeForm(): void;
-
-    public ngAfterViewInit(): void {
-        this.timer.start();
-    }
 
     protected async submitAnswers(answers: IUserAnswerDto[]): Promise<void> {
         if (this.isSubmitting) return;

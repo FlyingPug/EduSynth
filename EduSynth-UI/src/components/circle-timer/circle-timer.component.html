@@ -1,0 +1,33 @@
+<div class="timer-container" [style.width.px]="size" [style.height.px]="size">
+  <svg class="timer-svg" [attr.width]="size" [attr.height]="size" viewBox="0 0 100 100">
+    <!-- Фоновый круг -->
+    <circle 
+      class="timer-circle-bg"
+      cx="50"
+      cy="50"
+      [attr.r]="radius"
+      [attr.stroke-width]="strokeWidth"
+      [style.stroke]="bgColor"
+    ></circle>
+    
+    <!-- Прогресс таймера -->
+    <circle 
+      class="timer-circle-progress"
+      cx="50"
+      cy="50"
+      [attr.r]="radius"
+      [attr.stroke-width]="strokeWidth"
+      [style.stroke]="getProgressColor()"
+      [style.stroke-dasharray]="circumference"
+      [style.stroke-dashoffset]="dashOffset"
+      transform="rotate(-90 50 50)"
+    ></circle>
+  </svg>
+  
+  <div class="timer-content" [class.warning]="timePercentage <= warningThreshold">
+    <ng-content></ng-content>
+    <div class="timer-text" *ngIf="!customContent">
+      {{ formatTime(timeRemaining) }}
+    </div>
+  </div>
+</div>

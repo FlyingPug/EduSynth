@@ -104,6 +104,7 @@ public class QuestionFactoryImpl implements QuestionFactory {
         Answer answer = new Answer();
         answer.setText(dto.getText());
         answer.setCorrect(dto.isCorrect());
+        answer.setMediaUrl(dto.getMediaUrl());
         return answer;
     }
 

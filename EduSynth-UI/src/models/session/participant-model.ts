@@ -4,6 +4,7 @@ export class ParticipantDto extends BaseModel {
 
     public leader: boolean;
     public name: string;
+    public imageUrl: string;
     public score: number;
 
     constructor(participant: IParticipantDto) {
@@ -15,6 +16,7 @@ export class ParticipantDto extends BaseModel {
 
 export interface IParticipantDto {
     name: string;
+    imageUrl: string;
     score: number;
     leader: boolean;
 }

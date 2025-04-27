@@ -34,7 +34,7 @@ public class ParticipantAnswer {
     @JoinColumn(name = "participant_id", nullable = false)
     private Participant participant;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 

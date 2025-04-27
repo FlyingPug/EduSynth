@@ -30,10 +30,10 @@
       <div class="events-container" formArrayName="events" cdkDropList (cdkDropListDropped)="dropEvent($event)">
         <div *ngFor="let eventForm of events.controls; let i = index" cdkDrag class="event-item">
           <app-chrono-event 
-            [formGroup]="eventForm" 
-            [index]="i" 
-            [canRemove]="events.length > 3"
-            (remove)="removeEvent(i)">
+              [formGroup]="eventForm" 
+              [index]="i" 
+              [canRemove]="events.length > 3"
+              (remove)="removeEvent(i)">
           </app-chrono-event>
           
           <div class="drag-handle" cdkDragHandle>

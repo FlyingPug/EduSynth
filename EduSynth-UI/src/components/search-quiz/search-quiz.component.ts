@@ -66,7 +66,9 @@ export class SearchQuizComponent implements OnInit {
 
     public async launchTest(id : number): Promise<void> {
         const session = await this.sessionService.createSession(id);
-        this.router.navigate(["/session", session.id]);
+        this.router.navigate(["/session", session.id], {
+            state:{ session: session }
+        });
     }
 
     public getQuizRows(): QuizTitleModel[][] {

@@ -1,35 +1,60 @@
-<mat-card class="question-card">
-  <div class="timer-container">
-    <ng-circle-countdown 
-      #timer 
-      [duration]="timeLimitSeconds"
-      [colors]="[ '#004777', '#F7B801', '#A30000', '#A30000' ]"
-    >
-    </ng-circle-countdown>
+<div class="question-container">
+  <div class="question-header">
+    <div class="timer-wrapper">
+      <app-circle-timer
+        #timer
+        [duration]="timeLimitSeconds"
+        [colors]="['#3f51b5', '#ff9800', '#f44336']"
+        [size]="80"
+        [strokeWidth]="8"
+        (onComplete)="onTimerComplete()"
+        (onTick)="onTimerTick($event)"
+      >
+      </app-circle-timer>
+    </div>
+    
+    <div class="question-title">
+      <h2>{{ question.text }}</h2>
+      <div class="question-subtitle">Выберите все правильные варианты</div>
+    </div>
   </div>
-
-  <mat-card-header>
-    <mat-card-title>{{ question.text }}</mat-card-title>
-  </mat-card-header>
-
-  <img *ngIf="question.mediaUrl" mat-card-image [src]="question.mediaUrl" alt="Question media">
-
-  <mat-card-content>
-    <form [formGroup]="form" class="options-form">
-      <mat-checkbox *ngFor="let a of question.answers" 
-                   [formControlName]="a.id.toString()"
-                   class="option">
-        {{ a.text }}
-      </mat-checkbox>
-    </form>
-  </mat-card-content>
-
-  <mat-card-actions>
-    <button mat-raised-button color="primary" 
-            (click)="submit()" 
-            [disabled]="isSubmitting">
-      <span *ngIf="!isSubmitting">Отправить</span>
-      <mat-spinner *ngIf="isSubmitting" diameter="24"></mat-spinner>
-    </button>
-  </mat-card-actions>
-</mat-card>
+  
+  <div class="question-media" *ngIf="question.mediaUrl">
+    <img [src]="question.mediaUrl" alt="Изображение вопроса">
+  </div>
+  
+  <div class="options-container">
+    <div class="options-grid">
+      <div class="option-card" 
+           *ngFor="let answer of question.answers"
+           [class.selected]="isSelected(answer.id)"
+           (click)="toggleAnswer(answer.id)">
+        <div class="option-content">
+          <div class="option-indicator">
+            <div class="option-check" *ngIf="isSelected(answer.id)">
+              <mat-icon>check</mat-icon>
+            </div>
+          </div>
+          <div class="option-text">{{ answer.text }}</div>
+        </div>
+        
+        <div class="option-media" *ngIf="answer.mediaUrl">
+          <img [src]="answer.mediaUrl" alt="Изображение ответа">
+        </div>
+      </div>
+    </div>
+    
+    <div class="selected-count" *ngIf="selectedAnswers.length > 0">
+      Выбрано: {{ selectedAnswers.length }}
+    </div>
+    
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" 
+              (click)="submit()" 
+              [disabled]="selectedAnswers.length === 0 || isSubmitting">
+        <span *ngIf="!isSubmitting">Отправить ответ</span>
+        <mat-spinner *ngIf="isSubmitting" diameter="24"></mat-spinner>
+      </button>
+    </div>
+  </div>
+</div>

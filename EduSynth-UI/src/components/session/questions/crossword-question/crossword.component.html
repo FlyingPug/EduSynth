@@ -1,54 +1,103 @@
-<mat-card class="question-card crossword-card">
-  <div class="timer-container">
-    <ng-circle-countdown 
-      #timer 
-      [duration]="timeLimitSeconds"
-      [colors]="[ '#004777', '#F7B801', '#A30000', '#A30000' ]"
-    >
-    </ng-circle-countdown>
+<div class="question-container">
+  <div class="question-header">
+    <div class="timer-wrapper">
+      <app-circle-timer
+        #timer
+        [duration]="timeLimitSeconds"
+        [colors]="['#3f51b5', '#ff9800', '#f44336']"
+        [size]="80"
+        [strokeWidth]="8"
+        (onComplete)="onTimerComplete()"
+        (onTick)="onTimerTick($event)"
+      >
+      </app-circle-timer>
+    </div>
+    
+    <div class="question-title">
+      <h2>{{ question.text }}</h2>
+    </div>
   </div>
-
-  <mat-card-header>
-    <mat-card-title>{{ question.text }}</mat-card-title>
-  </mat-card-header>
-
-  <img *ngIf="question.mediaUrl" mat-card-image [src]="question.mediaUrl" alt="Question media">
-
-  <mat-card-content>
-    <div class="mobile-instruction" *ngIf="isMobile">
-      <mat-icon>touch_app</mat-icon>
-      <span>Нажимайте на клетки для ввода</span>
+  
+  <div class="question-media" *ngIf="question.mediaUrl">
+    <img [src]="question.mediaUrl" alt="Изображение вопроса">
+  </div>
+  
+  <div class="crossword-container">
+    <div class="crossword-instructions">
+      <div class="instruction-icon">
+        <mat-icon>info</mat-icon>
+      </div>
+      <div class="instruction-text">
+        <p>Заполните кроссворд, вводя буквы в ячейки. Используйте стрелки для навигации между ячейками.</p>
+        <p *ngIf="isMobile">Нажмите на ячейку, чтобы ввести букву.</p>
+      </div>
     </div>
-
-    <div class="crossword-grid" [style.--cols]="maxX + 1" [style.--rows]="maxY + 1">
-      <ng-container *ngFor="let row of grid; let y = index">
-        <ng-container *ngFor="let cell of row; let x = index">
-          <div *ngIf="cell" 
-               class="crossword-cell"
-               [class.focused]="currentFocus?.x === x && currentFocus?.y === y"
-               [class.highlighted]="cell.isHighlighted">
-            <input matInput
-                   [id]="'cell-' + x + '-' + y"
-                   type="text"
-                   [formControl]="cell.control"
-                   [maxLength]="cell.length"
-                   (click)="focusCell(x, y)"
-                   (touchstart)="focusCell(x, y)"
-                   (keydown)="onCellKeydown($event, cell)"
-                   [style.width.px]="!isMobile ? cell.length * 32 + 16 : null">
-          </div>
-          <div *ngIf="!cell" class="empty-cell"></div>
+    
+    <div class="crossword-grid-wrapper">
+      <div class="crossword-grid" [style.--cols]="maxX + 1" [style.--rows]="maxY + 1">
+        <ng-container *ngFor="let row of grid; let y = index">
+          <ng-container *ngFor="let cell of row; let x = index">
+            <div *ngIf="cell" 
+                class="crossword-cell"
+                [class.focused]="currentFocus?.x === x && currentFocus?.y === y"
+                [class.highlighted]="cell.isHighlighted"
+                [class.filled]="cell.control.value">
+              <input matInput
+                    [id]="'cell-' + x + '-' + y"
+                    type="text"
+                    [formControl]="cell.control"
+                    [maxLength]="cell.length"
+                    (click)="focusCell(x, y)"
+                    (touchstart)="focusCell(x, y)"
+                    (keydown)="onCellKeydown($event, cell)"
+                    (input)="onCellInput($event, x, y)"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false">
+              <div class="cell-coordinates" *ngIf="showCoordinates">{{x}},{{y}}</div>
+            </div>
+            <div *ngIf="!cell" class="empty-cell"></div>
+          </ng-container>
         </ng-container>
-      </ng-container>
+      </div>
     </div>
-  </mat-card-content>
-
-  <mat-card-actions>
-    <button mat-raised-button color="primary" 
-            (click)="submit()" 
-            [disabled]="isSubmitting">
-      <span *ngIf="!isSubmitting">Отправить ответ</span>
-      <mat-spinner *ngIf="isSubmitting" diameter="24"></mat-spinner>
-    </button>
-  </mat-card-actions>
-</mat-card>
+    
+    <div class="crossword-controls">
+      <div class="navigation-controls" *ngIf="isMobile">
+        <div class="nav-buttons">
+          <button mat-mini-fab color="primary" (click)="navigateDirection('ArrowUp')">
+            <mat-icon>keyboard_arrow_up</mat-icon>
+          </button>
+          
+          <div class="horizontal-nav">
+            <button mat-mini-fab color="primary" (click)="navigateDirection('ArrowLeft')">
+              <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" (click)="navigateDirection('ArrowRight')">
+              <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+          </div>
+          
+          <button mat-mini-fab color="primary" (click)="navigateDirection('ArrowDown')">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </div>
+      </div>
+      
+      <div class="action-buttons">
+        <button mat-stroked-button color="warn" (click)="clearCrossword()">
+          <mat-icon>clear</mat-icon>
+          Очистить
+        </button>
+        
+        <button mat-raised-button color="primary" 
+                (click)="submit()" 
+                [disabled]="isSubmitting || !isFormValid()">
+          <span *ngIf="!isSubmitting">Отправить ответ</span>
+          <mat-spinner *ngIf="isSubmitting" diameter="24"></mat-spinner>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

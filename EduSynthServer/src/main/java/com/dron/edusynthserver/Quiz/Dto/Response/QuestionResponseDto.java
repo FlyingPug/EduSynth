@@ -10,7 +10,7 @@ import lombok.Data;
         @JsonSubTypes.Type(value = SingleChoiceQuestionResponseDto.class, name = "CHOOSE_OPTION"),
         @JsonSubTypes.Type(value = TextInputQuestionResponseDto.class, name = "INPUT_TEXT"),
         @JsonSubTypes.Type(value = ChronoOrderQuestionResponseDto.class, name = "CHRONO"),
-        @JsonSubTypes.Type(value = MultipleChoiceQuestionResponseDto.class, name = "CHOOSE_MULTIPLE_OPTIONS"),
+        @JsonSubTypes.Type(value = MultipleChoiceQuestionResponseDto.class, name = "MULTIPLE"),
         @JsonSubTypes.Type(value = CrosswordQuestionResponseDto.class, name = "CROSSWORD")
 })
 public abstract class QuestionResponseDto {

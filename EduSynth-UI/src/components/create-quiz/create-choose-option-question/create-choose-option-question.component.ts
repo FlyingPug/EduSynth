@@ -103,7 +103,7 @@ export class CreateChooseOptionQuestionComponent extends QuestionCreator impleme
     private addQuestionToQuiz(): void {
         const trueIndex = this.trueIndex?.value;
         const answersArray = this.answers.controls.map((control, index) => {
-            return { mediaUrl: "", text: control.get("text")?.value, isCorrect: index == trueIndex };
+            return { mediaUrl: "", text: control.get("text")?.value, correct: index == trueIndex };
         });
 
         this.quizRequest.questions.push(new SingleChoiceQuestionRequestDto({

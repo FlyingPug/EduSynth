@@ -8,7 +8,7 @@ import java.util.List;
 public interface SessionService
 {
     void processAnswer(String sessionCode, Integer userId, List<ParticipantAnswer> answers);
-    Session findSessionByCode(String sessionCode);
+    Session requireSessionByCode(String sessionCode);
     Session joinSession(String sessionCode, Integer userId);
     Session startSession(String sessionCode, Integer userId);
     Session createSession(Integer QuizId, Integer userId);

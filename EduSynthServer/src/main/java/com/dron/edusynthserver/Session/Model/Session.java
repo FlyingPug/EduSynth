@@ -10,9 +10,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-    TODO: отдели сущности от доменов
- */
 @Entity
 @Table(name = "sessions")
 @Data
@@ -23,7 +20,7 @@ public class Session {
     @Id
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
@@ -35,19 +32,19 @@ public class Session {
     @Column(name = "current_question_index")
     private int currentQuestionIndex;
 
-    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Builder.Default
     private List<Participant> participants = new ArrayList<>();
 
-    @Transient
-    private Duration questionTimeLimit;
+    public Duration getQuestionTimeLimit() {
+        return Duration.ofSeconds(
+                quiz.getQuestions().get(currentQuestionIndex).getTimeLimitSeconds()
+        );
+    }
 
     public void start() {
         this.status = SessionStatus.ACTIVE;
         this.startTime = Instant.now();
-        this.questionTimeLimit = Duration.ofSeconds(
-                quiz.getQuestions().get(currentQuestionIndex).getTimeLimitSeconds()
-        );
     }
 
     public boolean isTimeExpired() {
@@ -55,18 +52,21 @@ public class Session {
             return false;
         }
         return Duration.between(startTime, Instant.now())
-                .compareTo(questionTimeLimit) >= 0;
+                .compareTo(getQuestionTimeLimit()) >= 0;
+    }
+
+    public void checkIfAllParticipantsHaveAnswered() {
+        if (participants.stream().allMatch(p -> p.hasAnswered(getCurrentQuestion()))) {
+            moveToNextQuestion();
+        }
     }
 
     public void moveToNextQuestion() {
-        currentQuestionIndex++;
-        if (currentQuestionIndex >= quiz.getQuestions().size()) {
+        if (currentQuestionIndex + 1 >= quiz.getQuestions().size()) {
             status = SessionStatus.FINISHED;
         } else {
+            currentQuestionIndex++;
             startTime = Instant.now();
-            questionTimeLimit = Duration.ofSeconds(
-                    quiz.getQuestions().get(currentQuestionIndex).getTimeLimitSeconds()
-            );
         }
     }
 

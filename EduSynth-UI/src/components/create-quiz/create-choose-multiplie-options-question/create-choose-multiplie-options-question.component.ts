@@ -97,7 +97,7 @@ export class CreateChooseMultiplieOptionsQuestionComponent extends QuestionCreat
 
     private addQuestionToRequest(): void {
         const answersArray = this.answers.controls.map(control => {
-            return { mediaUrl: "", text: control.get("text")?.value, isCorrect: control.get("isTrue")?.value };
+            return { mediaUrl: "", text: control.get("text")?.value, correct: control.get("isTrue")?.value };
         });
 
         this.quizRequest.questions.push(new MultipleChoiceQuestionRequestDto({

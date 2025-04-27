@@ -39,6 +39,7 @@ public class Quiz implements OwnedEntity {
     private String titleMediaUrl;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Question> questions = new ArrayList<>();
 
     @Override

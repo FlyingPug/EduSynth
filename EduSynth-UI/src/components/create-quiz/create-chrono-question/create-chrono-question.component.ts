@@ -54,7 +54,7 @@ export class CreateChronoQuestionComponent extends QuestionCreator implements On
 
     public questionImageUrl: string = "";
 
-    public get events(): FormArray {
+    public get events(): FormArray<FormGroup> {
         return this.getFormArray(this.form, "events");
     }
 

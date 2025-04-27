@@ -19,6 +19,8 @@ import { TextInputQuestionResponseDto } from "../../models/quiz/response/text-in
 import { ChronoOrderQuestionResponseDto } from "../../models/quiz/response/chrono-order-question-response-model";
 import { MultipleChoiceQuestionResponseDto } from "../../models/quiz/response/multiple-choise-question-request-model";
 import { CommonModule } from "@angular/common";
+import { UserService } from "../../service/user.service";
+import { ParticipantDto } from "../../models/session/participant-model";
 
 @Component({
     selector: "app-session",
@@ -31,6 +33,7 @@ export class SessionComponent implements OnInit {
 
     private route = inject(ActivatedRoute);
     private sessionService = inject(SessionService);
+    private userService = inject(UserService);
 
     public sessionState$ = new BehaviorSubject<SessionStateDto | null>(null);
     public session: SessionDto;
@@ -57,15 +60,21 @@ export class SessionComponent implements OnInit {
         return this.session.quiz.questions[this.sessionState$.value?.currentQuestionIndex ?? 0] as CrosswordQuestionResponseDto;
     }
 
+    public get currentQuestionIndex(): number {
+        if (!this.sessionState$.value) return 0;
+        return this.sessionState$.value.currentQuestionIndex;
+    }
+
     public ngOnInit(): void {
         this.loading = true;
+
         try {
             this.route.params.subscribe(async params => {
                 this.code = params["code"];
 
-                this.session = history.state?.data;
+                this.session = await this.sessionService.getSession(this.code);
 
-                if(!this.session) {
+                if(!(await this.getSessionParticipant())) {
                     this.session = await this.sessionService.joinSession(this.code);
                 }
 
@@ -76,6 +85,12 @@ export class SessionComponent implements OnInit {
         } finally {
             this.loading = false;
         }
+    }
+
+    private async getSessionParticipant(): Promise<ParticipantDto | undefined> {
+        const user = await this.userService.getCurrentUserInfo();
+
+        return this.session.participants.find(participant => participant.name === user.username);
     }
 
     protected SessionStatus = SessionStatusDto;

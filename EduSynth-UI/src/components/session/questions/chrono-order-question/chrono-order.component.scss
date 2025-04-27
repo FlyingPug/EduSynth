@@ -1,5 +1,6 @@
 .question-card {
   max-width: 800px;
+  max-height: 600px;
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 12px;
@@ -7,6 +8,11 @@
   background: white;
   position: relative;
   overflow: hidden;
+
+  .event-item {
+    display: flex;
+    gap: 0.5rem;
+  }
 
   .timer-container {
     position: absolute;

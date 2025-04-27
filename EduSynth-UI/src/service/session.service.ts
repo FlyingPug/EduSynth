@@ -1,6 +1,5 @@
 import { inject, Injectable } from "@angular/core";
 import { RxStompService } from "./rx-stomp-service";
-import { SessionCode } from "../models/session/session-code";
 import { IUserAnswerDto } from "../models/session/user-answer-model";
 import { ApiClient } from "./api.service";
 import { map, Observable } from "rxjs";
@@ -19,12 +18,12 @@ export class SessionService {
     private apiSession: string = "/private/session";
 
     public async createSession(quizId : number) : Promise<SessionDto> {
-        const data = await this.api.post(this.apiSession + "/create", quizId);
+        const data = await this.api.post(this.apiSession, quizId);
         return new SessionDto(data);
     }
 
     public async joinSession(sessionCode: string) : Promise<SessionDto> {
-        const data = await this.api.post(this.apiSession + "/join", new SessionCode(sessionCode));
+        const data = await this.api.simplePost(this.apiSession + `/${sessionCode}/join`);
         return new SessionDto(data);
     }
 
@@ -36,17 +35,17 @@ export class SessionService {
     }
 
     public async startSession(sessionCode: string): Promise<void> {
-        await this.api.post(this.apiSession + "/start", new SessionCode(sessionCode));
+        await this.api.simplePost(this.apiSession + `/${sessionCode}/start`);
     }
 
     public async getSession(sessionCode: string): Promise<SessionDto> {
-        return await this.api.get(this.apiSession + "/" + sessionCode);
+        return await this.api.get(this.apiSession + `/${sessionCode}`);
     }
 
     public async answer(sessionCode: string, answers: IUserAnswerDto[]): Promise<void> {
         await this.api.post(
-            this.apiSession + "/answer",
-            new UserAnswerFormDto(sessionCode, answers)
+            this.apiSession + `/${sessionCode}/answer`,
+            answers
         );
     }
 

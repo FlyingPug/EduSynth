@@ -5,10 +5,9 @@ import lombok.Data;
 import java.util.Set;
 
 @Data
-public class UserAnswerDto
+public class ParticipantAnswerDto
 {
     private int answerId;
-    private Set<Integer> selectedIds;
     private int orderIndex;
     private String answer;
 }

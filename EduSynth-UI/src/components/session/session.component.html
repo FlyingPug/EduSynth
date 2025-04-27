@@ -1,12 +1,12 @@
-<div class="container">
-  <ng-container [ngSwitch]="sessionState$ | async">>
+<div class="container" *ngIf="!loading && sessionState$.value">
+  <ng-container [ngSwitch]="sessionState$.value.status">>
     <div *ngSwitchCase="SessionStatus.WAITING">
       <app-lobby [sessionState$]="sessionState$"></app-lobby>
     </div>
 
-    <div *ngSwitchCase="SessionStatus.STARTED">
-      <ng-container *ngIf="(sessionState$ | async) as sessionState">
-        <ng-container [ngSwitch]="session.quiz.questions[sessionState.currentQuestionIndex].questionType">
+    <div *ngSwitchCase="SessionStatus.ACTIVE">
+      <ng-container *ngIf="(sessionState$.value) as sessionState">
+        <ng-container [ngSwitch]="session.quiz.questions[currentQuestionIndex].questionType">
           
           <div *ngSwitchCase="QuestionTypeDto.INPUT_TEXT">
             <app-text-input-question 
@@ -55,7 +55,7 @@
       </ng-container>
     </div>
 
-    <div *ngSwitchCase="SessionStatus.ENDED">
+    <div *ngSwitchCase="SessionStatus.FINISHED">
       <app-result [sessionState$]="sessionState$"></app-result>
     </div>
 

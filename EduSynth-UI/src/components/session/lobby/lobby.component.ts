@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from "@angular/core";
+import { Component, ElementRef, inject, Input, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SessionService } from "../../../service/session.service";
 import { MatDividerModule } from "@angular/material/divider";
@@ -12,13 +12,14 @@ import { ParticipantDto } from "../../../models/session/participant-model";
 import { UserService } from "../../../service/user.service";
 import { BaseComponent } from "../../base.component";
 import { SessionStateDto } from "../../../models/session/session-state-model";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
     selector: "app-lobby",
     standalone: true,
     imports: [MatDividerModule, CommonModule, MatListModule, MatIconModule, QrCodeModule, MatButtonModule],
     templateUrl: "./lobby.component.html",
-    styleUrl: "./lobby.component.css"
+    styleUrl: "./lobby.component.scss"
 })
 export class LobbyComponent extends BaseComponent implements OnInit {
 
@@ -26,42 +27,63 @@ export class LobbyComponent extends BaseComponent implements OnInit {
     private sessionService = inject(SessionService);
     private userService = inject(UserService);
     private router = inject(Router);
+    private snackBar = inject(MatSnackBar);
 
-    @Input() public sessionState$ : BehaviorSubject<SessionStateDto | null>;
+    @Input() public sessionState$: BehaviorSubject<SessionStateDto | null>;
+    @ViewChild("linkInput") public linkInput: ElementRef;
 
     public participant: ParticipantDto;
-
-    private code: string = "";
-    public loading = false;
+    public linkCopied: boolean = false;
+    public loading = true;
 
     public get sessionLink(): string {
         return window.location.href;
     }
 
     public get isLeader(): boolean | undefined {
-        return this.participant.leader;
+        return this.participant?.leader;
     }
 
     public async ngOnInit(): Promise<void> {
+        try {
+            const participantDto = await this.getSessionParticipant();
 
-        const participantDto = await this.getSessionParticipant();
-
-        if (participantDto) {
-            this.participant = participantDto;
-        } else {
-            this.goBack();
+            if (participantDto) {
+                this.participant = participantDto;
+                this.loading = false;
+            } else {
+                this.goBack();
+            }
+        } catch (error) {
+            console.error("Ошибка при инициализации лобби:", error);
+            this.loading = false;
         }
     }
 
     public async copyLink(): Promise<void> {
-        await navigator.clipboard.writeText(this.sessionLink);
+        try {
+            await navigator.clipboard.writeText(this.sessionLink);
+            this.linkCopied = true;
+            setTimeout(() => {
+                this.linkCopied = false;
+            }, 3000);
+        } catch (error) {
+            if (this.linkInput) {
+                this.linkInput.nativeElement.select();
+                this.linkCopied = false;
+            }
+        }
     }
 
     public startSession(): void {
-        this.sessionService.startSession(this.code);
+        if (this.sessionState$.value) {
+            this.sessionService.startSession(this.sessionState$.value.sessionId);
+        } else {
+            this.snackBar.open("Can't start session at this moment");
+        }
     }
 
-    private goBack(): void {
+    public goBack(): void {
         this.router.navigate(["../"], {
             relativeTo: this.route
         });
@@ -71,6 +93,17 @@ export class LobbyComponent extends BaseComponent implements OnInit {
         const user = await this.userService.getCurrentUserInfo();
 
         return this.sessionState$.value?.participants.find(participant => participant.name == user.username);
+    }
+
+    public getInitials(name: string): string {
+        if (!name) return "";
+
+        const parts = name.split(" ");
+        if (parts.length > 1) {
+            return (parts[0][0] + parts[1][0]).toUpperCase();
+        }
+
+        return name.substring(0, 2).toUpperCase();
     }
 
 }

@@ -53,7 +53,6 @@ public class SessionServiceImpl implements SessionService {
                 .status(SessionStatus.WAITING)
                 .currentQuestionIndex(0)
                 .startTime(Instant.now())
-                .questionTimeLimit(Duration.ofMinutes(0))
                 .build();
 
         Participant leader = Participant.builder()
@@ -124,19 +123,24 @@ public class SessionServiceImpl implements SessionService {
                 .findFirst()
                 .orElseThrow(() -> new ForbiddenException("User not in session"));
 
+        answers.forEach(answer -> {
+            answer.setParticipant(participant);
+            answer.setQuestion(session.getCurrentQuestion());
+        });
+
         if (session.getCurrentQuestion().isAnswerCorrect(answers)) {
             participant.incrementScore();
         }
 
         participant.getAnswers().addAll(answers);
+        session.checkIfAllParticipantsHaveAnswered();
         sessionRepository.save(session);
 
         broadcastSessionState(session);
     }
 
     @Override
-    @Cacheable(value = "sessionStates", key = "#sessionId")
-    public Session findSessionByCode(String sessionId) {
+    public Session requireSessionByCode(String sessionId) {
         return sessionRepository.findSessionById(sessionId)
                 .orElseThrow(() -> new NotFoundException("Session not found"));
     }
@@ -171,7 +175,7 @@ public class SessionServiceImpl implements SessionService {
         );
 
         messagingTemplate.convertAndSend(
-                "/topic/sessions/" + session.getId() + "/state",
+                "/topic/session/" + session.getId(),
                 state
         );
     }
